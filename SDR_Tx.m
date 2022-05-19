@@ -19,6 +19,7 @@ end
 
 %%
 % Transmit until stopped
+disp('Transmitting')
 while 1
     tx(x_tilde);
 end
