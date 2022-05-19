@@ -1,6 +1,4 @@
 %%
-clc;
-
 % Initialize
 fc = 1485e6;
 f1 = 1486e6;
