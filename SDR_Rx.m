@@ -1,4 +1,6 @@
 clear;
+
+% Initialize
 ts = 1/(20e6);
 if(~(exist('rx', 'var')))
     rx = comm.SDRuReceiver(...
@@ -8,15 +10,19 @@ if(~(exist('rx', 'var')))
                   'MasterClockRate',(1/ts), ...
                   'OutputDataType','double', ...
                   'Gain',60, ...
-                  'DecimationFactor',1,...
-                  'EnableBurstMode', 1, ...
-                  'NumFramesInBurst', 1e2);
+                  'DecimationFactor',1);
 end
 rxLog = dsp.SignalSink;
-data = rx();
-rxLog(data);
-release(rx)
+
+% Receive for 100 samples
+for i = 1:100
+    data = rx();
+    rxLog(data);
+end
 data = rxLog.Buffer;
+
+% Clean up
+release(rx)
 release(rxLog)
 
 
