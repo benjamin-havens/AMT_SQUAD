@@ -13,11 +13,9 @@ if(~(exist('rx', 'var')))
 end
 rxLog = dsp.SignalSink;
 
-% Receive for 100 samples
-for i = 1:100
-    data = rx();
-    rxLog(data);
-end
+% Receive
+data = rx();
+rxLog(data);
 data = rxLog.Buffer;
 
 % Clean up
