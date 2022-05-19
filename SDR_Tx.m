@@ -14,17 +14,17 @@ if ~(exist('tx', 'var'))
                   'SerialNum','3218C97',    ...
                   'CenterFrequency',fc,     ...
                   'MasterClockRate',1/ts,   ...
-                  'InterpolationFactor',1);
+                  'InterpolationFactor',1,  ...
+                  'EnableBurstMode', true,  ...
+                  'NumFramesInBurst', 5);
 end
 
 %%
-% Transmit until stopped
+% Transmit one burst
 disp('Transmitting')
-while 1
-    tx(x_tilde);
-end
+tx(x_tilde);
 
 %%
 % Release the tx (must be run after stopping)
-release(tx); %#ok<UNRCH> 
+release(tx);
 
