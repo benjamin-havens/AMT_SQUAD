@@ -25,4 +25,5 @@ end
 
 %%
 % Release the tx (must be run after stopping)
-release(tx);
+release(tx); %#ok<UNRCH> 
+
