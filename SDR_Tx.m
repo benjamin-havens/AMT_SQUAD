@@ -1,6 +1,7 @@
 %%
 clc;
 
+% Initialize
 fc = 1485e6;
 f1 = 1486e6;
 ts = 1/(20e6);
@@ -19,9 +20,11 @@ if ~(exist('tx', 'var'))
 end
 
 %%
+% Transmit until stopped
 while 1
     tx(x_tilde);
 end
 
 %%
+% Release the tx (must be run after stopping)
 release(tx);

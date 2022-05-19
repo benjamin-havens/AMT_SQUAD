@@ -1,8 +1,15 @@
-t = 0:ts:4e-6 - ts;
+% SDR PLOT
+% Plots the data after Rx is run.
+% Note: this assumes a 20MHz sampling rate
 
-%orig_x = real(data .* exp(1j * 2 * pi * 1485e6 .* t'));
+% Grab the part of the data we want
+ts = 1/(20e6);
+samples_to_plot = 80;
+t = 0:ts:(samples_to_plot - 1)*ts;
+to_plot = data(1:samples_to_plot);
 
-
-x = cos(2 * pi * 1e6 * t);
-temp = data(1:80);
-plot(t, real(temp), t, imag(temp))
+% Plot real and imaginary parts
+plot(t, real(to_plot), t, imag(to_plot))
+title('Rx Amplitude');
+xlabel('Time (s)'); 
+ylabel('Amplitude');
