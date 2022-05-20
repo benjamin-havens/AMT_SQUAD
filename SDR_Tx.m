@@ -1,5 +1,4 @@
-%%
-% Initialize
+%% Initialize
 fc = 1485e6;
 f1 = 1486e6;
 ts = 1/(20e6);
@@ -14,17 +13,15 @@ if ~(exist('tx', 'var'))
                   'SerialNum','3218C97',    ...
                   'CenterFrequency',fc,     ...
                   'MasterClockRate',1/ts,   ...
-                  'InterpolationFactor',1,  ...
-                  'EnableBurstMode', true,  ...
-                  'NumFramesInBurst', 5);
+                  'InterpolationFactor',1);
 end
 
-%%
-% Transmit one burst
+%% Transmit one burst
 disp('Transmitting')
-tx(x_tilde);
+while 1
+    tx(x_tilde);
+end
 
-%%
-% Release the tx (must be run after stopping)
+%% Release the tx (must be run after stopping)
 release(tx);
 
