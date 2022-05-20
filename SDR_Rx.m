@@ -1,25 +1,27 @@
-% Initialize
+%% Initialize
 ts = 1/(20e6);
 if(~(exist('rx', 'var')))
-    rx = comm.SDRuReceiver(                     ...
-                  'Platform','B210',            ...
-                  'SerialNum','32339F7',        ...
-                  'CenterFrequency',1485e6,     ...
-                  'MasterClockRate',(1/ts),     ...
-                  'OutputDataType','double',    ...
-                  'Gain',60,                    ...
-                  'DecimationFactor',1,         ...
-                  'SamplesPerFrame', 1e6);
+    rx = comm.SDRuReceiver();
+    rx.Platform = "B210";
+    rx.SerialNum = '32339F7';
+    rx.ChannelMapping = [1 2];
+    rx.CenterFrequency = 1485e6;
+    rx.MasterClockRate = (1/ts);
+    rx.Gain = 60;
+    rx.DecimationFactor = 1;
 end
+rx.SamplesPerFrame = 1e6;
 rxLog = dsp.SignalSink;
 
-% Receive
+%% Receive
 disp('receiving')
 data = rx();
 rxLog(data);
 data = rxLog.Buffer;
+data_a = data(:, 1);
+data_b = data(:, 2);
 
-% Clean up
+%% Clean up
 release(rx)
 release(rxLog)
 
