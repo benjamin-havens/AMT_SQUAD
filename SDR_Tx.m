@@ -15,6 +15,7 @@ if ~(exist('tx', 'var'))
                   'MasterClockRate',1/ts,   ...
                   'InterpolationFactor',1);
 end
+tx.Gain = 20;
 
 %% Transmit one burst
 disp('Transmitting')

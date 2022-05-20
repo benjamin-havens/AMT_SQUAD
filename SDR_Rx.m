@@ -11,18 +11,18 @@ if(~(exist('rx', 'var')))
     rx.DecimationFactor = 1;
 end
 rx.SamplesPerFrame = 1e6;
-rxLog = dsp.SignalSink;
 
 %% Receive
+rxLog = dsp.SignalSink;
 disp('receiving')
 data = rx();
 rxLog(data);
 data = rxLog.Buffer;
 data_a = data(:, 1);
 data_b = data(:, 2);
+release(rxLog)
 
 %% Clean up
 release(rx)
-release(rxLog)
 
 
