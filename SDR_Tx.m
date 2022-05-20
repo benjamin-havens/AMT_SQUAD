@@ -17,7 +17,7 @@ if ~(exist('tx', 'var'))
 end
 tx.Gain = 20;
 
-%% Transmit one burst
+%% Transmit until stopped
 disp('Transmitting')
 while 1
     tx(x_tilde);
