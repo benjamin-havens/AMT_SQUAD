@@ -35,6 +35,7 @@ X2 = fftshift(X1);
 
 figure(3);  % Has FFT plot
 plot(FF, abs(X2));
+title("Channel A FFT");
 xlabel('F normalized frequency (cycles/sample)');
 ylabel('magnitude');
 mystring = sprintf('   max occurs at F = %4.3f cycles/sample', FF(max_idx));
@@ -61,7 +62,8 @@ X2 = fftshift(X1);
 
 figure(6);  % Has FFT plot
 plot(FF, abs(X2));
-xlabel('F normalized frequency (cycles/sample)--CHANNEL B');
+title("Channel B FFT");
+xlabel('F normalized frequency (cycles/sample)');
 ylabel('magnitude');
 mystring = sprintf('   max occurs at F = %4.3f cycles/sample', FF(max_idx));
 text(FF(max_idx), max_val, mystring);
