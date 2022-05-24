@@ -25,8 +25,9 @@ def transmit_cosine(
     t = arange(0, 1 / lpef, ts)
     x_tilde = exp(1j * 2 * pi * lpef * t)
 
-    radio = uhd.usrp.MultiUSRP()
-    radio.send_waveform(
+    tx = uhd.usrp.MultiUSRP()
+    print("Transmitting...")
+    tx.send_waveform(
         waveform_proto=x_tilde,
         duration=duration,
         freq=fc,
@@ -34,6 +35,7 @@ def transmit_cosine(
         channels=channels,
         gain=gain,
     )
+    print("Transmission complete.")
 
 
 if __name__ == "__main__":
