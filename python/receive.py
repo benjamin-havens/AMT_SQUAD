@@ -1,11 +1,15 @@
 """
-Receives 1e6 samples and plots them. Provides configurable receive and plot functions
+Receives 1e6 samples and plots them. Provides configurable receive function
 """
 
-# Dumb setup stuff because the API is not set up well and I don't know how to fix it
+# Imports
+from plot_samples import *
+from numpy import real, imag
+
+# Dumb setup stuff because the API is not set up well and I don't know how to fix it.
+# You probably have to create uhd_params and put the path in
 import sys
 from uhd_params import path_to_uhd_module as path
-import matplotlib.pyplot as plt
 
 sys.path.insert(0, path)
 import uhd
@@ -19,9 +23,8 @@ def receive(
     num_samples: 1e6, sample_rate 20e6, and gain 50
     """
 
-    rx = uhd.usrp.MultiUSRP("num_recv_frames=1000")
+    rx = uhd.usrp.MultiUSRP("num_recv_frames=128")
     rx.set_rx_agc(False, 0)
-
     samples = rx.recv_num_samps(
         num_samps=num_samples,
         freq=fc,
@@ -33,11 +36,6 @@ def receive(
     return samples
 
 
-def plot(samples):
-    fig, ax = plt.subplots()
-    ax.plot(samples)
-
-
 if __name__ == "__main__":
-    samples = receive()
-    plot(samples)
+    samples = receive(num_samples=1000)
+    plot_two_channels(samples)

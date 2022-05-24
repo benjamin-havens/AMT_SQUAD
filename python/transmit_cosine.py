@@ -3,10 +3,13 @@ Transmits a pure 1486MHz cosine on B210 USRP, center frequency 1485MHz.
 Provides configurable function transmit_cosine
 """
 
-# Dumb setup stuff because the API is not set up well and I don't know how to fix it
+# Imports
+from numpy import arange, exp, pi
+
+# Dumb setup stuff because the API is not set up well and I don't know how to fix it.
+# You probably have to create uhd_params and put the path in
 import sys
 from uhd_params import path_to_uhd_module as path
-from numpy import exp, arange, pi
 
 sys.path.insert(0, path)
 import uhd
