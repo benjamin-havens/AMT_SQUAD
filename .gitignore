@@ -1,4 +1,5 @@
 .DS_Store
 *asv
 uhd_params.py
-*.pyc
+__pycache__/
+*pyc
