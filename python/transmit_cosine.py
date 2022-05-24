@@ -4,7 +4,7 @@ Provides configurable function transmit_cosine
 """
 
 # Imports
-from numpy import arange, exp, pi
+from numpy import arange, exp, pi, cos
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
@@ -42,4 +42,4 @@ def transmit_cosine(
 
 
 if __name__ == "__main__":
-    transmit_cosine()
+    transmit_cosine(duration=20, gain=50)

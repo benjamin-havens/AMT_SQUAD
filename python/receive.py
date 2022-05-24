@@ -4,7 +4,6 @@ Receives 1e6 samples and plots them. Provides configurable receive function
 
 # Imports
 from plot_samples import *
-from numpy import real, imag
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
@@ -25,6 +24,7 @@ def receive(
 
     rx = uhd.usrp.MultiUSRP("num_recv_frames=128")
     rx.set_rx_agc(False, 0)
+    print("Receiving...")
     samples = rx.recv_num_samps(
         num_samps=num_samples,
         freq=fc,
@@ -32,10 +32,12 @@ def receive(
         channels=channels,
         gain=gain,
     )
+    print("Receiving complete.")
 
     return samples
 
 
 if __name__ == "__main__":
     samples = receive(num_samples=1000)
-    plot_two_channels(samples)
+    plot_two_channels(samples, num_to_plot=100)
+    fft_two_channels(samples)
