@@ -21,7 +21,7 @@ tx.Gain = 20;
 disp('Transmitting')
 while 1
     tx(x_tilde);
-end
+end 
 
 %% Release the tx (must be run after stopping)
 release(tx);
