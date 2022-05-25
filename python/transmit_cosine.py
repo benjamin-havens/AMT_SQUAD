@@ -4,7 +4,7 @@ Provides configurable function transmit_cosine
 """
 
 # Imports
-from numpy import arange, exp, pi, cos
+from numpy import arange, exp, pi, floor, complex64, array
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
@@ -23,10 +23,12 @@ def transmit_cosine(
     with sample_rate, gain, and channels specifiable
     """
 
+    # Generator function for low-pass equivalent signal of a cosine
+    sine = lambda n, tone_offset, rate: exp(n * 2j * pi * tone_offset / rate)
+
     lpef = f1 - fc  # Low pass equivalent frequency
-    ts = 1 / sample_rate
-    t = arange(0, 1 / lpef, ts)
-    x_tilde = exp(1j * 2 * pi * lpef * t)
+    n = arange(int(10 * floor(sample_rate / lpef)), dtype=complex64)
+    x_tilde = sine(n, lpef, sample_rate)  # One period
 
     tx = uhd.usrp.MultiUSRP()
     print("Transmitting...")
