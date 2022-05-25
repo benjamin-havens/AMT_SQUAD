@@ -8,7 +8,9 @@ from numpy.fft import fft, fftshift, fftfreq
 
 
 def plot_two_channels(samples, num_to_plot=None):
-    """Plots real and imaginary part of channel A and B"""
+    """
+    Plots real and imaginary part of channel A and B
+    """
 
     n = len(samples[0, :])
     if not num_to_plot or num_to_plot >= n:
@@ -33,7 +35,9 @@ def plot_two_channels(samples, num_to_plot=None):
 
 
 def plot_one_channel(samples, num_to_plot=None):
-    """Plots real and imaginary part of channel A"""
+    """
+    Plots real and imaginary part of channel A
+    """
 
     n = len(samples[0, :])
     if not num_to_plot or num_to_plot >= n:
@@ -50,11 +54,15 @@ def plot_one_channel(samples, num_to_plot=None):
     plt.show()
 
 
-def fft_two_channels(samples):
+def fft_two_channels(samples, n=None):
+    """
+    Plots the fft magnitude for two channels.
+    """
+
     ch_a = samples[0, :]
     ch_b = samples[1, :]
 
-    Nfft = 512
+    Nfft = n or 512
     FF = sorted(fftfreq(Nfft))
     fft_a = abs(fftshift(fft(ch_a, n=Nfft)))
     fft_b = abs(fftshift(fft(ch_b, n=Nfft)))
@@ -72,10 +80,14 @@ def fft_two_channels(samples):
     plt.show()
 
 
-def fft_one_channel(samples):
+def fft_one_channel(samples, n=None):
+    """
+    Plots the fft magnitude for one channel.
+    """
+
     ch_a = samples[0, :]
 
-    Nfft = 512
+    Nfft = n or 512
     FF = sorted(fftfreq(Nfft))
     fft_a = abs(fftshift(fft(ch_a, n=Nfft)))
 
