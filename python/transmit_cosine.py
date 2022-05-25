@@ -24,11 +24,11 @@ def transmit_cosine(
     """
 
     # Generator function for low-pass equivalent signal of a cosine
-    sine = lambda n, tone_offset, rate: exp(n * 2j * pi * tone_offset / rate)
+    sine = lambda n, freq_offset, rate: exp(n * 2j * pi * freq_offset / rate)
 
-    lpef = f1 - fc  # Low pass equivalent frequency
-    n = arange(int(10 * floor(sample_rate / lpef)), dtype=complex64)
-    x_tilde = sine(n, lpef, sample_rate)  # One period
+    freq_offset = f1 - fc  # Low pass equivalent frequency
+    n = arange(int(10 * floor(sample_rate / freq_offset)), dtype=complex64)
+    x_tilde = sine(n, freq_offset, sample_rate)  # One period
 
     tx = uhd.usrp.MultiUSRP()
     print("Transmitting...")
