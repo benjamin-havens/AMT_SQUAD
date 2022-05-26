@@ -24,6 +24,7 @@ def receive(
 
     rx = uhd.usrp.MultiUSRP("num_recv_frames=128")
     rx.set_rx_agc(False, 0)
+    rx.set_rx_agc(False, 1)
     print("Receiving...")
     samples = rx.recv_num_samps(
         num_samps=num_samples,
