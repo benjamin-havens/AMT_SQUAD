@@ -25,6 +25,7 @@ def receive(
 
     rx = uhd.usrp.MultiUSRP("num_recv_frames=128")
     rx.set_rx_agc(False, 0)
+    rx.set_rx_agc(False, 1)
     print("Receiving...")
     samples = rx.recv_num_samps(
         num_samps=num_samples,
@@ -40,6 +41,8 @@ def receive(
 
 if __name__ == "__main__":
     samples = receive(num_samples=1000)
+    # plot_one_channel(samples, num_to_plot=100)
+    # fft_one_channel(samples)
     plot_two_channels(samples, num_to_plot=100)
     fft_two_channels(samples)
     with open("../results/week_may_23/output.csv", "w", newline="") as csvfile:
