@@ -4,6 +4,7 @@ Receives 1e6 samples and plots them. Provides configurable receive function
 
 # Imports
 from plot_samples import *
+import csv
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
@@ -41,3 +42,6 @@ if __name__ == "__main__":
     samples = receive(num_samples=1000)
     plot_two_channels(samples, num_to_plot=100)
     fft_two_channels(samples)
+    with open("../results/week_may_23/output.csv", "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(samples)

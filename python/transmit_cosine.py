@@ -4,7 +4,7 @@ Provides configurable function transmit_cosine
 """
 
 # Imports
-from numpy import arange, exp, pi, floor, complex64, array
+from numpy import arange, exp, pi, floor, complex64
 from suppress_output import suppress_stdout
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
@@ -33,17 +33,16 @@ def transmit_cosine(
 
     tx = uhd.usrp.MultiUSRP()
     print("Transmitting...")
-    with suppress_stdout():
-        tx.send_waveform(
-            waveform_proto=x_tilde,
-            duration=duration,
-            freq=fc,
-            rate=sample_rate,
-            channels=channels,
-            gain=gain,
-        )
+    tx.send_waveform(
+        waveform_proto=x_tilde,
+        duration=duration,
+        freq=fc,
+        rate=sample_rate,
+        channels=channels,
+        gain=gain,
+    )
     print("\nTransmission complete.")
 
 
 if __name__ == "__main__":
-    transmit_cosine(duration=20, gain=50)
+    transmit_cosine(duration=100, gain=60)
