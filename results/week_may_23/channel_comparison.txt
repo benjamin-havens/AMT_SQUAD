@@ -1,0 +1,74 @@
+All values are rough approximations of the sinusoid amplitude values
+
+channel b - tape
+a) .6
+b) .8
+
+a) .3
+b) .75
+
+a) .3
+b) .75
+
+a) .4
+b) .75
+change location
+a) .2
+b) .3
+
+a) .06
+b) .3
+
+a) .075
+b) .3
+
+
+channel a - tape
+a) .2
+b) .3
+
+a) .2
+b) .3
+
+a) .15
+b) .3
+
+a) .15
+b) .3
+dropped gain
+a) .006
+b) .01
+
+a) .0075
+b) .01
+
+
+---Switch radios---
+channel b - tape
+a) .035
+b) .015
+
+a) .0325 
+b) .015
+
+a) .035
+b) .0175
+
+a) .0325
+b) .0125
+
+a) .02
+b) .0125
+
+channel a - tape
+a) .02
+b) .00825
+
+a) .025
+b) .01
+
+a) .025
+b) .01
+
+a) .025
+b) .01
