@@ -41,8 +41,6 @@ def receive(
 
 if __name__ == "__main__":
     samples = receive(num_samples=1000)
-    # plot_one_channel(samples, num_to_plot=100)
-    # fft_one_channel(samples)
     plot_two_channels(samples, num_to_plot=100)
     fft_two_channels(samples)
     with open("../results/week_may_23/output.csv", "w", newline="") as csvfile:
