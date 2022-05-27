@@ -3,7 +3,7 @@ Provides plotting functions for samples obtained from B210 SDR
 """
 
 import matplotlib.pyplot as plt
-from numpy import real, imag, arange
+from numpy import real, imag, argmax
 from numpy.fft import fft, fftshift, fftfreq
 
 
@@ -70,6 +70,14 @@ def fft_two_channels(samples, n=None):
     fft_a = abs(fftshift(fft(ch_a, n=Nfft)))
     fft_b = abs(fftshift(fft(ch_b, n=Nfft)))
 
+    # Get strings for plot
+    max_a_loc = argmax(fft_a)
+    max_a = fft_a[max_a_loc]
+    max_b_loc = argmax(fft_b)
+    max_b = fft_b[max_b_loc]
+    str_a = f"Max is {max_a:.4f} at {FF[max_a_loc]:.4f} cycles per sample"
+    str_b = f"Max is {max_b:.4f} at {FF[max_b_loc]:.4f} cycles per sample"
+
     fig, ax = plt.subplots(nrows=1, ncols=2)
     ax[0].plot(FF, fft_a)
     ax[1].plot(FF, fft_b)
@@ -80,6 +88,8 @@ def fft_two_channels(samples, n=None):
     ax[1].set_xlabel("Normalized Frequency")
     ax[1].set_ylabel("Amplitude")
     plt.tight_layout()
+    ax[0].text(FF[int(max_a_loc * 0.5)], max_a, str_a)
+    ax[1].text(FF[int(max_b_loc * 0.5)], max_b, str_b)
     ax[0].grid()
     ax[1].grid()
     plt.show()
@@ -96,11 +106,17 @@ def fft_one_channel(samples, n=None):
     FF = sorted(fftfreq(Nfft))
     fft_a = abs(fftshift(fft(ch_a, n=Nfft)))
 
+    # Get string for plot
+    max_a_loc = argmax(fft_a)
+    max_a = fft_a[max_a_loc]
+    str_a = f"Max is {max_a:.4f} at {FF[max_a_loc]:.4f} cycles per sample"
+
     fig, ax = plt.subplots()
     ax.plot(FF, fft_a)
     ax.set_title("Channel A")
     ax.set_xlabel("Sample")
     ax.set_ylabel("Normalized Frequency")
     plt.tight_layout()
+    ax.text(FF[int(max_a_loc * 0.7)], max_a, str_a)
     plt.grid()
     plt.show()
