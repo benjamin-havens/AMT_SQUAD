@@ -22,7 +22,6 @@ b) .3
 a) .075
 b) .3
 
-
 channel a - tape
 a) .2
 b) .3
@@ -72,3 +71,19 @@ b) .01
 
 a) .025
 b) .01
+
+channel b in rx port
+a) .06
+b) .07
+
+a) .07
+b) .0825
+
+both in rx port
+a) .25
+b) .3
+
+
+
+
+
