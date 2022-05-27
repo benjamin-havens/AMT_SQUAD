@@ -31,6 +31,8 @@ def plot_two_channels(samples, num_to_plot=None):
     ax[1].set_ylabel("Amplitude")
     plt.legend()
     plt.tight_layout()
+    ax[0].grid()
+    ax[1].grid()
     plt.show()
 
 
@@ -51,6 +53,7 @@ def plot_one_channel(samples, num_to_plot=None):
     ax.set_ylabel("Amplitude")
     plt.legend()
     plt.tight_layout()
+    plt.grid()
     plt.show()
 
 
@@ -71,12 +74,14 @@ def fft_two_channels(samples, n=None):
     ax[0].plot(FF, fft_a)
     ax[1].plot(FF, fft_b)
     ax[0].set_title("Channel A")
-    ax[0].set_xlabel("Sample")
-    ax[0].set_ylabel("Normalized Frequency")
+    ax[0].set_xlabel("Normalized Frequency")
+    ax[0].set_ylabel("Amplitude")
     ax[1].set_title("Channel B")
     ax[1].set_xlabel("Normalized Frequency")
     ax[1].set_ylabel("Amplitude")
     plt.tight_layout()
+    ax[0].grid()
+    ax[1].grid()
     plt.show()
 
 
@@ -97,4 +102,5 @@ def fft_one_channel(samples, n=None):
     ax.set_xlabel("Sample")
     ax.set_ylabel("Normalized Frequency")
     plt.tight_layout()
+    plt.grid()
     plt.show()
