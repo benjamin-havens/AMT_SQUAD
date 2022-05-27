@@ -9,7 +9,7 @@ import csv
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
 import sys
-from uhd_params import path_to_uhd_module as path
+from uhd_params import path_to_uhd_module as path, path_to_csv_location as csv_path
 
 sys.path.insert(0, path)
 import uhd
@@ -41,10 +41,8 @@ def receive(
 
 if __name__ == "__main__":
     samples = receive(num_samples=1000)
-    # plot_one_channel(samples, num_to_plot=100)
-    # fft_one_channel(samples)
     plot_two_channels(samples, num_to_plot=100)
     fft_two_channels(samples)
-    with open("../results/week_may_23/output.csv", "w", newline="") as csvfile:
+    with open(csv_path, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(samples)

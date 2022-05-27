@@ -4,3 +4,4 @@ uhd_params.py
 __pycache__/
 *pyc
 .vscode/
+*.csv
