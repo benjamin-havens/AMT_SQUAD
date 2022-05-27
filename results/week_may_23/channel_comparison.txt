@@ -1,3 +1,5 @@
+All values are rough approximations of the sinusoid amplitude values
+
 channel b - tape
 a) .6
 b) .8
