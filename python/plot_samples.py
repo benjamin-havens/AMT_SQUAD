@@ -3,7 +3,7 @@ Provides plotting functions for samples obtained from B210 SDR
 """
 
 import matplotlib.pyplot as plt
-from numpy import real, imag, argmax
+from numpy import real, imag, argmax, log10
 from numpy.fft import fft, fftshift, fftfreq
 
 
@@ -57,7 +57,7 @@ def plot_one_channel(samples, num_to_plot=None):
     plt.show()
 
 
-def fft_two_channels(samples, n=None):
+def fft_two_channels(samples, n=None, dB=True):
     """
     Plots the fft magnitude for two channels.
     """
@@ -69,6 +69,9 @@ def fft_two_channels(samples, n=None):
     FF = sorted(fftfreq(Nfft))
     fft_a = abs(fftshift(fft(ch_a, n=Nfft)))
     fft_b = abs(fftshift(fft(ch_b, n=Nfft)))
+
+    if dB:
+        fft_a, fft_b = 20 * log10(fft_a), 20 * log10(fft_b)
 
     # Get strings for plot
     max_a_loc = argmax(fft_a)
@@ -95,7 +98,7 @@ def fft_two_channels(samples, n=None):
     plt.show()
 
 
-def fft_one_channel(samples, n=None):
+def fft_one_channel(samples, n=None, dB=True):
     """
     Plots the fft magnitude for one channel.
     """
@@ -105,6 +108,9 @@ def fft_one_channel(samples, n=None):
     Nfft = n or 512
     FF = sorted(fftfreq(Nfft))
     fft_a = abs(fftshift(fft(ch_a, n=Nfft)))
+
+    if dB:
+        fft_a = 20 * log10(fft_a)
 
     # Get string for plot
     max_a_loc = argmax(fft_a)
