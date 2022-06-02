@@ -43,6 +43,8 @@ if __name__ == "__main__":
     samples = receive(num_samples=1000)
     plot_two_channels(samples, num_to_plot=100)
     fft_two_channels(samples)
+    # plot_one_channel(samples, num_to_plot=100)
+    # fft_one_channel(samples)
     with open(csv_path, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(samples)
