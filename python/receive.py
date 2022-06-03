@@ -16,7 +16,7 @@ import uhd
 
 
 def receive(
-    fc=1485e6, num_samples=int(1e6), sample_rate=20e6, channels=[0, 1], gain=50
+    fc=1485e6, num_samples=int(1e6), sample_rate=20e6, channels=[0, 1], gain=[50, 50]
 ):
     """
     Receives from center frequency fc, with default
@@ -40,7 +40,7 @@ def receive(
 
 
 if __name__ == "__main__":
-    samples = receive(num_samples=1000)
+    samples = receive(num_samples=1000, gain=[50, 10])
     plot_two_channels(samples, num_to_plot=100)
     fft_two_channels(samples)
     # plot_one_channel(samples, num_to_plot=100)
