@@ -7,7 +7,7 @@ from numpy import real, imag, argmax, log10
 from numpy.fft import fft, fftshift, fftfreq
 
 
-def plot_two_channels(samples, num_to_plot=None):
+def plot_two_channels(samples, num_to_plot=None, same_y_axis=True):
     """
     Plots real and imaginary part of channel A and B
     """
@@ -18,7 +18,15 @@ def plot_two_channels(samples, num_to_plot=None):
     ch_a = samples[0, :num_to_plot]
     ch_b = samples[1, :num_to_plot]
 
-    fig, ax = plt.subplots(nrows=1, ncols=2)
+    fig, ax = (
+        plt.subplots(nrows=1, ncols=2, sharey=True)
+        if same_y_axis
+        else plt.subplts(nrows=1, ncols=2)
+    )
+    if same_y_axis:
+        ax[0].yaxis.set_tick_params(labelbottom=True)
+        ax[1].yaxis.set_tick_params(labelbottom=True)
+
     ax[0].plot(real(ch_a), label="real")
     ax[0].plot(imag(ch_a), label="imaginary")
     ax[1].plot(real(ch_b), label="real")
@@ -57,7 +65,7 @@ def plot_one_channel(samples, num_to_plot=None):
     plt.show()
 
 
-def fft_two_channels(samples, n=None, dB=True):
+def fft_two_channels(samples, n=None, dB=True, same_y_axis=True):
     """
     Plots the fft magnitude for two channels.
     """
@@ -81,7 +89,15 @@ def fft_two_channels(samples, n=None, dB=True):
     str_a = f"Max is {max_a:.4f} at {FF[max_a_loc]:.4f} cycles per sample"
     str_b = f"Max is {max_b:.4f} at {FF[max_b_loc]:.4f} cycles per sample"
 
-    fig, ax = plt.subplots(nrows=1, ncols=2)
+    fig, ax = (
+        plt.subplots(nrows=1, ncols=2, sharey=True)
+        if same_y_axis
+        else plt.subplts(nrows=1, ncols=2)
+    )
+    if same_y_axis:
+        ax[0].yaxis.set_tick_params(labelbottom=True)
+        ax[1].yaxis.set_tick_params(labelbottom=True)
+
     ax[0].plot(FF, fft_a)
     ax[1].plot(FF, fft_b)
     ax[0].set_title("Channel A")

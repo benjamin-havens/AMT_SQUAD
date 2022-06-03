@@ -5,7 +5,6 @@ Provides configurable function transmit_cosine
 
 # Imports
 from numpy import arange, exp, pi, floor, complex64
-from suppress_output import suppress_stdout
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
@@ -45,4 +44,4 @@ def transmit_cosine(
 
 
 if __name__ == "__main__":
-    transmit_cosine(duration=100, gain=60)
+    transmit_cosine(duration=60, gain=60)
