@@ -40,9 +40,9 @@ def receive(
 
 
 if __name__ == "__main__":
-    samples = receive(num_samples=1000, gain=[50, 10])
+    samples = receive(num_samples=1000, gain=[40, 40])
     plot_two_channels(samples, num_to_plot=100)
-    fft_two_channels(samples)
+    fft_two_channels(samples, dB=False)
     # plot_one_channel(samples, num_to_plot=100)
     # fft_one_channel(samples)
     with open(csv_path, "w", newline="") as csvfile:
