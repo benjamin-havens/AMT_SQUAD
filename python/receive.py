@@ -43,10 +43,10 @@ def receive(
 if __name__ == "__main__":
     gain = [40,40]
     agc = False
-    location = "Hallway"
-    polA = "Vertical"
-    polB = "Horizontal"
-    description = "\nChannel A = rx\nChannel B = rx"
+    location = input("Enter Location of test: ")
+    polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
+    polB = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
+    description = input("Enter test description: ")
     samples = receive(num_samples=1000, gain=gain, agc=agc)
     plot_two_channels(samples, gain, agc, location, polA, polB, description, num_to_plot=100)
     fft_two_channels(samples, gain, agc, location, polA, polB, description, dB=False)

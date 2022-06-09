@@ -43,7 +43,6 @@ def plot_two_channels(samples, gain, agc, location, polA, polB, description, num
     ax[1].set_xlabel("Sample")
     ax[1].set_ylabel("Amplitude")
     plt.legend()
-    plt.tight_layout()
     ax[0].grid()
     ax[1].grid()
     time_stamp, date = get_date_and_time()
@@ -58,7 +57,7 @@ def plot_two_channels(samples, gain, agc, location, polA, polB, description, num
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
     verticalalignment='top')
-
+    plt.tight_layout()
     plt.show()
 
 
@@ -80,7 +79,6 @@ def plot_one_channel(samples, gain, agc, location, polA, description, num_to_plo
     ax.set_xlabel("Sample")
     ax.set_ylabel("Amplitude")
     plt.legend()
-    plt.tight_layout()
     plt.grid()
 
     time_stamp, date = get_date_and_time()
@@ -95,7 +93,7 @@ def plot_one_channel(samples, gain, agc, location, polA, description, num_to_plo
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
     verticalalignment='top')
-
+    plt.tight_layout()
     plt.show()
 
 
@@ -149,7 +147,6 @@ def fft_two_channels(samples, gain, agc, location, polA, polB, description, n=No
         ax[0].set_ylabel("Amplitude")
         ax[1].set_ylabel("Amplitude")
 
-    plt.tight_layout()
     ax[0].text(FF[int(max_a_loc * 0.5)], max_a, str_a)
     ax[1].text(FF[int(max_b_loc * 0.5)], max_b, str_b)
     ax[0].grid()
@@ -167,7 +164,7 @@ def fft_two_channels(samples, gain, agc, location, polA, polB, description, n=No
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
     verticalalignment='top')
-
+    plt.tight_layout()
     plt.show()
 
 
@@ -197,7 +194,6 @@ def fft_one_channel(samples, gain, agc, location, polA, description, n=None, dB=
     ax.set_title("Channel A")
     ax.set_xlabel("Sample")
     ax.set_ylabel("Normalized Frequency")
-    plt.tight_layout()
     ax.text(FF[int(max_a_loc * 0.7)], max_a, str_a)
     plt.grid()
 
@@ -213,7 +209,7 @@ def fft_one_channel(samples, gain, agc, location, polA, description, n=None, dB=
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
     verticalalignment='top')
-
+    plt.tight_layout()
     plt.show()
 
 def get_date_and_time():
