@@ -31,6 +31,7 @@ def transmit_cosine(
     x_tilde = sine(n, freq_offset, sample_rate)  # One period
 
     tx = uhd.usrp.MultiUSRP()
+    input("Press enter to start transmitting. ")
     print("Transmitting...")
     tx.send_waveform(
         waveform_proto=x_tilde,
