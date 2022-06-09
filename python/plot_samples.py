@@ -128,7 +128,7 @@ def plot_one_channel(samples, gain, agc, location, polA, description, num_to_plo
         1,
         textbox,
         fontsize=10,
-        transform=ax[0].transAxes,
+        transform=ax.transAxes,
         bbox=bbox,
         verticalalignment="top",
     )
@@ -225,7 +225,7 @@ def fft_two_channels(
         1,
         textbox,
         fontsize=10,
-        transform=ax[0].transAxes,
+        transform=ax.transAxes,
         bbox=bbox,
         verticalalignment="top",
     )
