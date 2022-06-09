@@ -16,7 +16,12 @@ import uhd
 
 
 def receive(
-    fc=1485e6, num_samples=int(1e6), sample_rate=20e6, channels=[0, 1], gain=[50, 50], agc=False
+    fc=1485e6,
+    num_samples=int(1e6),
+    sample_rate=20e6,
+    channels=[0, 1],
+    gain=[50, 50],
+    agc=False,
 ):
     """
     Receives from center frequency fc, with default
@@ -27,6 +32,7 @@ def receive(
     rx.set_rx_agc(agc, 0)
     rx.set_rx_agc(agc, 1)
     # rx.set_rx_antenna('TX/RX', 0)
+    input("Press enter to start receiving. ")
     print("Receiving...")
     samples = rx.recv_num_samps(
         num_samps=num_samples,
@@ -41,14 +47,16 @@ def receive(
 
 
 if __name__ == "__main__":
-    gain = [40,40]
+    gain = [40, 40]
     agc = False
     location = input("Enter Location of test: ")
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
     polB = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
     samples = receive(num_samples=1000, gain=gain, agc=agc)
-    plot_two_channels(samples, gain, agc, location, polA, polB, description, num_to_plot=100)
+    plot_two_channels(
+        samples, gain, agc, location, polA, polB, description, num_to_plot=100
+    )
     fft_two_channels(samples, gain, agc, location, polA, polB, description, dB=False)
     # plot_one_channel(samples, gain, agc, location, polA, description, num_to_plot=100)
     # fft_one_channel(samples, gain, agc, location, polA, description)

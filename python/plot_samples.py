@@ -8,7 +8,18 @@ from numpy import real, imag, argmax, log10
 from numpy.fft import fft, fftshift, fftfreq
 
 
-def plot_two_channels(samples, gain, agc, location, polA, polB, description, num_to_plot=None, same_y_axis=True, same_x_axis=True):
+def plot_two_channels(
+    samples,
+    gain,
+    agc,
+    location,
+    polA,
+    polB,
+    description,
+    num_to_plot=None,
+    same_y_axis=True,
+    same_x_axis=True,
+):
     """
     Plots real and imaginary part of channel A and B
     """
@@ -19,9 +30,7 @@ def plot_two_channels(samples, gain, agc, location, polA, polB, description, num
     ch_a = samples[0, :num_to_plot]
     ch_b = samples[1, :num_to_plot]
 
-    fig, ax = (
-        plt.subplots(nrows=1, ncols=2, sharey=True, sharex=True)
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=2, sharey=True, sharex=True)
     if same_y_axis:
         ax[0].yaxis.set_tick_params(labelbottom=True)
         ax[1].yaxis.set_tick_params(labelbottom=True)
@@ -46,18 +55,33 @@ def plot_two_channels(samples, gain, agc, location, polA, polB, description, num
     ax[0].grid()
     ax[1].grid()
     time_stamp, date = get_date_and_time()
-    textbox = "".join([
-        '\nLocation: ', str(location),
-        '\nGain set at: ', str(gain),
-        '\nAGC: ', str(agc),
-        '\nTime: ', time_stamp,
-        '\nDate: ', date, 
-        '\nDescription: ', description
-    ])
-    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
-    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
-    verticalalignment='top')
-    plt.tight_layout()
+    textbox = "".join(
+        [
+            "\nLocation: ",
+            str(location),
+            "\nGain set at: ",
+            str(gain),
+            "\nAGC: ",
+            str(agc),
+            "\nTime: ",
+            time_stamp,
+            "\nDate: ",
+            date,
+            "\nDescription: ",
+            description,
+        ]
+    )
+    bbox = dict(boxstyle="square", facecolor="lavender", alpha=0.5)
+    fig.text(
+        1.1,
+        1,
+        textbox,
+        fontsize=10,
+        transform=ax[0].transAxes,
+        bbox=bbox,
+        verticalalignment="top",
+    )
+
     plt.show()
 
 
@@ -70,7 +94,7 @@ def plot_one_channel(samples, gain, agc, location, polA, description, num_to_plo
     if not num_to_plot or num_to_plot >= n:
         num_to_plot = n - 1
 
-    titleA="".join(["Channel A: ", polA])
+    titleA = "".join(["Channel A: ", polA])
 
     fig, ax = plt.subplots()
     ax.plot(real(samples[0, :num_to_plot]), label="real")
@@ -82,22 +106,48 @@ def plot_one_channel(samples, gain, agc, location, polA, description, num_to_plo
     plt.grid()
 
     time_stamp, date = get_date_and_time()
-    textbox = "".join([
-        '\nLocation: ', str(location),
-        '\nGain set at: ', str(gain),
-        '\nAGC: ', str(agc),
-        '\nTime: ', time_stamp,
-        '\nDate: ', date,
-        '\nDescription: ', description
-    ])
-    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
-    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
-    verticalalignment='top')
-    plt.tight_layout()
+    textbox = "".join(
+        [
+            "\nLocation: ",
+            str(location),
+            "\nGain set at: ",
+            str(gain),
+            "\nAGC: ",
+            str(agc),
+            "\nTime: ",
+            time_stamp,
+            "\nDate: ",
+            date,
+            "\nDescription: ",
+            description,
+        ]
+    )
+    bbox = dict(boxstyle="square", facecolor="lavender", alpha=0.5)
+    fig.text(
+        1.1,
+        1,
+        textbox,
+        fontsize=10,
+        transform=ax[0].transAxes,
+        bbox=bbox,
+        verticalalignment="top",
+    )
+
     plt.show()
 
 
-def fft_two_channels(samples, gain, agc, location, polA, polB, description, n=None, dB=True, same_y_axis=True):
+def fft_two_channels(
+    samples,
+    gain,
+    agc,
+    location,
+    polA,
+    polB,
+    description,
+    n=None,
+    dB=True,
+    same_y_axis=True,
+):
     """
     Plots the fft magnitude for two channels.
     """
@@ -153,18 +203,33 @@ def fft_two_channels(samples, gain, agc, location, polA, polB, description, n=No
     ax[1].grid()
 
     time_stamp, date = get_date_and_time()
-    textbox = "".join([
-        '\nLocation: ', str(location),
-        '\nGain set at: ', str(gain),
-        '\nAGC: ', str(agc),
-        '\nTime: ', time_stamp,
-        '\nDate: ', date,
-        '\nDescription: ', description
-    ])
-    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
-    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
-    verticalalignment='top')
-    plt.tight_layout()
+    textbox = "".join(
+        [
+            "\nLocation: ",
+            str(location),
+            "\nGain set at: ",
+            str(gain),
+            "\nAGC: ",
+            str(agc),
+            "\nTime: ",
+            time_stamp,
+            "\nDate: ",
+            date,
+            "\nDescription: ",
+            description,
+        ]
+    )
+    bbox = dict(boxstyle="square", facecolor="lavender", alpha=0.5)
+    fig.text(
+        1.1,
+        1,
+        textbox,
+        fontsize=10,
+        transform=ax[0].transAxes,
+        bbox=bbox,
+        verticalalignment="top",
+    )
+
     plt.show()
 
 
@@ -198,22 +263,42 @@ def fft_one_channel(samples, gain, agc, location, polA, description, n=None, dB=
     plt.grid()
 
     time_stamp, date = get_date_and_time()
-    textbox = "".join([
-        '\nLocation: ', str(location),
-        '\nGain set at: ', str(gain),
-        '\nAGC: ', str(agc),
-        '\nTime: ', time_stamp,
-        '\nDate: ', date,
-        '\nDescription: ', description
-    ])
-    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
-    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
-    verticalalignment='top')
-    plt.tight_layout()
+    textbox = "".join(
+        [
+            "\nLocation: ",
+            str(location),
+            "\nGain set at: ",
+            str(gain),
+            "\nAGC: ",
+            str(agc),
+            "\nTime: ",
+            time_stamp,
+            "\nDate: ",
+            date,
+            "\nDescription: ",
+            description,
+        ]
+    )
+    bbox = dict(boxstyle="square", facecolor="lavender", alpha=0.5)
+    fig.text(
+        1.1,
+        1,
+        textbox,
+        fontsize=10,
+        transform=ax[0].transAxes,
+        bbox=bbox,
+        verticalalignment="top",
+    )
+
     plt.show()
+
 
 def get_date_and_time():
     sys_time = time.localtime(time.time())
-    time_stamp = ':'.join([str(sys_time.tm_hour), str(sys_time.tm_min),str(sys_time.tm_sec)])
-    date = '/'.join([str(sys_time.tm_mon),str(sys_time.tm_mday),str(sys_time.tm_year)])
+    time_stamp = ":".join(
+        [str(sys_time.tm_hour), str(sys_time.tm_min), str(sys_time.tm_sec)]
+    )
+    date = "/".join(
+        [str(sys_time.tm_mon), str(sys_time.tm_mday), str(sys_time.tm_year)]
+    )
     return time_stamp, date
