@@ -26,6 +26,7 @@ def receive(
     rx = uhd.usrp.MultiUSRP("num_recv_frames=128")
     rx.set_rx_agc(agc, 0)
     rx.set_rx_agc(agc, 1)
+    # rx.set_rx_antenna('TX/RX', 0)
     print("Receiving...")
     samples = rx.recv_num_samps(
         num_samps=num_samples,
@@ -42,12 +43,15 @@ def receive(
 if __name__ == "__main__":
     gain = [40,40]
     agc = False
-    location = "Lab"
+    location = "Hallway"
+    polA = "Vertical"
+    polB = "Horizontal"
+    description = "\nChannel A = rx\nChannel B = rx"
     samples = receive(num_samples=1000, gain=gain, agc=agc)
-    plot_two_channels(samples, gain, agc, location, num_to_plot=100)
-    fft_two_channels(samples, gain, agc, location, dB=False)
-    # plot_one_channel(samples, gain, agc, location, num_to_plot=100)
-    # fft_one_channel(samples, gain, agc, location)
+    plot_two_channels(samples, gain, agc, location, polA, polB, description, num_to_plot=100)
+    fft_two_channels(samples, gain, agc, location, polA, polB, description, dB=False)
+    # plot_one_channel(samples, gain, agc, location, polA, description, num_to_plot=100)
+    # fft_one_channel(samples, gain, agc, location, polA, description)
     with open(csv_path, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(samples)

@@ -8,7 +8,7 @@ from numpy import real, imag, argmax, log10
 from numpy.fft import fft, fftshift, fftfreq
 
 
-def plot_two_channels(samples, gain, agc, location, num_to_plot=None, same_y_axis=True):
+def plot_two_channels(samples, gain, agc, location, polA, polB, description, num_to_plot=None, same_y_axis=True, same_x_axis=True):
     """
     Plots real and imaginary part of channel A and B
     """
@@ -20,22 +20,26 @@ def plot_two_channels(samples, gain, agc, location, num_to_plot=None, same_y_axi
     ch_b = samples[1, :num_to_plot]
 
     fig, ax = (
-        plt.subplots(nrows=1, ncols=2, sharey=True)
-        if same_y_axis
-        else plt.subplts(nrows=1, ncols=2)
+        plt.subplots(nrows=1, ncols=2, sharey=True, sharex=True)
     )
     if same_y_axis:
         ax[0].yaxis.set_tick_params(labelbottom=True)
         ax[1].yaxis.set_tick_params(labelbottom=True)
+    if same_x_axis:
+        ax[0].xaxis.set_tick_params(labelbottom=True)
+        ax[1].xaxis.set_tick_params(labelbottom=True)
+
+    titleA = "".join(["Channel A - ", polA])
+    titleB = "".join(["Channel B - ", polB])
 
     ax[0].plot(real(ch_a), label="real")
     ax[0].plot(imag(ch_a), label="imaginary")
     ax[1].plot(real(ch_b), label="real")
     ax[1].plot(imag(ch_b), label="imaginary")
-    ax[0].set_title("Channel A")
+    ax[0].set_title(titleA)
     ax[0].set_xlabel("Sample")
     ax[0].set_ylabel("Amplitude")
-    ax[1].set_title("Channel B")
+    ax[1].set_title(titleB)
     ax[1].set_xlabel("Sample")
     ax[1].set_ylabel("Amplitude")
     plt.legend()
@@ -48,7 +52,8 @@ def plot_two_channels(samples, gain, agc, location, num_to_plot=None, same_y_axi
         '\nGain set at: ', str(gain),
         '\nAGC: ', str(agc),
         '\nTime: ', time_stamp,
-        '\nDate: ', date
+        '\nDate: ', date, 
+        '\nDescription: ', description
     ])
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
@@ -57,7 +62,7 @@ def plot_two_channels(samples, gain, agc, location, num_to_plot=None, same_y_axi
     plt.show()
 
 
-def plot_one_channel(samples, gain, agc, location, num_to_plot=None):
+def plot_one_channel(samples, gain, agc, location, polA, description, num_to_plot=None):
     """
     Plots real and imaginary part of channel A
     """
@@ -66,10 +71,12 @@ def plot_one_channel(samples, gain, agc, location, num_to_plot=None):
     if not num_to_plot or num_to_plot >= n:
         num_to_plot = n - 1
 
+    titleA="".join(["Channel A: ", polA])
+
     fig, ax = plt.subplots()
     ax.plot(real(samples[0, :num_to_plot]), label="real")
     ax.plot(imag(samples[0, :num_to_plot]), label="imaginary")
-    ax.set_title("Channel A")
+    ax.set_title(titleA)
     ax.set_xlabel("Sample")
     ax.set_ylabel("Amplitude")
     plt.legend()
@@ -82,7 +89,8 @@ def plot_one_channel(samples, gain, agc, location, num_to_plot=None):
         '\nGain set at: ', str(gain),
         '\nAGC: ', str(agc),
         '\nTime: ', time_stamp,
-        '\nDate: ', date
+        '\nDate: ', date,
+        '\nDescription: ', description
     ])
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
@@ -91,7 +99,7 @@ def plot_one_channel(samples, gain, agc, location, num_to_plot=None):
     plt.show()
 
 
-def fft_two_channels(samples, gain, agc, location, n=None, dB=True, same_y_axis=True):
+def fft_two_channels(samples, gain, agc, location, polA, polB, description, n=None, dB=True, same_y_axis=True):
     """
     Plots the fft magnitude for two channels.
     """
@@ -124,11 +132,14 @@ def fft_two_channels(samples, gain, agc, location, n=None, dB=True, same_y_axis=
         ax[0].yaxis.set_tick_params(labelbottom=True)
         ax[1].yaxis.set_tick_params(labelbottom=True)
 
+    titleA = "".join(["Channel A - ", polA])
+    titleB = "".join(["Channel B - ", polB])
+
     ax[0].plot(FF, fft_a)
     ax[1].plot(FF, fft_b)
-    ax[0].set_title("Channel A")
+    ax[0].set_title(titleA)
     ax[0].set_xlabel("Normalized Frequency")
-    ax[1].set_title("Channel B")
+    ax[1].set_title(titleB)
     ax[1].set_xlabel("Normalized Frequency")
 
     if dB:
@@ -150,7 +161,8 @@ def fft_two_channels(samples, gain, agc, location, n=None, dB=True, same_y_axis=
         '\nGain set at: ', str(gain),
         '\nAGC: ', str(agc),
         '\nTime: ', time_stamp,
-        '\nDate: ', date
+        '\nDate: ', date,
+        '\nDescription: ', description
     ])
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
@@ -159,7 +171,7 @@ def fft_two_channels(samples, gain, agc, location, n=None, dB=True, same_y_axis=
     plt.show()
 
 
-def fft_one_channel(samples, gain, agc, location, n=None, dB=True):
+def fft_one_channel(samples, gain, agc, location, polA, description, n=None, dB=True):
     """
     Plots the fft magnitude for one channel.
     """
@@ -178,6 +190,8 @@ def fft_one_channel(samples, gain, agc, location, n=None, dB=True):
     max_a = fft_a[max_a_loc]
     str_a = f"Max is {max_a:.4f} at {FF[max_a_loc]:.4f} cycles per sample"
 
+    titleA = "".join(["Channel A - ", polA])
+
     fig, ax = plt.subplots()
     ax.plot(FF, fft_a)
     ax.set_title("Channel A")
@@ -193,7 +207,8 @@ def fft_one_channel(samples, gain, agc, location, n=None, dB=True):
         '\nGain set at: ', str(gain),
         '\nAGC: ', str(agc),
         '\nTime: ', time_stamp,
-        '\nDate: ', date
+        '\nDate: ', date,
+        '\nDescription: ', description
     ])
     bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
     fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
