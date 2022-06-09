@@ -149,7 +149,7 @@ blocks:
   id: qtgui_sink_x
   parameters:
     affinity: ''
-    alias: test
+    alias: ''
     bw: 5e6
     comment: ''
     fc: tuning
