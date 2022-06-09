@@ -285,7 +285,7 @@ def fft_one_channel(samples, gain, agc, location, polA, description, n=None, dB=
         1,
         textbox,
         fontsize=10,
-        transform=ax[0].transAxes,
+        transform=ax.transAxes,
         bbox=bbox,
         verticalalignment="top",
     )
