@@ -150,7 +150,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bw: 10e6
+    bw: 5e6
     comment: ''
     fc: tuning
     fftsize: '1024'
@@ -171,7 +171,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [646, 317]
+    coordinate: [613, 269]
     rotation: 0
     state: true
 - name: qtgui_sink_x_0_0
@@ -179,7 +179,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bw: 10e6
+    bw: 5e6
     comment: ''
     fc: tuning
     fftsize: '1024'
@@ -200,7 +200,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [646, 434]
+    coordinate: [613, 382]
     rotation: 0
     state: true
 - name: uhd_usrp_source_0
@@ -208,7 +208,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    ant0: RX2
+    ant0: TX/RX
     ant1: RX2
     ant10: RX2
     ant11: RX2
