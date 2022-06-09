@@ -21,7 +21,6 @@ if __name__ == '__main__':
             print("Warning: failed to XInitThreads()")
 
 from PyQt5 import Qt
-from PyQt5.QtCore import QObject, pyqtSlot
 from gnuradio import qtgui
 from gnuradio.filter import firdes
 import sip
@@ -76,7 +75,6 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate = 20e6
         self.rf1_gain = rf1_gain = 50
         self.rf0_gain = rf0_gain = 50
-        self.agc = agc = 'Disabled'
 
         ##################################################
         # Blocks
@@ -104,7 +102,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_center_freq(tuning, 0)
         self.uhd_usrp_source_0.set_rx_agc(False, 0)
         self.uhd_usrp_source_0.set_gain(rf0_gain, 0)
-        self.uhd_usrp_source_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
         self.uhd_usrp_source_0.set_bandwidth(10e6, 0)
         self.uhd_usrp_source_0.set_center_freq(tuning, 1)
         self.uhd_usrp_source_0.set_rx_agc(False, 1)
@@ -117,7 +115,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
             1024, #fftsize
             firdes.WIN_BLACKMAN_hARRIS, #wintype
             tuning, #fc
-            10e6, #bw
+            5e6, #bw
             'Spectrum Analyzer B', #name
             True, #plotfreq
             True, #plotwaterfall
@@ -134,7 +132,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
             1024, #fftsize
             firdes.WIN_BLACKMAN_hARRIS, #wintype
             tuning, #fc
-            10e6, #bw
+            5e6, #bw
             'Spectrum Analyzer A', #name
             True, #plotfreq
             True, #plotwaterfall
@@ -147,22 +145,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.qtgui_sink_x_0.enable_rf_freq(False)
 
         self.top_grid_layout.addWidget(self._qtgui_sink_x_0_win)
-        # Create the options list
-        self._agc_options = ('Disabled', 'Enabled', )
-        # Create the labels list
-        self._agc_labels = ('Disabled', 'Enabled', )
-        # Create the combo box
-        self._agc_tool_bar = Qt.QToolBar(self)
-        self._agc_tool_bar.addWidget(Qt.QLabel('Automatic Gain Control' + ": "))
-        self._agc_combo_box = Qt.QComboBox()
-        self._agc_tool_bar.addWidget(self._agc_combo_box)
-        for _label in self._agc_labels: self._agc_combo_box.addItem(_label)
-        self._agc_callback = lambda i: Qt.QMetaObject.invokeMethod(self._agc_combo_box, "setCurrentIndex", Qt.Q_ARG("int", self._agc_options.index(i)))
-        self._agc_callback(self.agc)
-        self._agc_combo_box.currentIndexChanged.connect(
-            lambda i: self.set_agc(self._agc_options[i]))
-        # Create the radio buttons
-        self.top_grid_layout.addWidget(self._agc_tool_bar)
+        self.qtgui_sink_x_0.set_block_alias("test")
 
 
 
@@ -182,8 +165,8 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
     def set_tuning(self, tuning):
         self.tuning = tuning
-        self.qtgui_sink_x_0.set_frequency_range(self.tuning, 10e6)
-        self.qtgui_sink_x_0_0.set_frequency_range(self.tuning, 10e6)
+        self.qtgui_sink_x_0.set_frequency_range(self.tuning, 5e6)
+        self.qtgui_sink_x_0_0.set_frequency_range(self.tuning, 5e6)
         self.uhd_usrp_source_0.set_center_freq(self.tuning, 0)
         self.uhd_usrp_source_0.set_center_freq(self.tuning, 1)
 
@@ -207,13 +190,6 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
     def set_rf0_gain(self, rf0_gain):
         self.rf0_gain = rf0_gain
         self.uhd_usrp_source_0.set_gain(self.rf0_gain, 0)
-
-    def get_agc(self):
-        return self.agc
-
-    def set_agc(self, agc):
-        self.agc = agc
-        self._agc_callback(self.agc)
 
 
 
