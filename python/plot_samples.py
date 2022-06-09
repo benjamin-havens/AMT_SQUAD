@@ -225,7 +225,7 @@ def fft_two_channels(
         1,
         textbox,
         fontsize=10,
-        transform=ax.transAxes,
+        transform=ax[0].transAxes,
         bbox=bbox,
         verticalalignment="top",
     )
