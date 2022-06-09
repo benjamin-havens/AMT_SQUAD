@@ -3,11 +3,12 @@ Provides plotting functions for samples obtained from B210 SDR
 """
 
 import matplotlib.pyplot as plt
+import time
 from numpy import real, imag, argmax, log10
 from numpy.fft import fft, fftshift, fftfreq
 
 
-def plot_two_channels(samples, num_to_plot=None, same_y_axis=True):
+def plot_two_channels(samples, gain, agc, location, num_to_plot=None, same_y_axis=True):
     """
     Plots real and imaginary part of channel A and B
     """
@@ -41,10 +42,22 @@ def plot_two_channels(samples, num_to_plot=None, same_y_axis=True):
     plt.tight_layout()
     ax[0].grid()
     ax[1].grid()
+    time_stamp, date = get_date_and_time()
+    textbox = "".join([
+        '\nLocation: ', str(location),
+        '\nGain set at: ', str(gain),
+        '\nAGC: ', str(agc),
+        '\nTime: ', time_stamp,
+        '\nDate: ', date
+    ])
+    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
+    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
+    verticalalignment='top')
+
     plt.show()
 
 
-def plot_one_channel(samples, num_to_plot=None):
+def plot_one_channel(samples, gain, agc, location, num_to_plot=None):
     """
     Plots real and imaginary part of channel A
     """
@@ -62,10 +75,23 @@ def plot_one_channel(samples, num_to_plot=None):
     plt.legend()
     plt.tight_layout()
     plt.grid()
+
+    time_stamp, date = get_date_and_time()
+    textbox = "".join([
+        '\nLocation: ', str(location),
+        '\nGain set at: ', str(gain),
+        '\nAGC: ', str(agc),
+        '\nTime: ', time_stamp,
+        '\nDate: ', date
+    ])
+    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
+    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
+    verticalalignment='top')
+
     plt.show()
 
 
-def fft_two_channels(samples, n=None, dB=True, same_y_axis=True):
+def fft_two_channels(samples, gain, agc, location, n=None, dB=True, same_y_axis=True):
     """
     Plots the fft magnitude for two channels.
     """
@@ -102,19 +128,38 @@ def fft_two_channels(samples, n=None, dB=True, same_y_axis=True):
     ax[1].plot(FF, fft_b)
     ax[0].set_title("Channel A")
     ax[0].set_xlabel("Normalized Frequency")
-    ax[0].set_ylabel("Amplitude")
     ax[1].set_title("Channel B")
     ax[1].set_xlabel("Normalized Frequency")
-    ax[1].set_ylabel("Amplitude")
+
+    if dB:
+        ax[0].set_ylabel("Amplitude (dB)")
+        ax[1].set_ylabel("Amplitude (dB)")
+    else:
+        ax[0].set_ylabel("Amplitude")
+        ax[1].set_ylabel("Amplitude")
+
     plt.tight_layout()
     ax[0].text(FF[int(max_a_loc * 0.5)], max_a, str_a)
     ax[1].text(FF[int(max_b_loc * 0.5)], max_b, str_b)
     ax[0].grid()
     ax[1].grid()
+
+    time_stamp, date = get_date_and_time()
+    textbox = "".join([
+        '\nLocation: ', str(location),
+        '\nGain set at: ', str(gain),
+        '\nAGC: ', str(agc),
+        '\nTime: ', time_stamp,
+        '\nDate: ', date
+    ])
+    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
+    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
+    verticalalignment='top')
+
     plt.show()
 
 
-def fft_one_channel(samples, n=None, dB=True):
+def fft_one_channel(samples, gain, agc, location, n=None, dB=True):
     """
     Plots the fft magnitude for one channel.
     """
@@ -141,4 +186,23 @@ def fft_one_channel(samples, n=None, dB=True):
     plt.tight_layout()
     ax.text(FF[int(max_a_loc * 0.7)], max_a, str_a)
     plt.grid()
+
+    time_stamp, date = get_date_and_time()
+    textbox = "".join([
+        '\nLocation: ', str(location),
+        '\nGain set at: ', str(gain),
+        '\nAGC: ', str(agc),
+        '\nTime: ', time_stamp,
+        '\nDate: ', date
+    ])
+    bbox = dict(boxstyle='square', facecolor='lavender', alpha=0.5)
+    fig.text(1.1,1,textbox,fontsize=10,transform=ax[0].transAxes,bbox=bbox,
+    verticalalignment='top')
+
     plt.show()
+
+def get_date_and_time():
+    sys_time = time.localtime(time.time())
+    time_stamp = ':'.join([str(sys_time.tm_hour), str(sys_time.tm_min),str(sys_time.tm_sec)])
+    date = '/'.join([str(sys_time.tm_mon),str(sys_time.tm_mday),str(sys_time.tm_year)])
+    return time_stamp, date
