@@ -1,0 +1,55 @@
+June 9th, Hallway Tests to determine difference between channels and tx/rx and rx ports.
+Test 1)
+Channel A: RX-vertical
+Channel B: RX-vertical
+Results:
+Ran it twice
+Similar sinusoids, with similar amplitudes.
+Similar amplitudes on Fourier, difference less than .5 (Not in DB)
+
+Test 2)
+Channel A: RX-vertical
+Channel B: tx/rx-vertical
+Results:
+Big difference in sinusoids.
+Fourier is complete noise Channel B tx/rx.
+The RX port is flashing even though it is plugged into tx/rx port in channel B
+
+Test 3)
+Channel A: tx/rx-vertical
+Channel B: tx/rx-vertical
+Results:
+Rx ports were flashing. Not the tx/rx ports.
+A lot of noise on the sinusoids and the Fourier. You can't tell what the signal is. amplitude for both was around .20 compared to the 5 amplitude of the Rx ports.
+
+Test 4)
+Channel A: tx/rx-vertical
+Channel B: rx-vertical
+Results:
+Channel has a sinusoid with a lot less amplitude. Its fourier is almost all noise. Channel B is working fine.
+
+Summary:
+When transmitting with two antennas have them both in RX because it will not register with a tx/rx.
+
+June 9th Hallway tests to determine which ports work in combination with each other part 2
+Test 5)
+Channel A: tx/rx-vertical
+Channel B: rx-vertical
+Results:
+Using a different command in the python API we were able to recognize slight improvement in the sinusoids. Also, there is a big difference with fourier. Instead of Channel B being sheer noise it is now half the amplitude of channel A's fourier.
+
+Test 6)
+Channel A: rx-vertical
+Channel B: rx-horizontal
+Results
+Half amplitude on channel B. We were hoping for it to be close to 0.
+Second result was a third amplitude
+
+Test 7)
+Channel A: rx-horizontal
+Channel B: rx-vertical
+Results
+Actually worked as intended.
+first result was 8 to .5 difference on the fourier
+second result was 6 to .5 difference
+third result was
