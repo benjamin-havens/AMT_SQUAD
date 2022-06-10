@@ -145,7 +145,6 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.qtgui_sink_x_0.enable_rf_freq(False)
 
         self.top_grid_layout.addWidget(self._qtgui_sink_x_0_win)
-        self.qtgui_sink_x_0.set_block_alias("test")
 
 
 
