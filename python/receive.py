@@ -53,13 +53,17 @@ if __name__ == "__main__":
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
     polB = "Horizontal" if input("Enter Channel B polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
-    samples = receive(num_samples=1000, gain=gain, agc=agc)
+    samples = receive(num_samples=128, gain=gain, agc=agc)
     plot_two_channels(
         samples, gain, agc, location, polA, polB, description, num_to_plot=100
     )
     fft_two_channels(samples, gain, agc, location, polA, polB, description, dB=False)
     # plot_one_channel(samples, gain, agc, location, polA, description, num_to_plot=100)
     # fft_one_channel(samples, gain, agc, location, polA, description)
+
+    # Make sure the path ends in /
+    csv_name = input("Enter name of csv: ")
+    csv_path = "".join([csv_path,csv_name,".csv"])
     with open(csv_path, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(samples)
