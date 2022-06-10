@@ -51,7 +51,7 @@ if __name__ == "__main__":
     agc = False
     location = input("Enter Location of test: ")
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
-    polB = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
+    polB = "Horizontal" if input("Enter Channel B polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
     samples = receive(num_samples=1000, gain=gain, agc=agc)
     plot_two_channels(
