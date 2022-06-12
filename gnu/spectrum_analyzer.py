@@ -74,7 +74,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.tuning = tuning = 1485e6
         self.samp_rate = samp_rate = 20e6
         self.rf1_gain = rf1_gain = 50
-        self.rf0_gain = rf0_gain = 50
+        self.rf0_gain = rf0_gain = 60
 
         ##################################################
         # Blocks
@@ -88,7 +88,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self._rf1_gain_range = Range(0, 76, 1, 50, 200)
         self._rf1_gain_win = RangeWidget(self._rf1_gain_range, self.set_rf1_gain, 'RF_gain', "counter_slider", float)
         self.top_grid_layout.addWidget(self._rf1_gain_win)
-        self._rf0_gain_range = Range(0, 76, 1, 50, 200)
+        self._rf0_gain_range = Range(0, 76, 1, 60, 200)
         self._rf0_gain_win = RangeWidget(self._rf0_gain_range, self.set_rf0_gain, 'RF_gain', "counter_slider", float)
         self.top_grid_layout.addWidget(self._rf0_gain_win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
@@ -115,7 +115,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
             1024, #fftsize
             firdes.WIN_BLACKMAN_hARRIS, #wintype
             tuning, #fc
-            5e6, #bw
+            20e6, #bw
             'Spectrum Analyzer B', #name
             True, #plotfreq
             True, #plotwaterfall
@@ -132,7 +132,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
             1024, #fftsize
             firdes.WIN_BLACKMAN_hARRIS, #wintype
             tuning, #fc
-            5e6, #bw
+            20e6, #bw
             'Spectrum Analyzer A', #name
             True, #plotfreq
             True, #plotwaterfall
@@ -164,8 +164,8 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
     def set_tuning(self, tuning):
         self.tuning = tuning
-        self.qtgui_sink_x_0.set_frequency_range(self.tuning, 5e6)
-        self.qtgui_sink_x_0_0.set_frequency_range(self.tuning, 5e6)
+        self.qtgui_sink_x_0.set_frequency_range(self.tuning, 20e6)
+        self.qtgui_sink_x_0_0.set_frequency_range(self.tuning, 20e6)
         self.uhd_usrp_source_0.set_center_freq(self.tuning, 0)
         self.uhd_usrp_source_0.set_center_freq(self.tuning, 1)
 

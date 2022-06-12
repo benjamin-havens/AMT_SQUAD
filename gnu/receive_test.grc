@@ -73,7 +73,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '76'
-    value: '50'
+    value: '60'
     widget: counter_slider
   states:
     bus_sink: false
@@ -150,7 +150,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bw: 5e6
+    bw: 20e6
     comment: ''
     fc: tuning
     fftsize: '1024'
@@ -179,7 +179,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bw: 5e6
+    bw: 20e6
     comment: ''
     fc: tuning
     fftsize: '1024'

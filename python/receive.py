@@ -57,13 +57,14 @@ if __name__ == "__main__":
     plot_two_channels(
         samples, gain, agc, location, polA, polB, description, num_to_plot=100
     )
-    fft_two_channels(samples, gain, agc, location, polA, polB, description, dB=False)
+    fft_two_channels(samples, gain, agc, location, polA, polB, description)
     # plot_one_channel(samples, gain, agc, location, polA, description, num_to_plot=100)
     # fft_one_channel(samples, gain, agc, location, polA, description)
 
     # Make sure the path ends in /
     csv_name = input("Enter name of csv: ")
-    csv_path = "".join([csv_path,csv_name,".csv"])
-    with open(csv_path, "w", newline="") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerows(samples)
+    if (csv_name != ''):
+        csv_path = "".join([csv_path,csv_name,".csv"])
+        with open(csv_path, "w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(samples)
