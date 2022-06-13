@@ -5,6 +5,8 @@ Receives 1e6 samples and plots them. Provides configurable receive function
 # Imports
 from plot_samples import *
 import csv
+import pandas as pd
+# from numpy import complex64
 
 # Dumb setup stuff because the API is not set up well and I don't know how to fix it.
 # You probably have to create uhd_params and put the path in
@@ -48,23 +50,26 @@ def receive(
 
 if __name__ == "__main__":
     gain = [40, 40]
-    agc = False
+    agc_st = False
     location = input("Enter Location of test: ")
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
     polB = "Horizontal" if input("Enter Channel B polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
-    samples = receive(num_samples=128, gain=gain, agc=agc)
-    plot_two_channels(
-        samples, gain, agc, location, polA, polB, description, num_to_plot=100
-    )
-    fft_two_channels(samples, gain, agc, location, polA, polB, description)
-    # plot_one_channel(samples, gain, agc, location, polA, description, num_to_plot=100)
-    # fft_one_channel(samples, gain, agc, location, polA, description)
+    samples = receive(num_samples=1000, gain=gain, agc=agc_st)
+    # plot_two_channels(
+    #     samples, gain, agc_st, location, polA, polB, description, num_to_plot=100
+    # )
+    # fft_two_channels(samples, gain, agc_st, location, polA, polB, description)
+    # plot_one_channel(samples, gain, agc_st, location, polA, description, num_to_plot=100)
+    # fft_one_channel(samples, gain, agc_st, location, polA, description)
 
     # Make sure the path ends in /
     csv_name = input("Enter name of csv: ")
     if (csv_name != ''):
         csv_path = "".join([csv_path,csv_name,".csv"])
-        with open(csv_path, "w", newline="") as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerows(samples)
+        # with open(csv_path, "w", newline="") as csvfile:
+        #     writer = csv.writer(csvfile)
+        #     writer.writerows(samples)
+        data = pd.DataFrame(samples)
+        data = data.apply(str).str.replace('\(|\)','',regex=False)
+        data.to_csv(csv_path)
