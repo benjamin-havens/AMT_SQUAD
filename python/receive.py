@@ -55,7 +55,7 @@ if __name__ == "__main__":
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
     polB = "Horizontal" if input("Enter Channel B polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
-    samples = receive(num_samples=1000, gain=gain, agc=agc_st)
+    samples = receive(num_samples=1000, gain=gain, agc=agc_st, sample_rate=10e6)
     plot_two_channels(
         samples, gain, agc_st, location, polA, polB, description, num_to_plot=100
     )
