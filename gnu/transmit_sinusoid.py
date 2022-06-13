@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Not titled yet
+# Title: transmit_sinusoid
 # GNU Radio version: 3.8.1.0
 
 from distutils.version import StrictVersion
@@ -37,9 +37,9 @@ from gnuradio import qtgui
 class transmit_sinusoid(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Not titled yet")
+        gr.top_block.__init__(self, "transmit_sinusoid")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Not titled yet")
+        self.setWindowTitle("transmit_sinusoid")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))

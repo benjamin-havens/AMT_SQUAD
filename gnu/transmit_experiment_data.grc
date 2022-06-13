@@ -10,7 +10,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: transmit_sinusoid
+    id: transmit_experiment_data
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -21,7 +21,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: transmit_sinusoid
+    title: transmit_experiment_data
     window_size: ''
   states:
     bus_sink: false
@@ -126,7 +126,91 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [169, 385]
+    coordinate: [258, 184]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: amp
+    comment: ''
+    freq: 2e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [268, 323]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: amp
+    comment: ''
+    freq: -2e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [274, 633]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0_1
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: amp
+    comment: ''
+    freq: -1e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 494]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '4'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 513]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -145,9 +229,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [308, 305]
+    coordinate: [871, 300]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_freq_sink_x_0
   id: qtgui_freq_sink_x
   parameters:
@@ -225,9 +309,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [571, 383]
+    coordinate: [1139, 352]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -322,9 +406,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [577, 275]
+    coordinate: [1112, 211]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: uhd_usrp_sink_0
   id: uhd_usrp_sink
   parameters:
@@ -598,13 +682,17 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [587, 501]
+    coordinate: [844, 521]
     rotation: 0
     state: enabled
 
 connections:
-- [analog_sig_source_x_0, '0', blocks_throttle_0, '0']
-- [analog_sig_source_x_0, '0', uhd_usrp_sink_0, '0']
+- [analog_sig_source_x_0, '0', blocks_add_xx_0, '0']
+- [analog_sig_source_x_0_0, '0', blocks_add_xx_0, '1']
+- [analog_sig_source_x_0_0_0, '0', blocks_add_xx_0, '3']
+- [analog_sig_source_x_0_1, '0', blocks_add_xx_0, '2']
+- [blocks_add_xx_0, '0', blocks_throttle_0, '0']
+- [blocks_add_xx_0, '0', uhd_usrp_sink_0, '0']
 - [blocks_throttle_0, '0', qtgui_freq_sink_x_0, '0']
 - [blocks_throttle_0, '0', qtgui_time_sink_x_0, '0']
 
