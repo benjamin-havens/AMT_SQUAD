@@ -56,10 +56,10 @@ if __name__ == "__main__":
     polB = "Horizontal" if input("Enter Channel B polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
     samples = receive(num_samples=1000, gain=gain, agc=agc_st)
-    # plot_two_channels(
-    #     samples, gain, agc_st, location, polA, polB, description, num_to_plot=100
-    # )
-    # fft_two_channels(samples, gain, agc_st, location, polA, polB, description)
+    plot_two_channels(
+        samples, gain, agc_st, location, polA, polB, description, num_to_plot=100
+    )
+    fft_two_channels(samples, gain, agc_st, location, polA, polB, description)
     # plot_one_channel(samples, gain, agc_st, location, polA, description, num_to_plot=100)
     # fft_one_channel(samples, gain, agc_st, location, polA, description)
 
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     csv_name = input("Enter name of csv: ")
     if (csv_name != ''):
         csv_path = "".join([csv_path,csv_name,".csv"])
-        # with open(csv_path, "w", newline="") as csvfile:
-        #     writer = csv.writer(csvfile)
-        #     writer.writerows(samples)
-        data = pd.DataFrame(samples)
-        data = data.apply(str).str.replace('\(|\)','',regex=False)
-        data.to_csv(csv_path)
+        with open(csv_path, "w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(samples)
+        # data = pd.DataFrame(samples)
+        # data = data.apply(str).str.replace('\(|\)','',regex=False)
+        # data.to_csv(csv_path)
