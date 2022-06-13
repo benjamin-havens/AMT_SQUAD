@@ -49,7 +49,7 @@ def receive(
 
 
 if __name__ == "__main__":
-    gain = [40, 40]
+    gain = [20, 20]
     agc_st = False
     location = input("Enter Location of test: ")
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
