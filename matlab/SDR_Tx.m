@@ -17,7 +17,7 @@ if ~(exist('tx', 'var'))
                   'MasterClockRate',1/ts,   ...
                   'InterpolationFactor',1);
 end
-tx.Gain = 85;
+tx.Gain = 40;
 
 %% Transmit until stopped
 disp('Transmitting')
