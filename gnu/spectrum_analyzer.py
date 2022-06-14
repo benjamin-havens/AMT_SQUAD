@@ -85,9 +85,6 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self._samp_rate_range = Range(192e3, 56e6, 1000, 20e6, 200)
         self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, 'Sample Rate', "counter_slider", float)
         self.top_grid_layout.addWidget(self._samp_rate_win)
-        self._rf1_gain_range = Range(0, 76, 1, 50, 200)
-        self._rf1_gain_win = RangeWidget(self._rf1_gain_range, self.set_rf1_gain, 'RF_gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rf1_gain_win)
         self._rf0_gain_range = Range(0, 76, 1, 60, 200)
         self._rf0_gain_win = RangeWidget(self._rf0_gain_range, self.set_rf0_gain, 'RF_gain', "counter_slider", float)
         self.top_grid_layout.addWidget(self._rf0_gain_win)
@@ -96,21 +93,19 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
             uhd.stream_args(
                 cpu_format="fc32",
                 args='',
-                channels=list(range(0,2)),
+                channels=list(range(0,1)),
             ),
         )
         self.uhd_usrp_source_0.set_center_freq(tuning, 0)
         self.uhd_usrp_source_0.set_rx_agc(False, 0)
         self.uhd_usrp_source_0.set_gain(rf0_gain, 0)
-        self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
+        self.uhd_usrp_source_0.set_antenna('RX2', 0)
         self.uhd_usrp_source_0.set_bandwidth(10e6, 0)
-        self.uhd_usrp_source_0.set_center_freq(tuning, 1)
-        self.uhd_usrp_source_0.set_rx_agc(False, 1)
-        self.uhd_usrp_source_0.set_gain(rf1_gain, 1)
-        self.uhd_usrp_source_0.set_antenna('RX2', 1)
-        self.uhd_usrp_source_0.set_bandwidth(10e6, 1)
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
         # No synchronization enforced.
+        self._rf1_gain_range = Range(0, 76, 1, 50, 200)
+        self._rf1_gain_win = RangeWidget(self._rf1_gain_range, self.set_rf1_gain, 'RF_gain', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._rf1_gain_win)
         self.qtgui_sink_x_0_0 = qtgui.sink_c(
             1024, #fftsize
             firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -128,31 +123,13 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.qtgui_sink_x_0_0.enable_rf_freq(False)
 
         self.top_grid_layout.addWidget(self._qtgui_sink_x_0_0_win)
-        self.qtgui_sink_x_0 = qtgui.sink_c(
-            1024, #fftsize
-            firdes.WIN_BLACKMAN_hARRIS, #wintype
-            tuning, #fc
-            20e6, #bw
-            'Spectrum Analyzer A', #name
-            True, #plotfreq
-            True, #plotwaterfall
-            True, #plottime
-            True #plotconst
-        )
-        self.qtgui_sink_x_0.set_update_time(1.0/10)
-        self._qtgui_sink_x_0_win = sip.wrapinstance(self.qtgui_sink_x_0.pyqwidget(), Qt.QWidget)
-
-        self.qtgui_sink_x_0.enable_rf_freq(False)
-
-        self.top_grid_layout.addWidget(self._qtgui_sink_x_0_win)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_sink_x_0, 0))
-        self.connect((self.uhd_usrp_source_0, 1), (self.qtgui_sink_x_0_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_sink_x_0_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "spectrum_analyzer")
@@ -164,7 +141,6 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
     def set_tuning(self, tuning):
         self.tuning = tuning
-        self.qtgui_sink_x_0.set_frequency_range(self.tuning, 20e6)
         self.qtgui_sink_x_0_0.set_frequency_range(self.tuning, 20e6)
         self.uhd_usrp_source_0.set_center_freq(self.tuning, 0)
         self.uhd_usrp_source_0.set_center_freq(self.tuning, 1)

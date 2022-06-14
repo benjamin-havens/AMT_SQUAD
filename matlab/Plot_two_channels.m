@@ -11,30 +11,32 @@
 % data_b = M(:, 2);
 
 
-num_samples = 100;
+num_samples = 1000;
+
+mdrIdx = 50001;
 
 
 % CHANNEL A PLOTS
 figure(1);  % This has the pure sines and cosines
-plot(0 : num_samples - 1, real(data_a(1:num_samples)), '.-',        ...
-     0 : num_samples - 1, imag(data_a(1:num_samples)), '.-'); 
+plot(mdrIdx : mdrIdx + num_samples - 1, real(data_a(mdrIdx:mdrIdx + num_samples -1)), '.-',        ...
+     mdrIdx : mdrIdx + num_samples - 1, imag(data_a(mdrIdx:mdrIdx + num_samples -1)), '.-'); 
 title("Channel A"); xlabel("Sample number"); ylabel("Amplitude");
 legend("Real", "Imaginary");
 grid on;
 
-figure(2);  % Plots real vs imaginary to see periodicity
-plot(data_a(1:100), '.-'); 
-grid on;
+% figure(2);  % Plots real vs imaginary to see periodicity
+% plot(data_a(1:100), '.-'); 
+% grid on;
 
 % Prepare to plot fft
-Nfft = 400;
+Nfft = 128;
 FF = -0.5 : 1/Nfft : 0.5-1/Nfft;
-X1 = fft(data_a, Nfft);
+X1 = fft(data_a(mdrIdx:mdrIdx+Nfft-1), Nfft);
 X2 = fftshift(X1);
 [max_val, max_idx] = max(abs(X2));
 
 figure(3);  % Has FFT plot
-plot(FF, abs(X2));
+stem(FF, abs(X2));
 title("Channel A FFT");
 xlabel('F normalized frequency (cycles/sample)');
 ylabel('magnitude');
@@ -42,6 +44,7 @@ mystring = sprintf('   max occurs at F = %4.3f cycles/sample', FF(max_idx));
 text(FF(max_idx),max_val,mystring);
 grid on;
 
+return;
 
 % CHANNEL B PLOTS
 figure(4);  % This has the pure sines and cosines
