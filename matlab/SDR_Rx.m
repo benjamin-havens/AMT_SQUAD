@@ -3,7 +3,7 @@ ts = 1/(20e6);
 if(~(exist('rx', 'var')))
     rx = comm.SDRuReceiver();
     rx.Platform = "B210";
-    rx.SerialNum = '32339F7';
+    rx.SerialNum = '3218C97';
     rx.ChannelMapping = [1 2];
     rx.CenterFrequency = 1485e6;
     rx.MasterClockRate = (1/ts);
