@@ -49,17 +49,17 @@ def receive(
 
 
 if __name__ == "__main__":
-    gain = [20, 20]
+    gain = [0, 0]
     agc_st = False
     location = input("Enter Location of test: ")
     polA = "Horizontal" if input("Enter Channel A polarization: ") == 'h' else 'Vertical'
     polB = "Horizontal" if input("Enter Channel B polarization: ") == 'h' else 'Vertical'
     description = input("Enter test description: ")
-    samples = receive(num_samples=1000, gain=gain, agc=agc_st, sample_rate=10e6)
+    samples = receive(num_samples=100000, gain=gain, agc=agc_st)
     plot_two_channels(
-        samples, gain, agc_st, location, polA, polB, description, num_to_plot=100
+        samples, gain, agc_st, location, polA, polB, description, num_to_plot=1e6
     )
-    fft_two_channels(samples, gain, agc_st, location, polA, polB, description)
+    fft_two_channels(samples, gain, agc_st, location, polA, polB, description, n= 128)
     # plot_one_channel(samples, gain, agc_st, location, polA, description, num_to_plot=100)
     # fft_one_channel(samples, gain, agc_st, location, polA, description)
 

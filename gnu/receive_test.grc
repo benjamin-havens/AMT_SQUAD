@@ -173,7 +173,7 @@ blocks:
     bus_structure: null
     coordinate: [613, 269]
     rotation: 0
-    state: true
+    state: disabled
 - name: qtgui_sink_x_0_0
   id: qtgui_sink_x
   parameters:
@@ -208,7 +208,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    ant0: TX/RX
+    ant0: RX2
     ant1: RX2
     ant10: RX2
     ant11: RX2
@@ -478,7 +478,7 @@ blocks:
     lo_source9: internal
     maxoutbuf: '0'
     minoutbuf: '0'
-    nchan: '2'
+    nchan: '1'
     norm_gain0: 'False'
     norm_gain1: 'False'
     norm_gain10: 'False'
@@ -577,7 +577,7 @@ blocks:
 
 connections:
 - [uhd_usrp_source_0, '0', qtgui_sink_x_0, '0']
-- [uhd_usrp_source_0, '1', qtgui_sink_x_0_0, '0']
+- [uhd_usrp_source_0, '0', qtgui_sink_x_0_0, '0']
 
 metadata:
   file_format: 1
