@@ -50,7 +50,7 @@ grid on;
 
 
 % Prepare to plot fft
-X1 = fft(data_b, Nfft);
+X1 = fft(data_b(mdrIdx:mdrIdx+Nfft-1), Nfft);
 X2 = fftshift(X1);
 [max_val, max_idx] = max(abs(X2));
 
