@@ -21,8 +21,8 @@ Nfft = 128;
 FF = -0.5:1/Nfft:0.5-1/Nfft;
 good_idx = 5001:5001+Nfft-1; % A good index to look at where the data is 
                              % normal (arbitrary where exactly)
-a = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
-b = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
+a = a_raw(good_idx);
+b = a_raw(good_idx);
 A = fft(a,Nfft);
 B = fft(b,Nfft);
 X = fft(x,Nfft);
@@ -47,8 +47,8 @@ h2 = fftshift(ifft(H2,Nfft));
 max_indices_h2(1) = foo;
 
 for idx = 1:Nfft-1
-    a = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
-    b = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
+    a = a_raw(good_idx);
+    b = a_raw(good_idx);
     A = fft(a,Nfft);
     B = fft(b,Nfft);
     H1(divide_idx) = A(divide_idx)./X(divide_idx);
@@ -62,3 +62,7 @@ for idx = 1:Nfft-1
 end
 
 %% The rest... TODO
+
+
+
+
