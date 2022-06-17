@@ -11,7 +11,7 @@ clc; clear; close all;
 %% Load needed variables
 % You can change the path to what is needed
 path = '../results/june_16/';
-csv_name = 'with_hc/70a';
+csv_name = 'wo_hc/50b';
 IR_path = './impulse_responses/';
 load soundingSignal-BW10-Fs20.mat;
 y_raw = readmatrix(strcat(path, csv_name, '.csv'));
