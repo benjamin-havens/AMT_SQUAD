@@ -22,6 +22,7 @@ data = rxLog.Buffer;
 data_a = data(:, 1);
 data_b = data(:, 2);
 release(rxLog)
+writematrix(data, 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\90b.csv');
 
 %% Clean up
 release(rx)

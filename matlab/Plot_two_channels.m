@@ -23,6 +23,7 @@ plot(mdrIdx : mdrIdx + num_samples - 1, real(data_a(mdrIdx:mdrIdx + num_samples 
 title("Channel A"); xlabel("Sample number"); ylabel("Amplitude");
 legend("Real", "Imaginary");
 grid on;
+% print -dpng 'a0.png';
 
 % Prepare to plot fft
 Nfft = 128;
@@ -62,3 +63,8 @@ ylabel('magnitude');
 mystring = sprintf('   max occurs at F = %4.3f cycles/sample', FF(max_idx));
 text(FF(max_idx), max_val, mystring);
 grid on;
+
+print(figure(1), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\hor_90b.png', '-dpng');
+print(figure(2), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\hor_90b_fft.png', '-dpng');
+print(figure(3), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\vert_90b.png', '-dpng');
+print(figure(4), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\vert_90b_fft.png', '-dpng');
