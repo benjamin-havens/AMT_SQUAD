@@ -64,7 +64,7 @@ mystring = sprintf('   max occurs at F = %4.3f cycles/sample', FF(max_idx));
 text(FF(max_idx), max_val, mystring);
 grid on;
 
-print(figure(1), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\hor_90b.png', '-dpng');
-print(figure(2), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\hor_90b_fft.png', '-dpng');
-print(figure(3), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\vert_90b.png', '-dpng');
-print(figure(4), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wo_hc\vert_90b_fft.png', '-dpng');
+print(figure(1), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wiredA.png', '-dpng');
+print(figure(2), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wiredA_fft.png', '-dpng');
+print(figure(3), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wiredB.png', '-dpng');
+print(figure(4), 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wiredB_fft.png', '-dpng');
