@@ -1,77 +1,64 @@
-load '\\wsl.localhost\Ubuntu-20.04\home\pwpre\AMT_lab\AMT_SQUAD\results\june_16\with_hc\0a.csv'
-% X0a
-y_raw = X0a;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% MAKE IMPULSE RESPONSE %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This script will produce two impulse responses, h1 and h2, and save them
+% to a .mat file. Needs an input csv file with two columns, one channel per
+% column. h1 and h2 will be pruned.
+
+%% Clean up
+clc; clear; close all;
+
+%% Load needed variables
+% You can change the path to what is needed
 load soundingSignal-BW10-Fs20.mat;
+y_raw = readmatrix('../results/june_16/with_hc/0a.csv');
+a_raw = y_raw(:, 1);
+b_raw = y_raw(:, 2);
 x = xl;
 
+%% Get FFTs
 Nfft = 128;
 FF = -0.5:1/Nfft:0.5-1/Nfft;
-good_idx = 5001:5001+Nfft-1;
-y = cast(y_raw(good_idx,1),'double') + 1i * cast(y_raw(good_idx,2),'double');
-Y = fft(y,Nfft);
+good_idx = 5001:5001+Nfft-1; % A good index to look at where the data is 
+                             % normal (arbitrary where exactly)
+a = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
+b = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
+A = fft(a,Nfft);
+B = fft(b,Nfft);
 X = fft(x,Nfft);
 
-divide_idx = [2:32 97:128];
-H = zeros(Nfft,1);
-H(divide_idx) = Y(divide_idx)./X(divide_idx);
+%% Get the transfer functions H1 and H2
+divide_idx = [2:32 97:128]; % This is needed because only some of these
+                            % points are meaningful to us
+H1 = zeros(Nfft,1);
+H2 = zeros(Nfft,1);
+H1(divide_idx) = A(divide_idx)./X(divide_idx);
+H2(divide_idx) = B(divide_idx)./X(divide_idx);
 
-figure(1);
-clf;
-subplot(211);
-plot(FF,fftshift(abs(H)));
-grid on;
-ax1 = gca;
+%% Determine where in the period to begin the FFT
+max_indices_h1 = zeros(Nfft,1);
+h1 = fftshift(ifft(H1,Nfft));
+[~,foo] = max(abs(h1));
+max_indices_h1(1) = foo;
 
-subplot(212);
-plot(FF,angle(fftshift(H)));
-grid on;
-ax2 = gca;
-
-% phi = unwrap(angle(fftshift(H)));
-% gd = -[phi(2:end)-phi(1:end-1);0];
-% mean_gd = zeros(Nfft,1);
-% mean_gd(1) = mean(gd);
-idx_max = zeros(Nfft,1);
-h = fftshift(ifft(H,Nfft));
-[~,foo] = max(abs(h));
-idx_max(1) = foo;
+max_indices_h2 = zeros(Nfft,1);
+h2 = fftshift(ifft(H2,Nfft));
+[~,foo] = max(abs(h2));
+max_indices_h2(1) = foo;
 
 for idx = 1:Nfft-1
-    y = cast(y_raw(good_idx+idx,1),'double') + 1i * cast(y_raw(good_idx+idx,2),'double');
-    Y = fft(y,Nfft);
-    H(divide_idx) = Y(divide_idx)./X(divide_idx);
-    h = fftshift(ifft(H,Nfft));
-    [~,foo] = max(abs(h));
-    idx_max(idx+1) = foo;
-%     phi = unwrap(angle(fftshift(H)));
-%     gd = -[phi(2:end)-phi(1:end-1);0];
-%     ax1.Children.YData = phi;
-%     ax2.Children.YData = gd;
-%     ax1.Title.String = sprintf('index = %d',idx);
-%     ax2.Title.String = sprintf('average gd = %f',mean(gd));
-%     mean_gd(idx+1) = mean(gd);
-%     pause(0.5);
+    a = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
+    b = a_raw(good_idx,1) + 1i * a_raw(good_idx,2);
+    A = fft(a,Nfft);
+    B = fft(b,Nfft);
+    H1(divide_idx) = A(divide_idx)./X(divide_idx);
+    H2(divide_idx) = B(divide_idx)./X(divide_idx);
+    h1 = fftshift(ifft(H1,Nfft));
+    h2 = fftshift(ifft(H2,Nfft));
+    [~,foo] = max(abs(h1));
+    max_indices_h1(idx+1) = foo;
+    [~,foo] = max(abs(h2));
+    max_indices_h2(idx+1) = foo;
 end
 
-% figure(99)
-% plot(1:Nfft,mean_gd,'.-');
-% grid on;
-
-idx = 1;
-y = cast(X0a(good_idx+idx,1),'double') + 1i * cast(X0a(good_idx+idx,2),'double');
-Y = fft(y,Nfft);
-H(divide_idx) = Y(divide_idx)./X(divide_idx);
-h = fftshift(ifft(H));
-
-figure(idx);
-subplot(311);
-stem(1:Nfft,real(h));
-grid on;
-
-subplot(312);
-stem(1:Nfft,imag(h));
-grid on;
-
-subplot(313);
-stem(1:Nfft,abs(h));
-grid on;
+%% The rest... TODO
