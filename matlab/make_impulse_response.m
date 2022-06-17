@@ -11,7 +11,7 @@ clc; clear; close all;
 %% Load needed variables
 % You can change the path to what is needed
 path = '../results/june_16/';
-csv_name = 'with_hc/50b';
+csv_name = 'with_hc/0b';
 IR_path = './impulse_responses/';
 load soundingSignal-BW10-Fs20.mat;
 y_raw = readmatrix(strcat(path, csv_name, '.csv'));
@@ -142,14 +142,14 @@ save(strcat(IR_path, csv_name, '.mat'), "h1_pruned", "h2_pruned");
 
 %% Plot h1 and h2
 figure(1); subplot(121); stem(abs(h1));
-title('Channel A'); xlabel('Sample'); ylabel('Magnitude');
+title('Channel A'); xlabel('Sample'); ylabel('Magnitude'); grid on;
 subplot(122); stem(abs(h1_pruned));
-title('Channel A pruned'); xlabel('Sample'); ylabel('Magnitude');
+title('Channel A pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
 figure(2); subplot(121); stem(abs(h2));
-title('Channel B'); xlabel('Sample'); ylabel('Magnitude');
+title('Channel B'); xlabel('Sample'); ylabel('Magnitude'); grid on;
 subplot(122); stem(abs(h2_pruned));
-title('Channel B pruned'); xlabel('Sample'); ylabel('Magnitude');
-
+title('Channel B pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
+figure(3); plot(FF, 20*log10(abs(fftshift(H1))), FF, 20*log10(abs(fftshift(fft(h1_pruned, Nfft))))); grid on;
 
 
 
