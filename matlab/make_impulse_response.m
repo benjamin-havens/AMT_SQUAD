@@ -19,7 +19,7 @@ x = xl;
 %% Get FFTs
 Nfft = 128;
 FF = -0.5:1/Nfft:0.5-1/Nfft;
-good_idx = 5001:5001+Nfft-1; % A good index to look at where the data is 
+good_idx = 20001:20001+Nfft-1; % A good index to look at where the data is 
                              % normal (arbitrary where exactly)
 a = a_raw(good_idx);
 b = a_raw(good_idx);
@@ -47,8 +47,8 @@ h2 = fftshift(ifft(H2,Nfft));
 max_indices_h2(1) = foo;
 
 for idx = 1:Nfft-1
-    a = a_raw(good_idx);
-    b = a_raw(good_idx);
+    a = a_raw(good_idx + idx);
+    b = a_raw(good_idx + idx);
     A = fft(a,Nfft);
     B = fft(b,Nfft);
     H1(divide_idx) = A(divide_idx)./X(divide_idx);
@@ -61,8 +61,25 @@ for idx = 1:Nfft-1
     max_indices_h2(idx+1) = foo;
 end
 
-%% The rest... TODO
+%% Find index for best impulse response (where max is at 64)
+h1_best = find(max_indices_h1==65);
+h2_best = find(max_indices_h2==65);
+
+h1_idx = h1_best(1);
+h2_idx = h2_best(1);
+
+a = a_raw(good_idx + h1_idx);
+b = a_raw(good_idx + h2_idx);
+A = fft(a,Nfft);
+B = fft(b,Nfft);
+H1(divide_idx) = A(divide_idx)./X(divide_idx);
+H2(divide_idx) = B(divide_idx)./X(divide_idx);
+h1 = fftshift(ifft(H1,Nfft));
+h2 = fftshift(ifft(H2,Nfft));
+
+%% Prune them
 
 
 
 
+%% Save them to appropriate file
