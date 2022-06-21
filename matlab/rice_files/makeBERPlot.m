@@ -1,3 +1,8 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAKE BER PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Has data from simulations and plots BER vs N0
+
+%% Data
 %%%%%%%%%%%%%%%%%%%
 % RESULTS WITH HC %
 %%%%%%%%%%%%%%%%%%%
@@ -86,82 +91,85 @@ BERMRC90b = [];
 % RESULTS W/O HC %
 %%%%%%%%%%%%%%%%%%
 
-% This is for with_hc/0a.mat
+% This is for wo_hc/0a.mat
 N0ML0a = [];
 BERML0a = [];
 
-% This is for with_hc/0b.mat
+% This is for wo_hc/0b.mat
 N0ML0b = [];
 BERML0b = [];
 
-% This is for with_hc/10a.mat
+% This is for wo_hc/10a.mat
 N0ML10a = [];
 BERML10a = [];
 
-% This is for with_hc/10b.mat
+% This is for wo_hc/10b.mat
 N0ML10b = [];
 BERML10b = [];
 
-% This is for with_hc/20a.mat
+% This is for wo_hc/20a.mat
 N0ML20a = [];
 BERML20a = [];
 
-% This is for with_hc/20b.mat
+% This is for wo_hc/20b.mat
 N0ML20b = [];
 BERML20b = [];
 
-% This is for with_hc/30a.mat
+% This is for wo_hc/30a.mat
 N0ML30a = [];
 BERML30a = [];
 
-% This is for with_hc/30b.mat
+% This is for wo_hc/30b.mat
 N0ML30b = [];
 BERML30b = [];
 
-% This is for with_hc/40a.mat
+% This is for wo_hc/40a.mat
 N0ML40a = [];
 BERML40a = [];
 
-% This is for with_hc/40b.mat
+% This is for wo_hc/40b.mat
 N0ML40b = [];
 BERML40b = [];
 
-% This is for with_hc/50a.mat
+% This is for wo_hc/50a.mat
 N0ML50a = [];
 BERML50a = [];
 
-% This is for with_hc/50b.mat
+% This is for wo_hc/50b.mat
 N0ML50b = [];
 BERML50b = [];
 
-% This is for with_hc/60a.mat
+% This is for wo_hc/60a.mat
 N0ML60a = [];
 BERML60a = [];
 
-% This is for with_hc/60b.mat
+% This is for wo_hc/60b.mat
 N0ML60b = [];
 BERML60b = [];
 
-% This is for with_hc/70a.mat
+% This is for wo_hc/70a.mat
 N0ML70a = [];
 BERML70a = [];
 
-% This is for with_hc/70b.mat
+% This is for wo_hc/70b.mat
 N0ML70b = [];
 BERML70b = [];
 
-% This is for with_hc/80a.mat
+% This is for wo_hc/80a.mat
 N0ML80a = [];
 BERML80a = [];
 
-% This is for with_hc/80b.mat
+% This is for wo_hc/80b.mat
 N0ML80b = [];
 BERML80b = [];
 
-% This is for with_hc/90a.mat
+% This is for wo_hc/90a.mat
 N0ML90a = [];
 BERML90a = [];
 
-% This is for with_hc/90b.mat
+% This is for wo_hc/90b.mat
 N0ML90b = [];
 BERML90b = [];
+
+
+%% Plots (TODO)

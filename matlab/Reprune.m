@@ -73,30 +73,26 @@ for k = 1:40
     st_idx = mdr_indices(k, 1);
     end_idx = mdr_indices(k, 2);
     load(strcat(IR_path, test_names(k), ".mat"));
-
-    h1_pruned_old = h1_pruned;
-    h2_pruned_old = h2_pruned;
-    h1_pruned = h1_pruned(st_idx:end_idx);
-    h2_pruned = h2_pruned(st_idx:end_idx);
-    save(strcat(IR_path, test_names(k), '.mat'), "h1", "h2", "h1_pruned_old", ...
-        "h2_pruned_old", "h1_pruned", "h2_pruned");
     
     H1 = fftshift(abs(fft(h1, Nfft)));
     H2 = fftshift(abs(fft(h2, Nfft)));
-    H1_PO = fftshift(abs(fft(h1_pruned, Nfft)))
+    H1_PO = fftshift(abs(fft(h1_pruned_old, Nfft)));
+    H2_PO = fftshift(abs(fft(h2_pruned_old, Nfft)));
+    H1_P = fftshift(abs(fft(h1_pruned, Nfft)));
+    H2_P = fftshift(abs(fft(h2_pruned, Nfft)));
 
     figure(1); sgtitle(test_names(k), 'Interpreter', 'none');
     ax1 = subplot(321); plot(FF, H1); title('h1');
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax3 = subplot(323); plot(FF, fftshift(abs(fft(h1_pruned, Nfft))));
+    ax3 = subplot(323); plot(FF, H1_PO);
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax5 = subplot(325); plot(FF, fftshift(abs(fft(h1_pruned(st_idx:end_idx), Nfft))));
+    ax5 = subplot(325); plot(FF, H1_P);
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax2 = subplot(322); plot(FF, fftshift(abs(fft(h2, Nfft)))); title('h2');
+    ax2 = subplot(322); plot(FF, H2); title('h2');
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax4 = subplot(324); plot(FF, fftshift(abs(fft(h2_pruned, Nfft))));
+    ax4 = subplot(324); plot(FF, H2_PO);
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax6 = subplot(326); plot(FF, fftshift(abs(fft(h2_pruned(st_idx:end_idx), Nfft))));
+    ax6 = subplot(326); plot(FF, H2_P);
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
     linkaxes([ax1, ax3, ax5]);
     linkaxes([ax2, ax4, ax6]);
@@ -104,15 +100,15 @@ for k = 1:40
     figure(2); sgtitle(test_names(k), 'Interpreter', 'none');
     ax1 = subplot(321); stem(abs(h1)); title('h1');
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax3 = subplot(323); stem(abs(h1_pruned));
+    ax3 = subplot(323); stem(abs(h1_pruned_old));
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax5 = subplot(325); stem(abs(h1_pruned(st_idx:end_idx)));
+    ax5 = subplot(325); stem(abs(h1_pruned));
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
     ax2 = subplot(322); stem(abs(h2)); title('h2');
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax4 = subplot(324); stem(abs(h2_pruned));
+    ax4 = subplot(324); stem(abs(h2_pruned_old));
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax6 = subplot(326); stem(abs(h2_pruned(st_idx:end_idx)));
+    ax6 = subplot(326); stem(abs(h2_pruned));
     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
     pause;
 end
