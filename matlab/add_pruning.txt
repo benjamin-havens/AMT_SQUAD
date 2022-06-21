@@ -1,0 +1,37 @@
+th_hc
+0b: 5 to end
+10a: 5 to end
+20b: 5 to 19
+30a: 4 to end
+30b: 5 to end
+40a: 3 to 16
+40b: 5 to 15
+50a: 4 to end
+50b: 5 to end 
+60a: 9-19
+70a: 9-end
+80b: 5-end
+90a: 5-end
+
+wo_hc
+0a: 53-end
+0b: 9-end
+10a: 49-64
+10b: 11-37
+20a: 9-33
+20b: 11-end
+30a: 21-51
+30b: 7-33
+40a: 5-end
+40b: 40-67
+50a: 47-81
+50b: 16-36
+60a: 47-73
+60b: 22-48
+70a: good
+70b: 9-25
+80a: 5-end
+80b: 9-25
+90a: good
+90b: good
+
