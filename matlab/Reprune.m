@@ -78,6 +78,9 @@ for k = 1:40
     h2_pruned_old = h2_pruned;
     h1_pruned = h1_pruned(st_idx:end_idx);
     h2_pruned = h2_pruned(st_idx:end_idx);
+    save(strcat(IR_path, test_names(k), '.mat'), "h1", "h2", "h1_pruned_old", ...
+        "h2_pruned_old", "h1_pruned", "h2_pruned");
+
 %     figure(1); sgtitle(test_names(k), 'Interpreter', 'none');
 %     ax1 = subplot(321); plot(FF, fftshift(abs(fft(h1, Nfft)))); title('h1');
 %     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
