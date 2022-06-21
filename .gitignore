@@ -5,3 +5,4 @@ __pycache__/
 *pec
 .vscode/
 *.slx*
+matlab/rice_files/slprj/
