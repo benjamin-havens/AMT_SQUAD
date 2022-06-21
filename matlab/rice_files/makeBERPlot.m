@@ -1,67 +1,167 @@
-% This is for 0b.mat (without the hybrid combiner) using MLcombiner
-% with KCMA = 25;
+%%%%%%%%%%%%%%%%%%%
+% RESULTS WITH HC %
+%%%%%%%%%%%%%%%%%%%
 
-N0 = [22 23 24 25 26 27 28];
-BER = [4.054e-6 7.297e-5 3.122e-4 1.05e-3 2.948e-3 7.385e-3 1.539e-2];
+% This is for with_hc/0a.mat
+N0MRC0a = [];
+BERMRC0a = [];
 
-figure(100);
-semilogy(-N0,BER,'o-'); grid on;
-ax = gca;
-ax.FontName = 'Times New Roman';
-ax.XLabel.Interpreter = 'LaTeX';
-ax.XLabel.String = '$1/N_0$ (dB)';
-ax.YLabel.Interpreter = 'LaTeX';
-ax.YLabel.String = 'BER';
+% This is for with_hc/0b.mat
+N0MRC0b = [];
+BERMRC0b = [];
 
-% This is for 40a.mat (with the hybrid combiner) using MRCcombiner
-% with KCMA = 15;
+% This is for with_hc/10a.mat
+N0MRC10a = [];
+BERMRC10a = [];
 
-N0c = [18 19 20 21 22 23 24];
-BERc = [4.054e-6 2.838e-5 1.581e-4 7.906e-4 2.023e-3 5.5595e-3 1.287e-2];
+% This is for with_hc/10b.mat
+N0MRC10b = [];
+BERMRC10b = [];
 
-figure(101);
-semilogy(-N0c,BERc,'o-'); grid on;
-ax = gca;
-ax.FontName = 'Times New Roman';
-ax.XLabel.Interpreter = 'LaTeX';
-ax.XLabel.String = '$1/N_0$ (dB)';
-ax.YLabel.Interpreter = 'LaTeX';
-ax.YLabel.String = 'BER';
+% This is for with_hc/20a.mat
+N0MRC20a = [];
+BERMRC20a = [];
 
-% This is for 40a.mat (with the hybrid combiner) using MRCcombiner
-% with KCMA = 25;
-N0c2 = [20 21 22 23 24 25];
-BERc2 = [4.054e-5 1.824e-4 7.216e-4 2.4e-3 6.1e-3 1.4e-2];
+% This is for with_hc/20b.mat
+N0MRC20b = [];
+BERMRC20b = [];
 
-figure(102);
-semilogy(-N0c2,BERc2,'o-'); grid on;
-ax = gca;
-ax.FontName = 'Times New Roman';
-ax.XLabel.Interpreter = 'LaTeX';
-ax.XLabel.String = '$1/N_0$ (dB)';
-ax.YLabel.Interpreter = 'LaTeX';
-ax.YLabel.String = 'BER';
+% This is for with_hc/30a.mat
+N0MRC30a = [];
+BERMRC30a = [];
 
-% This is for 50a.mat (without the hybrid combiner) using MLcombiner
-% with KCMA = 25;
+% This is for with_hc/30b.mat
+N0MRC30b = [];
+BERMRC30b = [];
 
-N02 = [22 23 24 25 26 27 28];
-BER2 = [8.108e-6 7.297e-5 3.892e-4 1.184e-3 3.13e-3 7.739e-3 1.628e-2];
+% This is for with_hc/40a.mat
+N0MRC40a = [];
+BERMRC40a = [];
 
-figure(103);
-semilogy(-N02,BER2,'o-'); grid on;
-ax = gca;
-ax.FontName = 'Times New Roman';
-ax.XLabel.Interpreter = 'LaTeX';
-ax.XLabel.String = '$1/N_0$ (dB)';
-ax.YLabel.Interpreter = 'LaTeX';
-ax.YLabel.String = 'BER';
+% This is for with_hc/40b.mat
+N0MRC40b = [];
+BERMRC40b = [];
 
-figure(200);
-semilogy(-N0,BER,'s-',-N0c,BERc,'o-',-N0c2,BERc2,'o-',-N02,BER2,'s-'); grid on;
-ax = gca;
-ax.FontName = 'Times New Roman';
-ax.XLabel.Interpreter = 'LaTeX';
-ax.XLabel.String = '$1/N_0$ (dB)';
-ax.YLabel.Interpreter = 'LaTeX';
-ax.YLabel.String = 'BER';
+% This is for with_hc/50a.mat
+N0MRC50a = [];
+BERMRC50a = [];
+
+% This is for with_hc/50b.mat
+N0MRC50b = [];
+BERMRC50b = [];
+
+% This is for with_hc/60a.mat
+N0MRC60a = [];
+BERMRC60a = [];
+
+% This is for with_hc/60b.mat
+N0MRC60b = [];
+BERMRC60b = [];
+
+% This is for with_hc/70a.mat
+N0MRC70a = [];
+BERMRC70a = [];
+
+% This is for with_hc/70b.mat
+N0MRC70b = [];
+BERMRC70b = [];
+
+% This is for with_hc/80a.mat
+N0MRC80a = [];
+BERMRC80a = [];
+
+% This is for with_hc/80b.mat
+N0MRC80b = [];
+BERMRC80b = [];
+
+% This is for with_hc/90a.mat
+N0MRC90a = [];
+BERMRC90a = [];
+
+% This is for with_hc/90b.mat
+N0MRC90b = [];
+BERMRC90b = [];
+
+%%%%%%%%%%%%%%%%%%
+% RESULTS W/O HC %
+%%%%%%%%%%%%%%%%%%
+
+% This is for with_hc/0a.mat
+N0ML0a = [];
+BERML0a = [];
+
+% This is for with_hc/0b.mat
+N0ML0b = [];
+BERML0b = [];
+
+% This is for with_hc/10a.mat
+N0ML10a = [];
+BERML10a = [];
+
+% This is for with_hc/10b.mat
+N0ML10b = [];
+BERML10b = [];
+
+% This is for with_hc/20a.mat
+N0ML20a = [];
+BERML20a = [];
+
+% This is for with_hc/20b.mat
+N0ML20b = [];
+BERML20b = [];
+
+% This is for with_hc/30a.mat
+N0ML30a = [];
+BERML30a = [];
+
+% This is for with_hc/30b.mat
+N0ML30b = [];
+BERML30b = [];
+
+% This is for with_hc/40a.mat
+N0ML40a = [];
+BERML40a = [];
+
+% This is for with_hc/40b.mat
+N0ML40b = [];
+BERML40b = [];
+
+% This is for with_hc/50a.mat
+N0ML50a = [];
+BERML50a = [];
+
+% This is for with_hc/50b.mat
+N0ML50b = [];
+BERML50b = [];
+
+% This is for with_hc/60a.mat
+N0ML60a = [];
+BERML60a = [];
+
+% This is for with_hc/60b.mat
+N0ML60b = [];
+BERML60b = [];
+
+% This is for with_hc/70a.mat
+N0ML70a = [];
+BERML70a = [];
+
+% This is for with_hc/70b.mat
+N0ML70b = [];
+BERML70b = [];
+
+% This is for with_hc/80a.mat
+N0ML80a = [];
+BERML80a = [];
+
+% This is for with_hc/80b.mat
+N0ML80b = [];
+BERML80b = [];
+
+% This is for with_hc/90a.mat
+N0ML90a = [];
+BERML90a = [];
+
+% This is for with_hc/90b.mat
+N0ML90b = [];
+BERML90b = [];
