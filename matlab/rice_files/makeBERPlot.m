@@ -1,8 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAKE BER PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Has data from simulations and plots BER vs N0
 
 %% Data
+
 %%%%%%%%%%%%%%%%%%%
 % RESULTS WITH HC %
 %%%%%%%%%%%%%%%%%%%
@@ -24,12 +26,12 @@ N0MRC10b = [];
 BERMRC10b = [];
 
 % This is for with_hc/20a.mat
-N0MRC20a = [];
-BERMRC20a = [];
+N0MRC20a = [28 29 30 31 32 33 34]; % 82 on 28
+BERMRC20a = [8.43e-6 4.4e-5 2.5e-4 9.5e-4 3.6e-3 7.5e-3 1.7e-2];
 
 % This is for with_hc/20b.mat
-N0MRC20b = [];
-BERMRC20b = [];
+N0MRC20b = [28 29 30 31 32];
+BERMRC20b = [4e-6 2.37e-5 1.45e-4 6e-4 2e-3];
 
 % This is for with_hc/30a.mat
 N0MRC30a = [];
@@ -173,3 +175,17 @@ BERML90b = [];
 
 
 %% Plots (TODO)
+
+% Plot 20a with hc
+figure(120);
+semilogy(-N0MRC20a,BERMRC20a,'o-'); grid on;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
+
+
+
+
