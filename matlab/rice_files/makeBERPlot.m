@@ -42,12 +42,12 @@ N0MRC30b = [29 30 31 32 33 34];
 BERMRC30b = [3.18e-5 1.41e-4 6.53e-4 2e-3 6.63e-3 1.266e-2];
 
 % This is for with_hc/40a.mat
-N0MRC40a = [29 30];
-BERMRC40a = [7.5e-5 3.45e-4];
+N0MRC40a = [29 30 31 32 33];
+BERMRC40a = [7.5e-5 3.45e-4 1.53e-3 3.74e-3 1.06e-2];
 
 % This is for with_hc/40b.mat
-N0MRC40b = [];
-BERMRC40b = [];
+N0MRC40b = [29];
+BERMRC40b = [8.3e-5];
 
 % This is for with_hc/50a.mat
 N0MRC50a = [];
