@@ -11,13 +11,13 @@ clc; clear; close all;
 
 %% Load needed variables
 % You can change the path to what is needed
-path = '../results/june_23/';
-csv_name = 'wo_hc/0b';
-IR_path = './impulse_responses/new/';
+path = '../results/june_24/';
+csv_name = 'wo_hc/50a';
+IR_path = './impulse_responses/take_4/';
 load soundingSignal-BW10-Fs20.mat;
 y_raw = readmatrix(strcat(path, csv_name, '.csv'));
-a_raw = y_raw(:, 1);
-b_raw = y_raw(:, 2)*.93; % Because channel b is stronger for some reason
+a_raw = y_raw(:, 1)*2.3;
+b_raw = y_raw(:, 2)*.8888*2.3; % Because channel b is stronger for some reason
 x = xl;
 
 
@@ -161,20 +161,20 @@ end
 
 
 %% Save them to appropriate file
-% save(strcat(IR_path, csv_name, '.mat'), "h1", "h2", "h1_pruned", "h2_pruned");
+save(strcat(IR_path, csv_name, '.mat'), "h1", "h2", "h1_pruned", "h2_pruned");
 
 
 %% Plot h1 and h2
-figure(1); subplot(121); stem(abs(h1));
-title('Channel A'); xlabel('Sample'); ylabel('Magnitude'); grid on;
-subplot(122); stem(abs(h1_pruned));
-title('Channel A pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
-figure(2); subplot(121); stem(abs(h2));
-title('Channel B'); xlabel('Sample'); ylabel('Magnitude'); grid on;
-subplot(122); stem(abs(h2_pruned));
-title('Channel B pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
-figure(3); plot(FF, 20*log10(abs(fftshift(H1))), FF, 20*log10(abs(fftshift(fft(h1_pruned, Nfft))))); grid on;
-figure(4); plot(FF, 20*log10(abs(fftshift(H2))), FF, 20*log10(abs(fftshift(fft(h2_pruned, Nfft))))); grid on;
+% figure(1); subplot(121); stem(abs(h1));
+% title('Channel A'); xlabel('Sample'); ylabel('Magnitude'); grid on;
+% subplot(122); stem(abs(h1_pruned));
+% title('Channel A pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
+% figure(2); subplot(121); stem(abs(h2));
+% title('Channel B'); xlabel('Sample'); ylabel('Magnitude'); grid on;
+% subplot(122); stem(abs(h2_pruned));
+% title('Channel B pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
+% figure(3); plot(FF, 20*log10(abs(fftshift(H1))), FF, 20*log10(abs(fftshift(fft(h1_pruned, Nfft))))); grid on;
+% figure(4); plot(FF, 20*log10(abs(fftshift(H2))), FF, 20*log10(abs(fftshift(fft(h2_pruned, Nfft))))); grid on;
 
 
 
