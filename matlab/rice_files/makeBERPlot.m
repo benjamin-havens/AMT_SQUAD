@@ -66,28 +66,28 @@ N0MRC60b = [];
 BERMRC60b = [];
 
 % This is for with_hc/70a.mat
-N0MRC70a = [];
-BERMRC70a = [];
+N0MRC70a = [25 26 27 28 29];
+BERMRC70a = [4.945e-5 2.571e-4 9.679e-4 2.916e-3 1.574e-2];
 
 % This is for with_hc/70b.mat
-N0MRC70b = [];
-BERMRC70b = [];
+N0MRC70b = [25 26 27 28 29 30];
+BERMRC70b = [2.259e-5 1.421e-4 5.449e-4 1.853e-3 4.946e-3 1.158e-2];
 
 % This is for with_hc/80a.mat
-N0MRC80a = [];
-BERMRC80a = [];
+N0MRC80a = [23 24 25 26 27 28];
+BERMRC80a = [7.479e-6 5.092e-5 2.431e-4 9.442e-4 2.757e-3 6.625e-3 6.764e-2];
 
 % This is for with_hc/80b.mat
-N0MRC80b = [];
-BERMRC80b = [];
+N0MRC80b = [24 25 26 27 28 29];
+BERMRC80b = [2.039e-5 1.259e-4 5.483e-4 1.805e-3 4.792e-3 1.1e-2];
 
 % This is for with_hc/90a.mat
-N0MRC90a = [];
-BERMRC90a = [];
+N0MRC90a = [22 23 24 25 26 27 28];
+BERMRC90a = [4.575e-6 3.48e-5 1.626e-4 7.07e-4 2.307e-3 5.75e-3 1.306e-2];
 
 % This is for with_hc/90b.mat
-N0MRC90b = [];
-BERMRC90b = [];
+N0MRC90b = [21 22 23 24 25 26 27]; %21 still needs to be done
+BERMRC90b = [1.15e-6 1.5e-5 9.534e-5 4.537e-4 1.33e-3 3.931e-3 9.627e-3];
 
 %%%%%%%%%%%%%%%%%%
 % RESULTS W/O HC %
