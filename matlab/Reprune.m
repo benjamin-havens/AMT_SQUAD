@@ -10,8 +10,8 @@ clc; clear; close all;
 
 
 %% Needed values
-IR_path = "impulse_responses/new/";
-CSV_path = "../results/june_23/";
+IR_path = "impulse_responses/take_4/";
+CSV_path = "../results/june_24/";
 test_names = ["with_hc/0a" "with_hc/0b" "with_hc/10a" "with_hc/10b" ...
              "with_hc/20a" "with_hc/20b" "with_hc/30a" "with_hc/30b" ...
              "with_hc/40a" "with_hc/40b" "with_hc/50a" "with_hc/50b" ...
@@ -104,46 +104,46 @@ take_3_indices =  [1 27;
                    32 79;
                    37 82
     ];
-take_4_indices =  [1 27;
-                   9 31;
-                   5 31;
-                   1 27;
-                   1 25;
-                   1 24;
-                   1 27;
-                   1 27;
-                   10 31;
-                   1 27;
-                   1 35;
-                   34 68;
-                   1 40;
-                   39 73;
+take_4_indices =  [42 74;
+                   38 83;
+                   42 80;
+                   31 69;
+                   47 79;
+                   41 79;
+                   35 75;
+                   18 48;
+                   38 71;
+                   45 83;
+                   39 67;
+                   43 79;
+                   45 77;
+                   48 78;
                    41 73;
-                   43 84;
-                   11 47;
-                   45 81;
+                   43 73;
+                   41 74;
+                   40 75;
+                   48 93;
+                   49 76;
+                   41 67;
+                   43 69;
+                   5 31;
                    5 27;
-                   1 28;
-                   5 19; % begin wo_hc
-                   5 19;
-                   1 13;
-                   1 16;
-                   5 19;
-                   1 15;
-                   5 19;
-                   1 19;
-                   1 28;
-                   1 21;
-                   47 78;
-                   5 39;
-                   46 80;
-                   41 80;
-                   36 73;
-                   37 79;
-                   42 90;
-                   48 92;
-                   32 79;
-                   37 82
+                   20 43;
+                   36 63;
+                   42 73;
+                   10 41;
+                   29 55;
+                   43 75;
+                   13 50;
+                   33 65;
+                   38 80;
+                   48 78;
+                   51 63;
+                   37 63;
+                   41 72;
+                   43 64;
+                   45 69;
+                   43 77;
     ];
 
 
@@ -151,8 +151,16 @@ take_4_indices =  [1 27;
 Nfft = 128;
 FF = -0.5:1/Nfft:0.5-1/Nfft;
 
-for k = 1:40
+for k = 20:40
     load(strcat(IR_path, test_names(k), ".mat"));
+
+%     std_idx = take_4_indices(k, 1);
+%     end_idx = take_4_indices(k, 2);
+%     h1_pruned_old = h1_pruned;
+%     h2_pruned_old = h2_pruned;
+%     h1_pruned = h1_pruned(std_idx:end_idx);
+%     h2_pruned = h2_pruned(std_idx:end_idx);
+%     save(strcat(IR_path, test_names(k), '.mat'), "h1", "h2", "h1_pruned_old", "h2_pruned_old", "h1_pruned", "h2_pruned");
     
     H1 = fftshift(abs(fft(h1, Nfft)));
     H2 = fftshift(abs(fft(h2, Nfft)));
@@ -177,19 +185,19 @@ for k = 1:40
     linkaxes([ax1, ax3, ax5]);
     linkaxes([ax2, ax4, ax6]);
 
-    figure(2); sgtitle(test_names(k), 'Interpreter', 'none');
-    ax1 = subplot(321); stem(abs(h1)); title('h1');
-    xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax3 = subplot(323); stem(abs(h1_pruned_old));
-    xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax5 = subplot(325); stem(abs(h1_pruned));
-    xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax2 = subplot(322); stem(abs(h2)); title('h2');
-    xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax4 = subplot(324); stem(abs(h2_pruned_old));
-    xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
-    ax6 = subplot(326); stem(abs(h2_pruned));
-    xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
+%     figure(2); sgtitle(test_names(k), 'Interpreter', 'none');
+%     ax1 = subplot(321); stem(abs(h1)); title('h1');
+%     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
+%     ax3 = subplot(323); stem(abs(h1_pruned_old));
+%     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
+%     ax5 = subplot(325); stem(abs(h1_pruned));
+%     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
+%     ax2 = subplot(322); stem(abs(h2)); title('h2');
+%     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
+%     ax4 = subplot(324); stem(abs(h2_pruned_old));
+%     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
+%     ax6 = subplot(326); stem(abs(h2_pruned));
+%     xlabel('Normalized Frequency (cycles/sample)'); ylabel('Magnitude');
     pause;
 end
 

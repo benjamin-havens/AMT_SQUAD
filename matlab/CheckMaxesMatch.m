@@ -32,7 +32,7 @@ X = fft(xl,Nfft);
 
 %% Check if the max indices in the ffts align, print if not
 count = 0;
-for k = 1:40
+for k = 30:40
     load(strcat(IR_path, csv_names(k), ".mat"));
     [~, h1_max] = max(h1_pruned);
     [~, h2_max] = max(h2_pruned);
