@@ -34,16 +34,16 @@ N0MRC20b = [28 29 30 31 32];
 BERMRC20b = [4e-6 2.37e-5 1.45e-4 6e-4 2e-3];
 
 % This is for with_hc/30a.mat
-N0MRC30a = [];
-BERMRC30a = [];
+N0MRC30a = [28 29 30 31 32];
+BERMRC30a = [3.1e-6 1.45e-5 9.5e-5 4.04e-4 1.49e-3];
 
 % This is for with_hc/30b.mat
-N0MRC30b = [];
-BERMRC30b = [];
+N0MRC30b = [29 30 31 32 33 34];
+BERMRC30b = [3.18e-5 1.41e-4 6.53e-4 2e-3 6.63e-3 1.266e-2];
 
 % This is for with_hc/40a.mat
-N0MRC40a = [];
-BERMRC40a = [];
+N0MRC40a = [29 30];
+BERMRC40a = [7.5e-5 3.45e-4];
 
 % This is for with_hc/40b.mat
 N0MRC40b = [];
@@ -177,7 +177,7 @@ BERML90b = [];
 %% Plots (TODO)
 
 % Plot 20a with hc
-figure(120);
+figure(221);
 semilogy(-N0MRC20a,BERMRC20a,'o-'); grid on;
 ax = gca;
 ax.FontName = 'Times New Roman';
@@ -186,6 +186,14 @@ ax.XLabel.String = '$1/N_0$ (dB)';
 ax.YLabel.Interpreter = 'LaTeX';
 ax.YLabel.String = 'BER';
 
-
+% Plot 20b with hc
+figure(222);
+semilogy(-N0MRC20b,BERMRC20b,'o-'); grid on;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
 
 

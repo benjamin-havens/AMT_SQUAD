@@ -8,8 +8,8 @@ clc; clear; close all;
 
 
 %% Needed variables
-IR_path = "impulse_responses/";
-CSV_path = "../results/june_16/";
+IR_path = "impulse_responses/new/";
+CSV_path = "../results/june_23/";
 csv_names = ["with_hc/0a" "with_hc/0b" "with_hc/10a" "with_hc/10b" ...
              "with_hc/20a" "with_hc/20b" "with_hc/30a" "with_hc/30b" ...
              "with_hc/40a" "with_hc/40b" "with_hc/50a" "with_hc/50b" ...

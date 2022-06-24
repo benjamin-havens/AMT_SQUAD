@@ -10,8 +10,8 @@ clc; clear; close all;
 
 
 %% Needed values
-IR_path = "impulse_responses/";
-CSV_path = "../results/june_16/";
+IR_path = "impulse_responses/new/";
+CSV_path = "../results/june_23/";
 test_names = ["with_hc/0a" "with_hc/0b" "with_hc/10a" "with_hc/10b" ...
              "with_hc/20a" "with_hc/20b" "with_hc/30a" "with_hc/30b" ...
              "with_hc/40a" "with_hc/40b" "with_hc/50a" "with_hc/50b" ...
@@ -63,15 +63,54 @@ mdr_indices = [1 15;
                9 25;
                1 25;
                1 23;];
+bdh_indices = [1 27;
+               9 31;
+               5 31;
+               1 27;
+               1 25;
+               1 24;
+               1 27;
+               1 27;
+               10 31;
+               1 27;
+               1 35;
+               34 68;
+               1 40;
+               39 73;
+               41 73;
+               43 84;
+               11 47;
+               45 81;
+               5 27;
+               1 28;
+               5 19; % begin wo_hc
+               5 19;
+               1 13;
+               1 16;
+               5 19;
+               1 15;
+               5 19;
+               1 19;
+               1 28;
+               1 21;
+               47 78;
+               5 39;
+               46 80;
+               41 80;
+               36 73;
+               37 79;
+               42 90;
+               48 92;
+               32 79;
+               37 82
+    ];
 
 
 %% Load each one and plot FFTs
 Nfft = 128;
 FF = -0.5:1/Nfft:0.5-1/Nfft;
 
-for k = 40:40
-    st_idx = mdr_indices(k, 1);
-    end_idx = mdr_indices(k, 2);
+for k = 1:40
     load(strcat(IR_path, test_names(k), ".mat"));
     
     H1 = fftshift(abs(fft(h1, Nfft)));

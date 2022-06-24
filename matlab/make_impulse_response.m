@@ -11,13 +11,13 @@ clc; clear; close all;
 
 %% Load needed variables
 % You can change the path to what is needed
-path = '../results/june_16/';
-csv_name = 'wo_hc/80a';
-IR_path = './impulse_responses/';
+path = '../results/june_23/';
+csv_name = 'wo_hc/0b';
+IR_path = './impulse_responses/new/';
 load soundingSignal-BW10-Fs20.mat;
 y_raw = readmatrix(strcat(path, csv_name, '.csv'));
 a_raw = y_raw(:, 1);
-b_raw = y_raw(:, 2)*8/9; % Because channel b is stronger for some reason
+b_raw = y_raw(:, 2)*.93; % Because channel b is stronger for some reason
 x = xl;
 
 
@@ -174,6 +174,7 @@ title('Channel B'); xlabel('Sample'); ylabel('Magnitude'); grid on;
 subplot(122); stem(abs(h2_pruned));
 title('Channel B pruned'); xlabel('Sample'); ylabel('Magnitude'); grid on;
 figure(3); plot(FF, 20*log10(abs(fftshift(H1))), FF, 20*log10(abs(fftshift(fft(h1_pruned, Nfft))))); grid on;
+figure(4); plot(FF, 20*log10(abs(fftshift(H2))), FF, 20*log10(abs(fftshift(fft(h2_pruned, Nfft))))); grid on;
 
 
 
