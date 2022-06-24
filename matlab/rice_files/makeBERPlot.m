@@ -62,8 +62,8 @@ N0MRC60a = [];
 BERMRC60a = [];
 
 % This is for with_hc/60b.mat
-N0MRC60b = [];
-BERMRC60b = [];
+N0MRC60b = [27 28 29 30];
+BERMRC60b = [3.788e-4 1.414e-3 3.814e-3 9.063];
 
 % This is for with_hc/70a.mat
 N0MRC70a = [25 26 27 28 29];
