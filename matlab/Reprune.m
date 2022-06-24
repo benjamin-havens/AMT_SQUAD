@@ -125,7 +125,7 @@ take_4_indices =  [42 74;
                    48 93;
                    49 76;
                    41 67;
-                   43 69;
+                    43 69;
                    5 31;
                    5 27;
                    20 43;
@@ -151,7 +151,7 @@ take_4_indices =  [42 74;
 Nfft = 128;
 FF = -0.5:1/Nfft:0.5-1/Nfft;
 
-for k = 37:40
+for k = 1:40
     load(strcat(IR_path, test_names(k), ".mat"));
 
 %     std_idx = take_4_indices(k, 1);
