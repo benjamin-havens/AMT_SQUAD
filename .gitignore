@@ -2,7 +2,7 @@
 *asv
 uhd_params.py
 __pycache__/
-*pec
+*pyc
 .vscode/
 *.slx*
 matlab/rice_files/slprj/
