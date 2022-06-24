@@ -12,7 +12,7 @@ clc; clear; close all;
 %% Load needed variables
 % You can change the path to what is needed
 path = '../results/june_24/';
-csv_name = 'wo_hc/50a';
+csv_name = 'with_hc/0a';
 IR_path = './impulse_responses/take_4/';
 load soundingSignal-BW10-Fs20.mat;
 y_raw = readmatrix(strcat(path, csv_name, '.csv'));
@@ -89,7 +89,7 @@ h2 = fftshift(ifft(H2,Nfft));
 %% Prune them (to only the values that make up 99% of their energy)
 en_h1 = sum(abs(h1).^2);
 en_h2 = sum(abs(h2).^2);
-prune_by = 0.95;
+prune_by = 0.87;
 
 tmp = h1;
 h1_pruned = zeros(Nfft, 1);
