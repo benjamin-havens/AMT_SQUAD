@@ -1,0 +1,268 @@
+BER between 1e^-2 & 1e^-6
+
+% This is for wo_hc/20a.mat
+N0ML20a = [26 25 24 23 22 21 20];
+BERML20a = [0.01322 .005677 .002118 .0006726 .0001846 3.538e-5 3.874e-6];
+wo_hc/20a:
+
+N0 = 26
+num_errors = 6524
+BER = .01322
+
+N0 = 25
+num_errors = 2510
+BER = .005677
+
+N0 = 24
+num_errors = 906
+BER = .002118
+
+N0 = 23
+num_errors = 1414
+BER = .0006726
+
+N0 = 22
+num_errors = 830
+BER = .0001846
+
+N0 = 21
+num_errors = 194
+BER = 3.538e-05
+
+N0 = 20
+num_errors = 200
+BER =  3.874e-6
+
+
+% This is for wo_hc/20b.mat
+N0ML20b = [26 25 24 23 22 21 20];
+BERML20b = [.0206 .009439 .003902 .001432 .0004192 .0001128 1.29e-5];
+wo_hc/20b:
+
+N0 = 26
+num_errors = 3542
+BER = .0206
+
+N0 = 25
+num_errors = 2106
+BER = .009439
+
+N0 = 24
+num_errors = 1222
+BER = .003902
+
+N0 = 23
+num_errors = 1140 
+BER = .001432
+
+N0 = 22
+num_errors = 1210
+BER = .0004192
+
+N0 = 21
+num_errors = 464
+BER = .0001128
+
+N0 = 20
+num_errors = 230
+BER = 1.29e-05
+
+
+
+
+wo_hc/30a:
+
+N0 = 19
+num_errors = 1.789e4
+BER = .0188
+
+N0 = 18
+num_errors = 2502
+BER = .008793
+
+N0 = 17
+num_errors = 1642
+BER = .003663
+
+N0 = 16
+num_errors = 634
+BER = .00121
+
+N0 = 15
+num_errors = 598
+BER = .0003721
+
+N0 = 14
+num_errors = 312
+BER = 7.4863-5
+
+N0 = 13
+num_errors = 
+BER =  
+
+
+
+
+wo_hc/30b:
+
+N0 = 22
+num_errors = 3814
+BER = .01741
+
+N0 = 21
+num_errors = 2162
+BER = .007882
+
+N0 = 20
+num_errors = 2080
+BER = .003089
+
+N0 = 19
+num_errors = 1266
+BER = .001127
+
+N0 = 18
+num_errors = 448
+BER = .0003167
+
+N0 = 17
+num_errors = 260
+BER = 5.927e-5
+
+N0 = 16
+num_errors = 
+BER =  
+
+
+
+
+
+wo_hc/40a:
+
+N0 = 25
+num_errors = 4650
+BER = .01189
+
+N0 = 24
+num_errors = 2322
+BER = .00518
+
+N0 = 23
+num_errors = 1070
+BER = .002099
+
+N0 = 22
+num_errors = 846
+BER = .0006498
+
+N0 = 21
+num_errors = 612
+BER = .0001462
+
+N0 = 20
+num_errors = 288
+BER = 2.538e-5
+
+N0 = 19
+num_errors = 
+BER =  
+
+
+
+
+
+wo_hc/40b:
+
+N0 = 21
+num_errors = 6426
+BER = .01207
+
+N0 = 20
+num_errors = 4502
+BER = .006187
+
+N0 = 19
+num_errors = 1.156e4
+BER = .002096
+
+N0 = 18
+num_errors = 908
+BER = .0007455
+
+N0 = 17
+num_errors = 566
+BER = .0002062
+
+N0 = 16
+num_errors = 270
+BER = 4.068e-5
+
+N0 = 
+num_errors = 
+BER =  
+
+
+
+
+wo_hc/50a:
+
+N0 = 20
+num_errors = 6454
+BER = .01659
+
+N0 = 19
+num_errors = 3580
+BER = .007571
+
+N0 = 18
+num_errors = 3466
+BER = .003269
+
+N0 = 17
+num_errors = 2150
+BER = .001228
+
+N0 = 16
+num_errors = 786
+BER = .0003416
+
+N0 = 15
+num_errors = 322
+BER = 7.083e-5
+
+N0 = 14
+num_errors = 
+BER =  
+
+
+
+
+wo_hc/50a:
+
+N0 = 22
+num_errors = 2684
+BER = .01102
+
+N0 = 21
+num_errors = 7180
+BER = .004825
+
+N0 = 20
+num_errors = 2418
+BER = .001866
+
+N0 = 19
+num_errors = 800
+BER = .0005376
+
+N0 = 18
+num_errors = 452
+BER = .000126
+
+N0 = 17
+num_errors = 290
+BER = 2.589e-5
+
+N0 = 
+num_errors = 
+BER =  
