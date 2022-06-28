@@ -78,16 +78,16 @@ N0MRC80a = [];
 BERMRC80a = [];
 
 % This is for with_hc/80b.mat
-N0MRC80b = [];
-BERMRC80b = [];
+N0MRC80b = [20 21 22 23 24 25 26];
+BERMRC80b = [8.975e-6 5.306e-5 2.878e-4 1.023e-3 3.054e-3 7.687e-3 1.661e-2];
 
 % This is for with_hc/90a.mat
-N0MRC90a = [];
-BERMRC90a = [];
+N0MRC90a = [20 21 22 23 24 25 26];
+BERMRC90a = [1.174 e-6 1.455e-5 8.301e-5 4.067e-4 1.478e-3 4.061e-3 1.007e-2];
 
 % This is for with_hc/90b.mat
-N0MRC90b = [];
-BERMRC90b = [];
+N0MRC90b = [21 22 23 24 25 26];
+BERMRC90b = [1.506e-5 9.466e-5 4.47e-4 1.508e-3 4.064e-3 9.753e-3];
 
 %%%%%%%%%%%%%%%%%%
 % RESULTS W/O HC %
@@ -159,7 +159,7 @@ BERML70b = [];
 
 % This is for wo_hc/80a.mat 
 N0ML80a = [26 25 24 23 22 21]; 
-BERML80a = [0.0186 0.00848 0.003525 0.00192 0.0003253 6.526e-5];
+BERML80a = [0.0186 0.00848 0.003525 0.001213 0.0003253 6.526e-5];
 
 % This is for wo_hc/80b.mat 
 N0ML80b = []; 
