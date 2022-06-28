@@ -25,29 +25,29 @@ BERMRC10a = [];
 N0MRC10b = [];
 BERMRC10b = [];
 
-% This is for with_hc/20a.mat
-N0MRC20a = [28 29 30 31 32 33 34]; % 82 on 28
-BERMRC20a = [8.43e-6 4.4e-5 2.5e-4 9.5e-4 3.6e-3 7.5e-3 1.7e-2];
+% This is for with_hc/20a.mat 
+N0MRC20a = [23 24 25 26 27 28]; 
+BERMRC20a = [2.355e-5 1.41e-4 6.0e-4 1.87e-3 5.31e-3 1.26e-2];
 
-% This is for with_hc/20b.mat
-N0MRC20b = [28 29 30 31 32];
-BERMRC20b = [4e-6 2.37e-5 1.45e-4 6e-4 2e-3];
+% This is for with_hc/20b.mat 
+N0MRC20b = [23 24 25 26 27 28]; 
+BERMRC20b = [4.28e-5 1.94e-4 7.68e-4 2.41e-3 6.44e-3 1.43e-2];
 
-% This is for with_hc/30a.mat
-N0MRC30a = [28 29 30 31 32];
-BERMRC30a = [3.1e-6 1.45e-5 9.5e-5 4.04e-4 1.49e-3];
+% This is for with_hc/30a.mat 
+N0MRC30a = [23 24 25 26 27 28]; 
+BERMRC30a = [3.46e-5 1.68e-4 7.81e-4 2.22e-3 6.18e-3 1.35e-2];
 
 % This is for with_hc/30b.mat
-N0MRC30b = [29 30 31 32 33 34];
-BERMRC30b = [3.18e-5 1.41e-4 6.53e-4 2e-3 6.63e-3 1.266e-2];
+N0MRC30b = [];
+BERMRC30b = [];
 
 % This is for with_hc/40a.mat
-N0MRC40a = [29 30 31 32 33];
-BERMRC40a = [7.5e-5 3.45e-4 1.53e-3 3.74e-3 1.06e-2];
+N0MRC40a = [];
+BERMRC40a = [];
 
 % This is for with_hc/40b.mat
-N0MRC40b = [29];
-BERMRC40b = [8.3e-5];
+N0MRC40b = [];
+BERMRC40b = [];
 
 % This is for with_hc/50a.mat
 N0MRC50a = [];
@@ -62,32 +62,32 @@ N0MRC60a = [];
 BERMRC60a = [];
 
 % This is for with_hc/60b.mat
-N0MRC60b = [27 28 29 30];
-BERMRC60b = [3.788e-4 1.414e-3 3.814e-3 9.063];
+N0MRC60b = [];
+BERMRC60b = [];
 
 % This is for with_hc/70a.mat
-N0MRC70a = [25 26 27 28 29];
-BERMRC70a = [4.945e-5 2.571e-4 9.679e-4 2.916e-3 1.574e-2];
+N0MRC70a = [];
+BERMRC70a = [];
 
 % This is for with_hc/70b.mat
-N0MRC70b = [25 26 27 28 29 30];
-BERMRC70b = [2.259e-5 1.421e-4 5.449e-4 1.853e-3 4.946e-3 1.158e-2];
+N0MRC70b = [];
+BERMRC70b = [];
 
 % This is for with_hc/80a.mat
-N0MRC80a = [23 24 25 26 27 28];
-BERMRC80a = [7.479e-6 5.092e-5 2.431e-4 9.442e-4 2.757e-3 6.625e-3 6.764e-2];
+N0MRC80a = [];
+BERMRC80a = [];
 
 % This is for with_hc/80b.mat
-N0MRC80b = [24 25 26 27 28 29];
-BERMRC80b = [2.039e-5 1.259e-4 5.483e-4 1.805e-3 4.792e-3 1.1e-2];
+N0MRC80b = [];
+BERMRC80b = [];
 
 % This is for with_hc/90a.mat
-N0MRC90a = [22 23 24 25 26 27 28];
-BERMRC90a = [4.575e-6 3.48e-5 1.626e-4 7.07e-4 2.307e-3 5.75e-3 1.306e-2];
+N0MRC90a = [];
+BERMRC90a = [];
 
 % This is for with_hc/90b.mat
-N0MRC90b = [21 22 23 24 25 26 27]; %21 still needs to be done
-BERMRC90b = [1.15e-6 1.5e-5 9.534e-5 4.537e-4 1.33e-3 3.931e-3 9.627e-3];
+N0MRC90b = [];
+BERMRC90b = [];
 
 %%%%%%%%%%%%%%%%%%
 % RESULTS W/O HC %
@@ -109,21 +109,21 @@ BERML10a = [];
 N0ML10b = [];
 BERML10b = [];
 
-% This is for wo_hc/20a.mat
-N0ML20a = [];
-BERML20a = [];
+% This is for wo_hc/20a.mat 
+N0ML20a = [28 27 26 25 24 23]; 
+BERML20a = [.01203 .005327 .00202 .000601 .0001489 2.18e-5];
 
-% This is for wo_hc/20b.mat
-N0ML20b = [];
-BERML20b = [];
+% This is for wo_hc/20b.mat 
+N0ML20b = [28 27 26 25 24 23]; 
+BERML20b = [.009732 .004309 .001543 .0004347 9.855e-5 1.508e-5];
 
-% This is for wo_hc/30a.mat
-N0ML30a = [];
-BERML30a = [];
+% This is for wo_hc/30a.mat 
+N0ML30a = [28 27 26 25 24 23]; 
+BERML30a = [.01705 .008261 .00321 .001129 .0002883 6.391e-5];
 
-% This is for wo_hc/30b.mat
-N0ML30b = [];
-BERML30b = [];
+% This is for wo_hc/30b.mat 
+N0ML30b = [28 27 26 25 24 23]; 
+BERML30b = [.01475 .007352 .003013 .0009528 .0002628 4.539e-5];
 
 % This is for wo_hc/40a.mat
 N0ML40a = [];
@@ -176,9 +176,9 @@ BERML90b = [];
 
 %% Plots (TODO)
 
-% Plot 20a with hc
-figure(221);
-semilogy(-N0MRC20a,BERMRC20a,'o-'); grid on;
+% Plot 20 a&b with hc
+figure(120);
+semilogy(-N0MRC20a,BERMRC20a,'o-'); hold on; semilogy(-N0MRC20b,BERMRC20b,'o-'); grid on; hold off;
 ax = gca;
 ax.FontName = 'Times New Roman';
 ax.XLabel.Interpreter = 'LaTeX';
@@ -186,9 +186,9 @@ ax.XLabel.String = '$1/N_0$ (dB)';
 ax.YLabel.Interpreter = 'LaTeX';
 ax.YLabel.String = 'BER';
 
-% Plot 20b with hc
-figure(222);
-semilogy(-N0MRC20b,BERMRC20b,'o-'); grid on;
+% Plot 30 a&b wth hc
+figure(130);
+semilogy(-N0MRC30a,BERMRC30a,'o-'); hold on; semilogy(-N0MRC30b,BERMRC30b,'o-'); grid on; hold off;
 ax = gca;
 ax.FontName = 'Times New Roman';
 ax.XLabel.Interpreter = 'LaTeX';
@@ -196,4 +196,23 @@ ax.XLabel.String = '$1/N_0$ (dB)';
 ax.YLabel.Interpreter = 'LaTeX';
 ax.YLabel.String = 'BER';
 
+% Plot 20 a&b wo hc
+figure(220);
+semilogy(-N0ML20a,BERML20a,'o-'); hold on; semilogy(-N0ML20b,BERML20b,'o-'); grid on; hold off;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
+
+% Plot 30 a&b wo hc
+figure(230);
+semilogy(-N0ML30a,BERML30a,'o-'); hold on; semilogy(-N0ML30b,BERML30b,'o-'); grid on; hold off;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
 
