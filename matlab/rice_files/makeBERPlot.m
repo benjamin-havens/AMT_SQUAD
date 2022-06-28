@@ -9,17 +9,17 @@
 % RESULTS WITH HC %
 %%%%%%%%%%%%%%%%%%%
 
-% This is for with_hc/0a.mat
-N0MRC0a = [];
-BERMRC0a = [];
+% This is for with_hc/0a.mat 
+N0MRC0a = [24 25 26 27 28 29 30]; 
+BERMRC0a = [7.02e-5 3.45e-4 1.2e-3 3.8e-3 8.9e-3 1.9e-2 4.1e-2];
 
-% This is for with_hc/0b.mat
-N0MRC0b = [];
-BERMRC0b = [];
+% This is for with_hc/0b.mat 
+N0MRC0b = [24 25 26 27 28 29 30]; 
+BERMRC0b = [6.8e-5 2.85e-4 1.1e-3 3.4e-3 8.1e-3 1.8e-2 3.8e-2];
 
-% This is for with_hc/10a.mat
-N0MRC10a = [];
-BERMRC10a = [];
+% This is for with_hc/10a.mat 
+N0MRC10a = [23 24 25 26 27 28 29]; 
+BERMRC10a = [4.2e-5 2.4e-4 8.6e-4 2.4e-3 7.2e-3 1.5e-2 3.4e-2];
 
 % This is for with_hc/10b.mat
 N0MRC10b = [];
@@ -126,8 +126,8 @@ N0ML30b = [28 27 26 25 24 23];
 BERML30b = [.01475 .007352 .003013 .0009528 .0002628 4.539e-5];
 
 % This is for wo_hc/40a.mat
-N0ML40a = [];
-BERML40a = [];
+N0ML40a = [27 26 25 24 23];
+BERML40a = [.01279 .005939 .00217 .0006526 .0001754];
 
 % This is for wo_hc/40b.mat
 N0ML40b = [];
@@ -157,24 +157,43 @@ BERML70a = [];
 N0ML70b = [];
 BERML70b = [];
 
-% This is for wo_hc/80a.mat
-N0ML80a = [];
-BERML80a = [];
+% This is for wo_hc/80a.mat 
+N0ML80a = [26 25 24 23 22 21]; 
+BERML80a = [0.0186 0.00848 0.003525 0.00192 0.0003253 6.526e-5];
 
-% This is for wo_hc/80b.mat
-N0ML80b = [];
+% This is for wo_hc/80b.mat 
+N0ML80b = []; 
 BERML80b = [];
 
-% This is for wo_hc/90a.mat
-N0ML90a = [];
-BERML90a = [];
+% This is for wo_hc/90a.mat 
+N0ML90a = [26 25 24 23 22 21]; 
+BERML90a = [0.01151 0.004927 0.001775 0.0005332 0.0001314 2.275e-5];
 
-% This is for wo_hc/90b.mat
-N0ML90b = [];
-BERML90b = [];
+% This is for wo_hc/90b.mat 
+N0ML90b = [27 26 25 24 23 22]; 
+BERML90b = [0.01672 0.007438 0.003006 0.001013 0.0002559 5.21e-5];
 
 
 %% Plots (TODO)
+% Plot 0 a&b with hc
+figure(100);
+semilogy(-N0MRC0a,BERMRC0a,'o-'); hold on; semilogy(-N0MRC0b,BERMRC0b,'o-'); grid on; hold off;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
+
+% Plot 10 a&b with hc
+figure(110);
+semilogy(-N0MRC10a,BERMRC10a,'o-'); hold on; semilogy(-N0MRC10b,BERMRC10b,'o-'); grid on; hold off;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
 
 % Plot 20 a&b with hc
 figure(120);
@@ -186,7 +205,7 @@ ax.XLabel.String = '$1/N_0$ (dB)';
 ax.YLabel.Interpreter = 'LaTeX';
 ax.YLabel.String = 'BER';
 
-% Plot 30 a&b wth hc
+% Plot 30 a&b with hc
 figure(130);
 semilogy(-N0MRC30a,BERMRC30a,'o-'); hold on; semilogy(-N0MRC30b,BERMRC30b,'o-'); grid on; hold off;
 ax = gca;
@@ -209,6 +228,26 @@ ax.YLabel.String = 'BER';
 % Plot 30 a&b wo hc
 figure(230);
 semilogy(-N0ML30a,BERML30a,'o-'); hold on; semilogy(-N0ML30b,BERML30b,'o-'); grid on; hold off;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
+
+% Plot 80 a&b wo hc
+figure(280);
+semilogy(-N0ML80a,BERML80a,'o-'); hold on; semilogy(-N0ML80b,BERML80b,'o-'); grid on; hold off;
+ax = gca;
+ax.FontName = 'Times New Roman';
+ax.XLabel.Interpreter = 'LaTeX';
+ax.XLabel.String = '$1/N_0$ (dB)';
+ax.YLabel.Interpreter = 'LaTeX';
+ax.YLabel.String = 'BER';
+
+% Plot 90 a&b wo hc
+figure(290);
+semilogy(-N0ML90a,BERML90a,'o-'); hold on; semilogy(-N0ML90b,BERML90b,'o-'); grid on; hold off;
 ax = gca;
 ax.FontName = 'Times New Roman';
 ax.XLabel.Interpreter = 'LaTeX';
