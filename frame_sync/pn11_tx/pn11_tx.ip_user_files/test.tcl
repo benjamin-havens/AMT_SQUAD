@@ -7,4 +7,4 @@ run 100 ns
 add_force clr 0
 add_force start 1
 
-run 50000ns
+run 500000ns

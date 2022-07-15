@@ -1,7 +1,4 @@
-Running: xsim.dir/generate_PN11_behav/xsimk -simmode gui -wdb generate_PN11_behav.wdb -simrunnum 0 -socket 56387
+Running: xsim.dir/generate_PN11_behav/xsimk -simmode gui -wdb generate_PN11_behav.wdb -simrunnum 0 -socket 36827
 Design successfully loaded
 Design Loading Memory Usage: 27664 KB (Peak: 27784 KB)
 Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 109660 KB (Peak: 166932 KB)
-Simulation CPU Usage: 60 ms

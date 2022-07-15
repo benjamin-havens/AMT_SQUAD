@@ -25,10 +25,11 @@ module generate_PN11(
     input wire logic clk,
     input wire logic start,
     input wire logic clr,
-    output logic pn11_bit
+    output logic out_bit
     );
     logic tmr_done, pilot_reset, pilot_done, counter_reset;
     logic[10:0] register = 11'b00000000001;
+    logic[15:0] pilot_bits;
     logic[11:0] counter3200 = 0; //4096 bits
     logic[10:0] counter2048 = 0; //2048 bits
     logic[6:0] counter128 = 0; //128 bits
@@ -52,15 +53,22 @@ module generate_PN11(
                             begin 
                             ns = pilot;
                             counter128 = 0;
+                            pilot_bits = 16'b1100110110011000; //CD98 in hex
                             end
                         else
+                            begin
                             ns = idle;
+                            counter128 = 0;
+                            end
                     end
                 PN11: if(tmr_done)
+                        begin
                         ns = pilot;
+                        pilot_bits = 16'b1100110110011000; //CD98 in hex
+                        end
                     else
                         begin
-                        pn11_bit = register[0];
+                        out_bit = register[0];
                         
                         pilot_reset = 1;
                         ns = PN11;
@@ -75,9 +83,9 @@ module generate_PN11(
                             register[5] = register[6];
                             register[6] = register[7];
                             register[7] = register[8];
-                            register[8] = pn11_bit^register[9];
+                            register[8] = out_bit^register[9];
                             register[9] = register[10];
-                            register[10] = pn11_bit;
+                            register[10] = out_bit;
                             end
 
 
@@ -91,7 +99,12 @@ module generate_PN11(
                         pilot_reset = 1;
                         end
                     else 
+                        begin
                         ns = pilot;
+                        out_bit = pilot_bits[15];
+                        
+                        end
+                        
                         
             endcase
         end
@@ -132,6 +145,7 @@ module generate_PN11(
                 begin
                 counter128 <= counter128 + 1;
                 pilot_done <= 0;
+                pilot_bits <= {{pilot_bits[14:0]}, {pilot_bits[15]}};
                 end
             else
                 begin
