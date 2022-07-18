@@ -1,1 +1,1 @@
---debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "uvm" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "generate_PN11_behav" "xil_defaultlib.generate_PN11" "xil_defaultlib.glbl" -log "elaborate.log" 
+--debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "uvm" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "generate_PN11_behav" "xil_defaultlib.generate_PN11" "xil_defaultlib.glbl" -log "elaborate.log" 

@@ -27,12 +27,12 @@ module generate_PN11(
     input wire logic clr,
     output logic out_bit
     );
-    logic tmr_done, pilot_reset, pilot_done, counter_reset;
-    logic[10:0] register = 11'b00000000001;
+    logic tmr_done, pilot_done, counter_reset, pilot_reset;
+    logic[10:0] register = 11'b10000000000;
     logic[15:0] pilot_bits;
     logic[11:0] counter3200 = 0; //4096 bits
     logic[10:0] counter2048 = 0; //2048 bits
-    logic[6:0] counter128 = 0; //128 bits
+    logic[7:0] counter128 = 0; //128 bits
     typedef enum logic[1:0] {idle, pilot, PN11, ERR='X}StateType;
     StateType ns,cs;
     
@@ -40,8 +40,9 @@ module generate_PN11(
     always_comb
         begin
         ns = ERR;
-        pilot_reset = 0;
+        pilot_reset = 1;
         counter_reset = 0;
+        out_bit = 0;
         
         if(clr)
             ns = idle;
@@ -52,40 +53,30 @@ module generate_PN11(
                         if(start)
                             begin 
                             ns = pilot;
-                            counter128 = 0;
-                            pilot_bits = 16'b1100110110011000; //CD98 in hex
+                            pilot_reset = 0;
+                            counter_reset = 1;
                             end
                         else
                             begin
                             ns = idle;
-                            counter128 = 0;
                             end
                     end
                 PN11: if(tmr_done)
                         begin
                         ns = pilot;
-                        pilot_bits = 16'b1100110110011000; //CD98 in hex
+                        pilot_reset = 0;
+                        out_bit = register[10];
                         end
                     else
                         begin
-                        out_bit = register[0];
+                        out_bit = register[10];
                         
                         pilot_reset = 1;
                         ns = PN11;
                         if(counter2048 != 0)
                             begin
                         
-                            register[0] = register[1];  
-                            register[1] = register[2];
-                            register[2] = register[3];
-                            register[3] = register[4];
-                            register[4] = register[5];
-                            register[5] = register[6];
-                            register[6] = register[7];
-                            register[7] = register[8];
-                            register[8] = out_bit^register[9];
-                            register[9] = register[10];
-                            register[10] = out_bit;
+                            
                             end
 
 
@@ -97,12 +88,13 @@ module generate_PN11(
                         begin
                         ns = PN11;
                         pilot_reset = 1;
+                        out_bit = pilot_bits[15];
                         end
                     else 
                         begin
                         ns = pilot;
                         out_bit = pilot_bits[15];
-                        
+                        pilot_reset = 0;
                         end
                         
                         
@@ -116,21 +108,42 @@ module generate_PN11(
     //counter
     always_ff@(posedge clk)
     begin
+        if (counter_reset)
+            begin
+            counter128 <= 0;
+            counter2048 <= 0;
+            counter3200 <= 0;
+            end
         if(pilot_reset)
             begin
             counter128 <= 0;
+            pilot_bits = 16'b0110011011001100; //CD98 in hex, rotated
             if (counter2048 <= 2046)
                 begin
-                counter2048 = counter2048 + 1;
+                counter2048 <= counter2048 + 1;
+                if (counter2048 != 1)
+                    begin
+                    register[10] <= register[9];  
+                    register[9] <= register[8];
+                    register[8] <= register[7];
+                    register[7] <= register[6];
+                    register[6] <= register[5];
+                    register[5] <= register[4];
+                    register[4] <= register[3];
+                    register[3] <= register[2];
+                    register[2] <= register[10]^register[1];
+                    register[1] <= register[0];
+                    register[0] <= register[10];
+                    end
                 end
             else
                 begin
                 counter2048 <= 0;
-                register <= 11'b00000000001;
+                register <= 11'b10000000000;
                 end 
             if (counter3200 <= 3199)
                 begin
-                counter3200 = counter3200 + 1;
+                counter3200 <= counter3200 + 1;
                 tmr_done <= 0;
                 end
             else
@@ -150,6 +163,10 @@ module generate_PN11(
             else
                 begin
                 pilot_done <= 1;
+                register <= 11'b10000000000;
+                pilot_bits <= {{pilot_bits[14:0]}, {pilot_bits[15]}};
+                counter2048 <= counter2048;
+                counter3200 <= counter3200;
                 end
             end
         end
