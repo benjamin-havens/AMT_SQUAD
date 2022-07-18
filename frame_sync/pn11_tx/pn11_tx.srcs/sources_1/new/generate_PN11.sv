@@ -27,7 +27,7 @@ module generate_PN11(
     input wire logic clr,
     output logic out_bit
     );
-    logic tmr_done, pilot_done, counter_reset, pilot_reset;
+    logic tmr_done, pilot_done, counter_reset, pilot_reset, clr_register;
     logic[10:0] register = 11'b10000000000;
     logic[15:0] pilot_bits;
     logic[11:0] counter3200 = 0; //4096 bits
@@ -43,6 +43,7 @@ module generate_PN11(
         pilot_reset = 1;
         counter_reset = 0;
         out_bit = 0;
+        clr_register = 0;
         
         if(clr)
             ns = idle;
@@ -55,6 +56,7 @@ module generate_PN11(
                             ns = pilot;
                             pilot_reset = 0;
                             counter_reset = 1;
+                            clr_register = 1;
                             end
                         else
                             begin
@@ -108,6 +110,10 @@ module generate_PN11(
     //counter
     always_ff@(posedge clk)
     begin
+        if (clr_register)
+            begin
+            register <= 11'b10000000000;
+            end
         if (counter_reset)
             begin
             counter128 <= 0;
@@ -119,9 +125,9 @@ module generate_PN11(
             counter128 <= 0;
             pilot_bits = 16'b0110011011001100; //CD98 in hex, rotated
             if (counter2048 <= 2046)
-                begin
+                begin                 
                 counter2048 <= counter2048 + 1;
-                if (counter2048 != 1)
+                if (counter2048 > 0)
                     begin
                     register[10] <= register[9];  
                     register[9] <= register[8];
@@ -138,7 +144,7 @@ module generate_PN11(
                 end
             else
                 begin
-                counter2048 <= 0;
+                counter2048 <= 1;
                 register <= 11'b10000000000;
                 end 
             if (counter3200 <= 3199)
@@ -163,7 +169,6 @@ module generate_PN11(
             else
                 begin
                 pilot_done <= 1;
-                register <= 11'b10000000000;
                 pilot_bits <= {{pilot_bits[14:0]}, {pilot_bits[15]}};
                 counter2048 <= counter2048;
                 counter3200 <= counter3200;

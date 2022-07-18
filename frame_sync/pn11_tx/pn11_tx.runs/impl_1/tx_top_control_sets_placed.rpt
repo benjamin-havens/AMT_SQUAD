@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Mon Jul 18 12:33:59 2022
+| Date         : Mon Jul 18 16:07:43 2022
 | Host         : CB428-EE10977 running 64-bit Ubuntu 20.04.4 LTS
 | Command      : report_control_sets -verbose -file tx_top_control_sets_placed.rpt
 | Design       : tx_top
@@ -41,8 +41,8 @@ Table of Contents
 +--------------------+-------+
 | Total control sets |     6 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     1 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     2 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     1 |
@@ -58,27 +58,27 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               4 |            3 |
+| No           | No                    | No                     |               6 |            2 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              57 |           15 |
+| Yes          | Yes                   | No                     |              55 |           12 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-------------------------------+--------------------------------------+----------------------------------------+------------------+----------------+--------------+
-|          Clock Signal         |             Enable Signal            |            Set/Reset Signal            | Slice Load Count | Bel Load Count | Bels / Slice |
-+-------------------------------+--------------------------------------+----------------------------------------+------------------+----------------+--------------+
-|  nolabel_line33/inst/clk_out1 |                                      |                                        |                3 |              4 |         1.33 |
-|  nolabel_line33/inst/clk_out1 | nolabel_line32/counter128[6]_i_2_n_0 | nolabel_line32/counter128[6]_i_1_n_0   |                3 |              7 |         2.33 |
-|  nolabel_line33/inst/clk_out1 | nolabel_line32/pilot_bits            | nolabel_line32/counter2048[10]_i_1_n_0 |                4 |             11 |         2.75 |
-|  nolabel_line33/inst/clk_out1 | nolabel_line32/register              | nolabel_line32/register[10]_i_1_n_0    |                2 |             11 |         5.50 |
-|  nolabel_line33/inst/clk_out1 | nolabel_line32/pilot_bits            | nolabel_line32/counter3200[0]_i_1_n_0  |                3 |             12 |         4.00 |
-|  nolabel_line33/inst/clk_out1 | nolabel_line32/p_0_in                | nolabel_line32/pilot_bits              |                3 |             16 |         5.33 |
-+-------------------------------+--------------------------------------+----------------------------------------+------------------+----------------+--------------+
++-------------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
+|          Clock Signal         |             Enable Signal             |            Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
+|  nolabel_line48/inst/clk_out1 |                                       |                                       |                2 |              6 |         3.00 |
+|  nolabel_line48/inst/clk_out1 | nolabel_line47/counter128[6]_i_2_n_0  | nolabel_line47/counter128[6]_i_1_n_0  |                2 |              7 |         3.50 |
+|  nolabel_line48/inst/clk_out1 | nolabel_line47/pilot_bits_2           | nolabel_line47/counter2048[10]        |                3 |             10 |         3.33 |
+|  nolabel_line48/inst/clk_out1 | nolabel_line47/register[9]_i_2_n_0    | nolabel_line47/register[9]_i_1_n_0    |                2 |             10 |         5.00 |
+|  nolabel_line48/inst/clk_out1 | nolabel_line47/pilot_bits_2           | nolabel_line47/counter3200[0]_i_1_n_0 |                3 |             12 |         4.00 |
+|  nolabel_line48/inst/clk_out1 | nolabel_line47/pilot_bits[15]_i_1_n_0 | nolabel_line47/pilot_bits_2           |                2 |             16 |         8.00 |
++-------------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
 
 

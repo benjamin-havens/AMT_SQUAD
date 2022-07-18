@@ -45,8 +45,8 @@ set_property PACKAGE_PIN W5 [get_ports CLK100MHZ]
  
 
 # LEDs
-#set_property PACKAGE_PIN U16 [get_ports {LED[0]}]					
-#	set_property IOSTANDARD LVCMOS33 [get_ports {LED[0]}]
+set_property PACKAGE_PIN U16 [get_ports {LED[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {LED[0]}]
 set_property PACKAGE_PIN E19 [get_ports {LED[1]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {LED[1]}]
 #set_property PACKAGE_PIN U19 [get_ports {LED[2]}]					
@@ -124,8 +124,8 @@ set_property PACKAGE_PIN T18 [get_ports btnU]
 
 ##Pmod Header JA
 ##Sch name = JA1
-#set_property PACKAGE_PIN J1 [get_ports {JA[0]}]					
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JA[0]}]
+set_property PACKAGE_PIN J1 [get_ports {JA[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JA[0]}]
 ##Sch name = JA2
 set_property PACKAGE_PIN L2 [get_ports {JA[1]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {JA[1]}]

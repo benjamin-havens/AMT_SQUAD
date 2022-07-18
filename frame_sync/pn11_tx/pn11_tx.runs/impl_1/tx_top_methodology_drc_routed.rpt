@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Mon Jul 18 12:34:17 2022
+| Date         : Mon Jul 18 16:08:00 2022
 | Host         : CB428-EE10977 running 64-bit Ubuntu 20.04.4 LTS
 | Command      : report_methodology -file tx_top_methodology_drc_routed.rpt -pb tx_top_methodology_drc_routed.pb -rpx tx_top_methodology_drc_routed.rpx
 | Design       : tx_top
@@ -23,28 +23,34 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 2
-+--------+----------+--------------------------------------------------------+------------+
-| Rule   | Severity | Description                                            | Violations |
-+--------+----------+--------------------------------------------------------+------------+
-| XDCC-1 | Warning  | Scoped Clock constraint overwritten with the same name | 1          |
-| XDCC-7 | Warning  | Scoped Clock constraint overwritten on the same source | 1          |
-+--------+----------+--------------------------------------------------------+------------+
+             Violations found: 4
++-----------+------------------+------------------------------------------------------------------+------------+
+| Rule      | Severity         | Description                                                      | Violations |
++-----------+------------------+------------------------------------------------------------------+------------+
+| TIMING-6  | Critical Warning | No common primary clock between related clocks                   | 2          |
+| TIMING-56 | Warning          | Missing logically or physically excluded clock groups constraint | 2          |
++-----------+------------------+------------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-XDCC-1#1 Warning
-Scoped Clock constraint overwritten with the same name  
-A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
-New: create_clock -period 10.000 [get_ports clk] (Source: /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.ip_user_files/220_constraints.xdc (Line: 15))
-Previous: create_clock -period 10.000 [get_ports clk] (Source: /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc (Line: 56))
+TIMING-6#1 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_clk_wiz_1 and clk_out1_clk_wiz_1_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_clk_wiz_1] -to [get_clocks clk_out1_clk_wiz_1_1]
 Related violations: <none>
 
-XDCC-7#1 Warning
-Scoped Clock constraint overwritten on the same source  
-A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
-New: create_clock -period 10.000 [get_ports clk] (Source: /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.ip_user_files/220_constraints.xdc (Line: 15))
-Previous: create_clock -period 10.000 [get_ports clk] (Source: /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc (Line: 56))
+TIMING-6#2 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_clk_wiz_1_1 and clk_out1_clk_wiz_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_clk_wiz_1_1] -to [get_clocks clk_out1_clk_wiz_1]
+Related violations: <none>
+
+TIMING-56#1 Warning
+Missing logically or physically excluded clock groups constraint  
+Multiple clocks are user generated or auto-derived on the source pin nolabel_line48/inst/mmcm_adv_inst/CLKFBOUT but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clkfbout_clk_wiz_1, clkfbout_clk_wiz_1_1
+Related violations: <none>
+
+TIMING-56#2 Warning
+Missing logically or physically excluded clock groups constraint  
+Multiple clocks are user generated or auto-derived on the source pin nolabel_line48/inst/mmcm_adv_inst/CLKOUT0 but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clk_out1_clk_wiz_1, clk_out1_clk_wiz_1_1
 Related violations: <none>
 
 

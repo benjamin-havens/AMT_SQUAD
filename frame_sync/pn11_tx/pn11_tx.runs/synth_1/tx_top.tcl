@@ -117,8 +117,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.ip_user_files/220_constraints.xdc
-set_property used_in_implementation false [get_files /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.ip_user_files/220_constraints.xdc]
+read_xdc /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.ip_user_files/constraints.xdc
+set_property used_in_implementation false [get_files /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.ip_user_files/constraints.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
