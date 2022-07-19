@@ -1,0 +1,11 @@
+f = (-60:0.1:60)*1e6;
+T = 1/(10.4e6);
+X_f = sinc(f*T);
+figure(1);
+plot(f, abs(X_f).^2);
+grid on;
+figure(2);
+plot(f, 20*log10(abs(X_f)));
+grid on;
+ax = gca;
+ax.YLim = [-80 0];
