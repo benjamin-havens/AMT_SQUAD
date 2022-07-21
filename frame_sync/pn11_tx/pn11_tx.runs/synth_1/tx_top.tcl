@@ -100,7 +100,9 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
-  /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.srcs/sources_1/new/generate_PN11.sv
+  /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.srcs/sources_1/new/GenerateOutput.sv
+  /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.srcs/sources_1/new/PN11.sv
+  /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.srcs/sources_1/new/Preamble.sv
   /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.srcs/sources_1/new/tx_top.sv
 }
 read_ip -quiet /home/plwalker/AMT_SQUAD/frame_sync/pn11_tx/pn11_tx.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci

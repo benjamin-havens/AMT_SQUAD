@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date             : Mon Jul 18 16:08:00 2022
+| Date             : Thu Jul 21 15:07:38 2022
 | Host             : CB428-EE10977 running 64-bit Ubuntu 20.04.4 LTS
 | Command          : report_power -file tx_top_power_routed.rpt -pb tx_top_power_summary_routed.pb -rpx tx_top_power_routed.rpx
 | Design           : tx_top
@@ -53,12 +53,12 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        8 |       --- |             --- |
-| Slice Logic    |    <0.001 |      122 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       37 |     20800 |            0.18 |
-|   Register     |    <0.001 |       61 |     41600 |            0.15 |
+| Slice Logic    |    <0.001 |       78 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       23 |     20800 |            0.11 |
+|   Register     |    <0.001 |       35 |     41600 |            0.08 |
 |   CARRY4       |    <0.001 |        3 |      8150 |            0.04 |
-|   Others       |     0.000 |        4 |       --- |             --- |
-| Signals        |    <0.001 |       86 |       --- |             --- |
+|   Others       |     0.000 |        8 |       --- |             --- |
+| Signals        |    <0.001 |       49 |       --- |             --- |
 | MMCM           |     0.122 |        1 |         5 |           20.00 |
 | I/O            |     0.003 |        7 |       106 |            6.60 |
 | Static Power   |     0.072 |          |           |                 |
@@ -129,10 +129,10 @@ Table of Contents
 | Clock                | Domain                                 | Constraint (ns) |
 +----------------------+----------------------------------------+-----------------+
 | CLK100MHZ            | CLK100MHZ                              |            10.0 |
-| clk_out1_clk_wiz_1   | nolabel_line48/inst/clk_out1_clk_wiz_1 |            96.2 |
-| clk_out1_clk_wiz_1_1 | nolabel_line48/inst/clk_out1_clk_wiz_1 |            96.2 |
-| clkfbout_clk_wiz_1   | nolabel_line48/inst/clkfbout_clk_wiz_1 |            50.0 |
-| clkfbout_clk_wiz_1_1 | nolabel_line48/inst/clkfbout_clk_wiz_1 |            50.0 |
+| clk_out1_clk_wiz_1   | nolabel_line49/inst/clk_out1_clk_wiz_1 |            96.2 |
+| clk_out1_clk_wiz_1_1 | nolabel_line49/inst/clk_out1_clk_wiz_1 |            96.2 |
+| clkfbout_clk_wiz_1   | nolabel_line49/inst/clkfbout_clk_wiz_1 |            50.0 |
+| clkfbout_clk_wiz_1_1 | nolabel_line49/inst/clkfbout_clk_wiz_1 |            50.0 |
 | sys_clk_pin          | CLK100MHZ                              |            10.0 |
 +----------------------+----------------------------------------+-----------------+
 
@@ -147,7 +147,7 @@ Table of Contents
 | Name             | Power (W) |
 +------------------+-----------+
 | tx_top           |     0.125 |
-|   nolabel_line48 |     0.122 |
+|   nolabel_line49 |     0.122 |
 |     inst         |     0.122 |
 +------------------+-----------+
 

@@ -44,7 +44,8 @@ module tx_top(
     logic clk10_4;
     logic out_data;
     logic locked;
-    generate_PN11(.start(btnC),.clk(clk10_4),.clr(btnU),.out_bit(out_data));
+    //generate_PN11(.start(btnC),.clk(clk10_4),.clr(btnU),.out_bit(out_data));
+    GenerateOutput(.start(btnC),.clk(clk10_4),.clr(btnU),.out_bit(out_data));
     clk_wiz_1(.reset(btnU),.clk_in1(CLK100MHZ),.locked(locked),.clk_out1(clk10_4));
     assign JA[1] = clk10_4;
     assign JA[0] = out_data;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Mon Jul 18 16:07:43 2022
+| Date         : Thu Jul 21 15:07:21 2022
 | Host         : CB428-EE10977 running 64-bit Ubuntu 20.04.4 LTS
 | Command      : report_control_sets -verbose -file tx_top_control_sets_placed.rpt
 | Design       : tx_top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     6 |
-|    Minimum number of control sets                        |     6 |
+| Total control sets                                       |     4 |
+|    Minimum number of control sets                        |     4 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    19 |
+| Unused register locations in slices containing registers |    21 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     6 |
+| Total control sets |     4 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     0 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     0 |
-| >= 10 to < 12      |     2 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     1 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     1 |
+| >= 16              |     0 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,27 +58,25 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               6 |            2 |
+| No           | No                    | No                     |               9 |            4 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               0 |            0 |
+| No           | Yes                   | No                     |              16 |            4 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              55 |           12 |
+| Yes          | Yes                   | No                     |              10 |            2 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-------------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
-|          Clock Signal         |             Enable Signal             |            Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
-+-------------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
-|  nolabel_line48/inst/clk_out1 |                                       |                                       |                2 |              6 |         3.00 |
-|  nolabel_line48/inst/clk_out1 | nolabel_line47/counter128[6]_i_2_n_0  | nolabel_line47/counter128[6]_i_1_n_0  |                2 |              7 |         3.50 |
-|  nolabel_line48/inst/clk_out1 | nolabel_line47/pilot_bits_2           | nolabel_line47/counter2048[10]        |                3 |             10 |         3.33 |
-|  nolabel_line48/inst/clk_out1 | nolabel_line47/register[9]_i_2_n_0    | nolabel_line47/register[9]_i_1_n_0    |                2 |             10 |         5.00 |
-|  nolabel_line48/inst/clk_out1 | nolabel_line47/pilot_bits_2           | nolabel_line47/counter3200[0]_i_1_n_0 |                3 |             12 |         4.00 |
-|  nolabel_line48/inst/clk_out1 | nolabel_line47/pilot_bits[15]_i_1_n_0 | nolabel_line47/pilot_bits_2           |                2 |             16 |         8.00 |
-+-------------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
++-------------------------------+------------------------------------------------------+--------------------------------------------------+------------------+----------------+--------------+
+|          Clock Signal         |                     Enable Signal                    |                 Set/Reset Signal                 | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------+------------------------------------------------------+--------------------------------------------------+------------------+----------------+--------------+
+|  nolabel_line49/inst/clk_out1 |                                                      | nolabel_line48/preamble_mod/counter16[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  nolabel_line49/inst/clk_out1 |                                                      |                                                  |                4 |              9 |         2.25 |
+|  nolabel_line49/inst/clk_out1 | nolabel_line48/preamble_mod/FSM_sequential_cs_reg[1] | btnU_IBUF                                        |                2 |             10 |         5.00 |
+|  nolabel_line49/inst/clk_out1 |                                                      | nolabel_line48/preamble_mod/counter3200_reg[7]   |                3 |             12 |         4.00 |
++-------------------------------+------------------------------------------------------+--------------------------------------------------+------------------+----------------+--------------+
 
 

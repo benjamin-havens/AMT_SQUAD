@@ -37,6 +37,7 @@ module generate_PN11(
     StateType ns,cs;
     
     
+    
     always_comb
         begin
         ns = ERR;
@@ -77,7 +78,7 @@ module generate_PN11(
                         ns = PN11;
                         if(counter2048 != 0)
                             begin
-                        
+                                
                             
                             end
 
