@@ -33,7 +33,7 @@ X2 = fftshift(X1);
 [max_val, max_idx] = max(abs(X2));
 
 figure(2);  % Has FFT plot
-stem(FF, abs(X2));
+stem(FF, 20*log10(abs(X2)));
 title("Channel A FFT");
 xlabel('F normalized frequency (cycles/sample)');
 ylabel('magnitude');
