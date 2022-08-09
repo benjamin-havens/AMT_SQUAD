@@ -1,5 +1,5 @@
 %% Initialize
-ts = 1/(20e6);
+ts = 1/(20.8e6);
 if(~(exist('rx', 'var')))
     rx = comm.SDRuReceiver();
     rx.Platform = "B210";
@@ -21,10 +21,10 @@ rxLog(data);
 data = rxLog.Buffer;
 data_a = data(:, 1);
 data_b = data(:, 2);
-release(rxLog)
-writematrix(data, 'C:\Users\rskir\OneDrive\Pictures\June_16_tests\wired.csv');
+% writematrix(data, '');
 
 %% Clean up
-release(rx)
+release(rx);
+release(rxLog);
 
 
