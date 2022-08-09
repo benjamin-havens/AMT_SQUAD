@@ -2,10 +2,9 @@
 % L0_L6.m %
 %%%%%%%%%%%
 % Uses the frame synchronizer functions from Rice-McMurdie 2016
-% Needs a variable data_a
+% Needs a variable data_a that is >1e6 samples long
 
 load preambleTemplate.mat
-
 start_idx = 50e3; % Because sometimes the first samples in data_a are garbage
 
 %%%%%%
