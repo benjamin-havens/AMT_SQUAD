@@ -4,7 +4,7 @@
 % This is a very rough check.
 
 results = L0_res; % Change to use different results
-cutoff = 5e6; % Change if the graph looks like a different cutoff is better
+cutoff = 9e4; % Change if the graph looks like a different cutoff is better
 max_num = size(results(results > cutoff));
 max_num = max_num(1);
 
