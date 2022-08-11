@@ -1,10 +1,10 @@
-from numpy import zeros, vstack
+from numpy import zeros, hstack
 
 
 class FS_buffer:
     def __init__(self, capacity):
         self.capacity = capacity
-        self.storage = zeros(capacity)
+        self.storage = zeros(capacity + 1, dtype=complex)
         self.insert_loc = 0
         self.size = 0
 
@@ -20,6 +20,6 @@ class FS_buffer:
         return self.size == self.capacity
 
     def get_data(self):
-        return vstack(
+        return hstack(
             (self.storage[self.insert_loc :], self.storage[0 : self.insert_loc])
         ).flatten()
