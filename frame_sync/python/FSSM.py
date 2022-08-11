@@ -59,7 +59,7 @@ class FSSM:
             tmp_idx = self.current_idx - buffer_size + max_idx
             if tmp_idx == self.last_mhat:
                 self.state = st.onePeak
-            elif tmp_idx - (self.last_mhat + frame_size) <= 1:
+            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
                 self.state = st.twoPeaks
                 self.llast_mhat = self.last_mhat
                 self.last_mhat = tmp_idx
@@ -71,7 +71,7 @@ class FSSM:
             tmp_idx = self.current_idx - buffer_size + max_idx
             if tmp_idx == self.last_mhat:
                 self.state = st.twoPeaks
-            elif tmp_idx - (self.last_mhat + frame_size) <= 1:
+            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
                 self.state = st.locked
                 self.llast_mhat = self.last_mhat
                 self.last_mhat = tmp_idx
@@ -84,11 +84,11 @@ class FSSM:
             else:
                 avg_val, max_idx, max_val = self.get_peak()
                 tmp_idx = self.current_idx - buffer_size + max_idx
-                if tmp_idx - (self.last_mhat + frame_size) <= 1:
-                    self.state = st.twoPeaks
+                if abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
+                    self.state = st.twoPeaks if not self.llast_mhat else st.locked
                     self.llast_mhat = self.last_mhat
                     self.last_mhat = tmp_idx
-                elif tmp_idx - (self.weird + frame_size) <= 1:
+                elif abs(tmp_idx - (self.weird + frame_size)) <= 1:
                     self.state = st.twoPeaks
                     self.llast_mhat = self.weird
                     self.last_mhat = tmp_idx
@@ -102,7 +102,7 @@ class FSSM:
             tmp_idx = self.current_idx - buffer_size + max_idx
             if tmp_idx == self.last_mhat:
                 self.state = st.locked
-            elif tmp_idx - (self.last_mhat + frame_size) <= 1:
+            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
                 self.state = st.locked
                 self.llast_mhat = self.last_mhat
                 self.last_mhat = tmp_idx
@@ -115,7 +115,7 @@ class FSSM:
             else:
                 avg_val, max_idx, max_val = self.get_peak()
                 tmp_idx = self.current_idx - buffer_size + max_idx
-                if tmp_idx - (self.last_mhat + frame_size) <= 1:
+                if abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
                     self.state = st.locked
                     self.llast_mhat = self.last_mhat
                     self.last_mhat = tmp_idx
@@ -129,7 +129,10 @@ class FSSM:
             else:
                 avg_val, max_idx, max_val = self.get_peak()
                 tmp_idx = self.current_idx - buffer_size + max_idx
-                if tmp_idx - (self.last_mhat + 2 * frame_size) <= 1:
+                if (
+                    abs(tmp_idx - (self.last_mhat + 2 * frame_size)) <= 1
+                    or abs(tmp_idx - (self.last_mhat + frame_size)) <= 1
+                ):
                     self.state = st.locked
                     self.llast_mhat = self.last_mhat
                     self.last_mhat = tmp_idx
@@ -148,15 +151,28 @@ def main():
     samples = genfromtxt("../data/9_Aug_Wired.csv", dtype=complex).flatten()
     last_state = st.init
     count = 0
+    last_mhat = None
+    weird = None
     for sample in samples:
+        # Print every 1000 samples so we know where it's at
         if not count % 1000:
             print(count)
         count += 1
+        # Print the state and wait
         if sm.state != last_state:
             last_state = sm.state
             print(sm.state, end="")
             input()
+        # Tick
         sm.tick(sample)
+        # Print mhats and weirds
+        if sm.last_mhat != last_mhat:
+            last_mhat = sm.last_mhat
+            print(f"mhat: {last_mhat}")
+        if sm.weird != weird:
+            weird = sm.weird
+            if weird is not None:
+                print(f"weird: {weird}")
 
 
 if __name__ == "__main__":
