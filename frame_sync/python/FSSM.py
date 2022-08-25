@@ -148,7 +148,8 @@ class FSSM:
 
 def main():
     sm = FSSM()
-    samples = genfromtxt("../data/9_Aug_Wired.csv", dtype=complex).flatten()
+    # samples = genfromtxt("../data/9_Aug_Wired.csv", dtype=complex).flatten()
+    samples = genfromtxt("../MATLAB/data_a_aug25.csv", dtype=complex).flatten()
     last_state = st.init
     count = 0
     last_mhat = None
