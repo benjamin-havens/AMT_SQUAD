@@ -149,8 +149,8 @@ class FSSM:
 
 def main():
     sm = FSSM()
-    # samples = genfromtxt("../data/9_Aug_Wired.csv", dtype=complex).flatten()
-    samples = genfromtxt("../MATLAB/data_a_aug25.csv", dtype=complex).flatten()
+    samples = genfromtxt("../data/9_Aug_Wired.csv", dtype=complex).flatten()
+    # samples = genfromtxt("../MATLAB/data_a_aug25.csv", dtype=complex).flatten()
     last_state = st.init
     count = 0
     last_mhat = None
@@ -171,8 +171,14 @@ def main():
         # Print mhats and weirds
         if sm.last_mhat != last_mhat:
             last_mhat = sm.last_mhat
-            possible_preamble = L0_temp(samples[last_mhat-256:last_mhat+256])
-            pyplot.plot(possible_preamble)
+            possible_preamble = L0_temp(samples[last_mhat-256:last_mhat+512])
+            x = range(512)
+            x = x + last_mhat-256
+            max_x = last_mhat
+            max_y = max(possible_preamble)
+            pyplot.plot(x,possible_preamble[:512])
+            pyplot.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")") 
+            pyplot.grid(True)
             pyplot.show()
             print(f"mhat: {last_mhat}")
         if sm.weird != weird:
