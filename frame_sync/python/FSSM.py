@@ -7,6 +7,7 @@ from enum import Enum
 from buffer import FS_buffer
 from params import *
 from FS_functions import *
+from matplotlib import pyplot
 
 st = Enum(
     "FSSM_st",
@@ -49,7 +50,7 @@ class FSSM:
         elif self.state == st.coldStart:
             avg_val, max_idx, max_val = self.get_peak()
             tmp_idx = self.current_idx - buffer_size + max_idx
-            if max_val > 3 * avg_val:
+            if max_val > 3 * avg_val:                                       #TODO print graph of peaks
                 self.state = st.onePeak
                 self.last_mhat = tmp_idx
             else:
@@ -59,12 +60,12 @@ class FSSM:
             tmp_idx = self.current_idx - buffer_size + max_idx
             if tmp_idx == self.last_mhat:
                 self.state = st.onePeak
-            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
+            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:         #TODO print graph of peaks
                 self.state = st.twoPeaks
                 self.llast_mhat = self.last_mhat
                 self.last_mhat = tmp_idx
-            else:
-                self.state = st.weird
+            else:                                                           #TODO print graph of peaks
+                self.state = st.weird                                       
                 self.weird = self.current_idx - buffer_size + max_idx
         elif self.state == st.twoPeaks:
             avg_val, max_idx, max_val = self.get_peak()
@@ -163,12 +164,16 @@ def main():
         if sm.state != last_state:
             last_state = sm.state
             print(sm.state, end="")
+
             input()
         # Tick
         sm.tick(sample)
         # Print mhats and weirds
         if sm.last_mhat != last_mhat:
             last_mhat = sm.last_mhat
+            possible_preamble = L0_temp(samples[last_mhat-256:last_mhat+256])
+            pyplot.plot(possible_preamble)
+            pyplot.show()
             print(f"mhat: {last_mhat}")
         if sm.weird != weird:
             weird = sm.weird
