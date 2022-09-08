@@ -7,7 +7,7 @@ from enum import Enum
 from buffer import FS_buffer
 from params import *
 from FS_functions import *
-from matplotlib import pyplot
+from matplotlib.pyplot import plot, text, grid, show, subplot, figure
 
 st = Enum(
     "FSSM_st",
@@ -179,10 +179,23 @@ def main():
             x = x + last_mhat-256
             max_x = last_mhat
             max_y = max(possible_preamble)
-            pyplot.plot(x,possible_preamble[:512])
-            pyplot.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")") 
-            pyplot.grid(True)
-            pyplot.show()
+
+            # plot the window of correlated data the window sees right now
+            window = L0(sm.data.get_data())
+            win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
+            winMax_y = max(window) + sm.current_idx - buffer_size
+            winMax_x = argmax(window) + sm.current_idx - buffer_size
+            
+            fig = figure()
+            ax1, ax2 = fig.subplots(2, 1)
+            ax1.plot(x,possible_preamble[:512])
+            ax1.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
+            ax2.plot(win_x, window)
+            ax2.text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
+            ax2.axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
+            ax1.grid(True)
+            ax2.grid(True)
+            show()
         if sm.weird != weird:
             weird = sm.weird
             if weird is not None:
@@ -194,10 +207,23 @@ def main():
                 x = x + weird-256
                 max_x = weird
                 max_y = max(possible_preamble)
-                pyplot.plot(x,possible_preamble[:512])
-                pyplot.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")") 
-                pyplot.grid(True)
-                pyplot.show()
+
+                # plot the window of correlated data the window sees right now
+                window = L0(sm.data.get_data())
+                win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
+                winMax_y = max(window) + sm.current_idx - buffer_size
+                winMax_x = argmax(window) + sm.current_idx - buffer_size
+
+                fig = figure()
+                ax1, ax2 = fig.subplots(2, 1)
+                ax1.plot(x,possible_preamble[:512])
+                ax1.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
+                ax2.plot(win_x, window)
+                ax2.text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
+                ax1.grid(True)
+                ax2.grid(True)
+                show()
+                
 
 
 
