@@ -172,59 +172,41 @@ def main():
         if sm.last_mhat != last_mhat:
             last_mhat = sm.last_mhat
             print(f"mhat: {last_mhat}")
-
-            # plot the surrrounding points of mhat (256 samples on either side)
-            possible_preamble = L0_temp(samples[last_mhat-256:last_mhat+512])
-            x = range(512)
-            x = x + last_mhat-256
-            max_x = last_mhat
-            max_y = max(possible_preamble)
-
-            # plot the window of correlated data the window sees right now
-            window = L0(sm.data.get_data())
-            win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
-            winMax_y = max(window) + sm.current_idx - buffer_size
-            winMax_x = argmax(window) + sm.current_idx - buffer_size
+            plot_window(sm, samples, last_mhat)
             
-            fig = figure()
-            ax1, ax2 = fig.subplots(2, 1)
-            ax1.plot(x,possible_preamble[:512])
-            ax1.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
-            ax2.plot(win_x, window)
-            ax2.text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
-            ax2.axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
-            ax1.grid(True)
-            ax2.grid(True)
-            show()
         if sm.weird != weird:
             weird = sm.weird
             if weird is not None:
                 print(f"weird: {weird}")
+                plot_window(sm, samples, last_mhat)
                 
-                # plot the surrrounding points of weird (256 samples on either side)
-                possible_preamble = L0_temp(samples[weird-256:weird+512])
-                x = range(512)
-                x = x + weird-256
-                max_x = weird
-                max_y = max(possible_preamble)
+def plot_window(sm, samples, last_mhat):
+    # plot the window of correlated data the window sees right now
+    window = L0(sm.data.get_data())
+    win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
+    winMax_y = max(window) + sm.current_idx - buffer_size
+    winMax_x = argmax(window) + sm.current_idx - buffer_size
 
-                # plot the window of correlated data the window sees right now
-                window = L0(sm.data.get_data())
-                win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
-                winMax_y = max(window) + sm.current_idx - buffer_size
-                winMax_x = argmax(window) + sm.current_idx - buffer_size
-
-                fig = figure()
-                ax1, ax2 = fig.subplots(2, 1)
-                ax1.plot(x,possible_preamble[:512])
-                ax1.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
-                ax2.plot(win_x, window)
-                ax2.text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
-                ax1.grid(True)
-                ax2.grid(True)
-                show()
-                
-
+    # plot the surrrounding points of mhat (256 samples on either side) 
+    x = range(768)
+    x = x + winMax_x-255
+    possible_preamble = L0_small(samples[x])
+    max_y = max(possible_preamble)
+    max_x = argmax(possible_preamble)
+    
+    # Generate the figure
+    fig = figure(figsize=(12, 9), dpi=80)
+    ax1, ax2 = fig.subplots(2, 1)
+    ax1.title.set_text('Possible Preamble')
+    ax2.title.set_text('Correlation Window')
+    ax1.plot(x[:512],possible_preamble[:512])
+    ax1.text(winMax_x-64, max_y + 700, "max = (" + str(max_x + winMax_x - 255) + "," + str(max_y) + ")")
+    ax2.plot(win_x, window)
+    ax2.text(winMax_x-128, max_y + 700, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
+    ax2.axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
+    ax1.grid(True)
+    ax2.grid(True)
+    show()
 
 
 

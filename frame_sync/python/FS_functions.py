@@ -12,7 +12,8 @@ def L0(data):
         result[m] = abs(dot(data[m : m + 256], preamble_template))
     return result
 
-def L0_temp(data):
+# A version of L0 that can correlate smaller sections of data
+def L0_small(data):
     result = zeros(data.size)
     for m in range(data.size - 255):
         result[m] = abs(dot(data[m : m + 256], preamble_template))
