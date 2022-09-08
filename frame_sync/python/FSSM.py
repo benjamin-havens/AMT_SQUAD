@@ -171,6 +171,9 @@ def main():
         # Print mhats and weirds
         if sm.last_mhat != last_mhat:
             last_mhat = sm.last_mhat
+            print(f"mhat: {last_mhat}")
+
+            # plot the surrrounding points of mhat (256 samples on either side)
             possible_preamble = L0_temp(samples[last_mhat-256:last_mhat+512])
             x = range(512)
             x = x + last_mhat-256
@@ -180,11 +183,23 @@ def main():
             pyplot.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")") 
             pyplot.grid(True)
             pyplot.show()
-            print(f"mhat: {last_mhat}")
         if sm.weird != weird:
             weird = sm.weird
             if weird is not None:
                 print(f"weird: {weird}")
+                
+                # plot the surrrounding points of weird (256 samples on either side)
+                possible_preamble = L0_temp(samples[weird-256:weird+512])
+                x = range(512)
+                x = x + weird-256
+                max_x = weird
+                max_y = max(possible_preamble)
+                pyplot.plot(x,possible_preamble[:512])
+                pyplot.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")") 
+                pyplot.grid(True)
+                pyplot.show()
+
+
 
 
 if __name__ == "__main__":
