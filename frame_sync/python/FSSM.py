@@ -7,7 +7,7 @@ from enum import Enum
 from buffer import FS_buffer
 from params import *
 from FS_functions import *
-from matplotlib.pyplot import plot, text, grid, show, subplot, figure
+from matplotlib.pyplot import plot, text, grid, show, subplot, figure, subplots
 
 st = Enum(
     "FSSM_st",
@@ -205,8 +205,8 @@ def main():
                 possible_preamble = L0_temp(samples[weird-256:weird+512])
                 x = range(512)
                 x = x + weird-256
-                max_x = weird
                 max_y = max(possible_preamble)
+                max_x = argmax(possible_preamble)+weird-256
 
                 # plot the window of correlated data the window sees right now
                 window = L0(sm.data.get_data())
@@ -214,14 +214,17 @@ def main():
                 winMax_y = max(window) + sm.current_idx - buffer_size
                 winMax_x = argmax(window) + sm.current_idx - buffer_size
 
-                fig = figure()
-                ax1, ax2 = fig.subplots(2, 1)
-                ax1.plot(x,possible_preamble[:512])
-                ax1.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
-                ax2.plot(win_x, window)
-                ax2.text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
-                ax1.grid(True)
-                ax2.grid(True)
+                #fig = figure()
+                #ax1, ax2, ax3 = fig.subplots(3,1)
+                fig, axs = subplots(3,1)
+                axs[0].plot(x,possible_preamble[:512])
+                axs[0].text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
+                axs[1].plot(win_x, window)
+                axs[1].text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
+                axs[1].grid(True)
+                axs[1].grid(True)
+                axs[2].plot(win_x[argmax(window)-256:argmax(window)+256], window[argmax(window)-256:argmax(window)+256])
+                axs[2].grid(True)
                 show()
                 
 
