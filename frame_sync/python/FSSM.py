@@ -147,37 +147,35 @@ class FSSM:
             print("Error state")
 
 def plot_window(sm, samples, peak, num_plots=2):
-    if peak is not None:
-        print(f"peak: {peak}")
 
-        # plot the surrounding pointd of the peak (256 samples on either side)
-        possible_preamble = L0_temp(samples[peak-256:peak+512])
-        x = range(512)
-        x = x + peak - 256
-        max_y = max(possible_preamble)
-        max_x = argmax(possible_preamble) + peak - 257
+    # plot the surrounding pointd of the peak (256 samples on either side)
+    possible_preamble = L0_temp(samples[peak-256:peak+512])
+    x = range(512)
+    x = x + peak - 256
+    max_y = max(possible_preamble)
+    max_x = argmax(possible_preamble) + peak - 257
 
-        # plot the window of correlated data the state machine is seeing
-        window = L0(sm.data.get_data())
-        win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
-        winMax_y = max(window)
-        winMax_x = argmax((window)) + sm.current_idx - buffer_size
+    # plot the window of correlated data the state machine is seeing
+    window = L0(sm.data.get_data())
+    win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
+    winMax_y = max(window)
+    winMax_x = argmax((window)) + sm.current_idx - buffer_size
 
-        # actually do the plotting
-        fig = figure(figsize=(12,9), dpi=80)
-        axs = fig.subplots(num_plots,1)
-        axs[0].plot(x, possible_preamble[:512])
-        axs[0].text(max_x-64, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
-        axs[0].grid(True)
-        if num_plots > 1:
-            axs[1].plot(win_x, window)
-            axs[1].text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
-            axs[1].axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
-            axs[1].grid(True)
-            if num_plots > 2:
-                axs[2].plot(win_x[argmax(window)-256:argmax(window)+256], window[argmax(window)-256:argmax(window)+256])
-                axs[2].grid(True)
-        show()  
+    # actually do the plotting
+    fig = figure(figsize=(12,9), dpi=80)
+    axs = fig.subplots(num_plots,1)
+    axs[0].plot(x, possible_preamble[:512])
+    axs[0].text(max_x-64, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
+    axs[0].grid(True)
+    if num_plots > 1:
+        axs[1].plot(win_x, window)
+        axs[1].text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
+        axs[1].axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
+        axs[1].grid(True)
+        if num_plots > 2:
+            axs[2].plot(win_x[argmax(window)-256:argmax(window)+256], window[argmax(window)-256:argmax(window)+256])
+            axs[2].grid(True)
+    show()  
 
 def main():
     sm = FSSM()
@@ -206,11 +204,14 @@ def main():
         # Print mhats and weirds
         if sm.last_mhat != last_mhat:
             last_mhat = sm.last_mhat
+            print(f"last_mhat: {last_mhat}")
             plot_window(sm, samples, last_mhat)
 
         if sm.weird != weird:
             weird = sm.weird
-            plot_window(sm, samples, weird)
+            if weird is not None:
+                print(f"weird: {weird}")
+                plot_window(sm, samples, weird)
 
                 
 
