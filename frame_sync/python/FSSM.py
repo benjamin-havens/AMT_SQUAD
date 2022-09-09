@@ -50,7 +50,7 @@ class FSSM:
         elif self.state == st.coldStart:
             avg_val, max_idx, max_val = self.get_peak()
             tmp_idx = self.current_idx - buffer_size + max_idx
-            if max_val > 3 * avg_val:                                       #TODO print graph of peaks
+            if max_val > 3 * avg_val:                              
                 self.state = st.onePeak
                 self.last_mhat = tmp_idx
             else:
@@ -60,11 +60,11 @@ class FSSM:
             tmp_idx = self.current_idx - buffer_size + max_idx
             if tmp_idx == self.last_mhat:
                 self.state = st.onePeak
-            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:         #TODO print graph of peaks
+            elif abs(tmp_idx - (self.last_mhat + frame_size)) <= 1:
                 self.state = st.twoPeaks
                 self.llast_mhat = self.last_mhat
                 self.last_mhat = tmp_idx
-            else:                                                           #TODO print graph of peaks
+            else:
                 self.state = st.weird                                       
                 self.weird = self.current_idx - buffer_size + max_idx
         elif self.state == st.twoPeaks:
@@ -146,6 +146,38 @@ class FSSM:
         else:
             print("Error state")
 
+def plot_window(sm, samples, peak, num_plots=2):
+    if peak is not None:
+        print(f"peak: {peak}")
+
+        # plot the surrounding pointd of the peak (256 samples on either side)
+        possible_preamble = L0_temp(samples[peak-256:peak+512])
+        x = range(512)
+        x = x + peak - 256
+        max_y = max(possible_preamble)
+        max_x = argmax(possible_preamble) + peak - 257
+
+        # plot the window of correlated data the state machine is seeing
+        window = L0(sm.data.get_data())
+        win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
+        winMax_y = max(window)
+        winMax_x = argmax((window)) + sm.current_idx - buffer_size
+
+        # actually do the plotting
+        fig = figure(figsize=(12,9), dpi=80)
+        axs = fig.subplots(num_plots,1)
+        axs[0].plot(x, possible_preamble[:512])
+        axs[0].text(max_x-64, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
+        axs[0].grid(True)
+        if num_plots > 1:
+            axs[1].plot(win_x, window)
+            axs[1].text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
+            axs[1].axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
+            axs[1].grid(True)
+            if num_plots > 2:
+                axs[2].plot(win_x[argmax(window)-256:argmax(window)+256], window[argmax(window)-256:argmax(window)+256])
+                axs[2].grid(True)
+        show()  
 
 def main():
     sm = FSSM()
@@ -160,74 +192,27 @@ def main():
         if not count % 1000:
             print(count)
         count += 1
+
         # Print the state and wait
         if sm.state != last_state:
             last_state = sm.state
-            print(sm.state, end="")
+            print(sm.state, end="\n")
 
-            input()
+            # input()
+
         # Tick
         sm.tick(sample)
+
         # Print mhats and weirds
         if sm.last_mhat != last_mhat:
             last_mhat = sm.last_mhat
-            print(f"mhat: {last_mhat}")
+            plot_window(sm, samples, last_mhat)
 
-            # plot the surrrounding points of mhat (256 samples on either side)
-            possible_preamble = L0_temp(samples[last_mhat-256:last_mhat+512])
-            x = range(512)
-            x = x + last_mhat-256
-            max_x = last_mhat
-            max_y = max(possible_preamble)
-
-            # plot the window of correlated data the window sees right now
-            window = L0(sm.data.get_data())
-            win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
-            winMax_y = max(window) + sm.current_idx - buffer_size
-            winMax_x = argmax(window) + sm.current_idx - buffer_size
-            
-            fig = figure()
-            ax1, ax2 = fig.subplots(2, 1)
-            ax1.plot(x,possible_preamble[:512])
-            ax1.text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
-            ax2.plot(win_x, window)
-            ax2.text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
-            ax2.axvspan(winMax_x-256, winMax_x+256, color='red', alpha=0.5)
-            ax1.grid(True)
-            ax2.grid(True)
-            show()
         if sm.weird != weird:
             weird = sm.weird
-            if weird is not None:
-                print(f"weird: {weird}")
+            plot_window(sm, samples, weird)
+
                 
-                # plot the surrrounding points of weird (256 samples on either side)
-                possible_preamble = L0_temp(samples[weird-256:weird+512])
-                x = range(512)
-                x = x + weird-256
-                max_y = max(possible_preamble)
-                max_x = argmax(possible_preamble)+weird-256
-
-                # plot the window of correlated data the window sees right now
-                window = L0(sm.data.get_data())
-                win_x = range(sm.current_idx - buffer_size, sm.current_idx - 255)
-                winMax_y = max(window) + sm.current_idx - buffer_size
-                winMax_x = argmax(window) + sm.current_idx - buffer_size
-
-                #fig = figure()
-                #ax1, ax2, ax3 = fig.subplots(3,1)
-                fig, axs = subplots(3,1)
-                axs[0].plot(x,possible_preamble[:512])
-                axs[0].text(max_x-128, max_y + 500, "max = (" + str(max_x) + "," + str(max_y) + ")")
-                axs[1].plot(win_x, window)
-                axs[1].text(winMax_x-128, max_y + 500, "max = (" + str(winMax_x) + "," + str(winMax_y) + ")")
-                axs[1].grid(True)
-                axs[1].grid(True)
-                axs[2].plot(win_x[argmax(window)-256:argmax(window)+256], window[argmax(window)-256:argmax(window)+256])
-                axs[2].grid(True)
-                show()
-                
-
 
 
 
