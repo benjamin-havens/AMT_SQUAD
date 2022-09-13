@@ -13,7 +13,7 @@ def L0(data):
     return result
 
 # A version of L0 that can correlate smaller sections of data
-def L0_small(data):
+def L0_temp(data):
     result = zeros(data.size)
     for m in range(data.size - 255):
         result[m] = abs(dot(data[m : m + 256], preamble_template))
